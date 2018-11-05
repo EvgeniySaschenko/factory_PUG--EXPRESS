@@ -1,0 +1,7 @@
+mixin b-menu-page(data, cls, curUrl)
+	+b.MUNU.menu-page(class= cls)
+		+e.UL.list(class="pagination")
+			- var i = 0;
+				while data.count_record > i
+					+e.LI.list-item(class="page-item")
+						+e.A.list-item-link(class="page-link" href= curUrl + '/page/' + ++i)= i

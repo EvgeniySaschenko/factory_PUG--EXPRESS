@@ -1,0 +1,12 @@
+mixin b-tab()
+	+b.tab
+		+e.list
+			+e.item(data-id="tab_1").active Tab 1
+			+e.item(data-id="tab_2") Tab 2
+			+e.item(data-id="tab_3") Tab 3
+			+e.item(data-id="tab_4") Tab 4
+		+e.box-content
+			+e.content(id="tab_1").active Content 1
+			+e.content(id="tab_2") Content 2
+			+e.content(id="tab_3") Content 3
+			+e.content(id="tab_4") Content 4

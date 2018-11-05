@@ -1,0 +1,49 @@
+*
+	box-sizing: border-box
+
+img
+	max-width: 100%
+	height: auto
+
+body
+	color: #000000
+	font-family: 'Arial', sans-serif
+	font-size: 16px
+	font-weight: 400
+	line-height: 1
+	overflow-x: hidden
+
+ol, ul
+	list-style: none
+
+table
+	border-collapse: collapse
+	border-spacing: 0
+
+a
+	text-decoration: none
+	&:hover
+		transition-duration: .3s
+
+button,
+input[type="checkbox"]
+	border: none
+	outline: none
+
+button,
+input[type="submit"]
+	cursor: pointer
+
+.wrapper
+	margin: 0 auto
+	position: relative
+
+.hidden
+	transition-duration: 0
+	position: absolute !important
+	opacity: 0 !important
+
+.visible
+	transition-duration: .3s
+	position: static !important
+	opacity: 1 !important

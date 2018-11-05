@@ -1,0 +1,16 @@
+mixin b-table_items-to-edit(data, cls, api)
+	if data
+		+b.table_items-to-edit(class= cls + " table-responsive" data-api= api)
+			+e.TABLE.table(class="table table-hover")
+				thead
+					tr
+						th Название
+						th Дата создания
+						th Редактировать
+				tbody
+					each e in data
+						tr
+							td= e.name
+							td= e.date_create
+							td 
+								+e.BUTTON.btn(class="btn btn-success") Редактировать

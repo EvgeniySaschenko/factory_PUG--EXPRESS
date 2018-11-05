@@ -1,0 +1,8 @@
+mixin b-menu(data, cls, curUrl)
+	if data
+		+b.NAV.menu(class= cls)
+			+e.UL.list
+					each e in data
+						- var active= curUrl == e.link ? 'active' : ''
+						+e.LI.list-item(class= active)
+							+e.A.list-item-link(href= e.link)= e.name

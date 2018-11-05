@@ -1,0 +1,29 @@
+extends ../_layout/main
+
+block content
+	+b.page_admin
+		+e.H1.title= title
+
+		+b.tab_division
+			+e.list
+				+e.item(data-id="tab_division-1" class="active")
+					+e.I.item-icon.fa.fa-plus
+					+e.SPAN.item-name Добавить подразделение
+				+e.item(data-id="tab_division-2") 
+					+e.I.item-icon.fa.fa-list-alt
+					+e.SPAN.item-name Список подразделений
+				+e.item(data-id="tab_division-3")
+					+e.I.item-icon.fa.fa-plus
+					+e.SPAN.item-name  Добавить должность
+				+e.item(data-id="tab_division-4")
+					+e.I.item-icon.fa.fa-list-alt
+					+e.SPAN.item-name Список должностей
+
+			+e.box-content
+				+e.content(id="tab_division-1").active
+					+b-form_add-name('_division', api_addDivision)
+				+e.content(id="tab_division-2")
+					+b-table_items-to-edit(division_list, '_division', api_editDivision)
+					+b-menu-page(division_list, '_division', curUrl)
+				+e.content(id="tab_division-3") Content 3
+				+e.content(id="tab_division-4") Content 4

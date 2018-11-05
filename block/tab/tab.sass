@@ -1,0 +1,18 @@
+.tab
+	&__list
+		display: flex
+	&__item
+		cursor: pointer
+		&.active
+			background-color: $corp-1
+			transition-duration: .3s
+	&__content
+		z-index: -1
+		opacity: 0
+		position: absolute
+		&.active
+			position: relative
+			display: block
+			z-index: 0
+			opacity: 1
+			transition-duration: .3s
