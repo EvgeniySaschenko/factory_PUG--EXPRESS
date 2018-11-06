@@ -14,7 +14,7 @@ router.post('/', (req, res, next)=>{
 
 // Редактировать подразделение
 router.put('/', (req, res, next)=>{
-	response(division.editDivision(req, res, next));
+	response(division.editDivision(req), res, next);
 });
 
 // Получить список подразделений

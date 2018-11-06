@@ -46,25 +46,27 @@ class Division{
 	}
 
 	editDivision(req){
-		const { id, name }= req.body;
+		const { id, name, remark, status, del }= req.body;
 		const { id_visitor }= req.session.user;
-
 		return new Promise((resolve, reject)=>{
 			this.getDivisionСheckExists(name)
 				.then((data)=>{
-					if(data.length === 0){
+					if(data.length === 0 || data[0].id == id){
 						this.db.getConnection((err, connection)=>{
 							if(!err){
 								connection.query(`UPDATE ff_division
 									SET
 										id_visitor_update= ?,
 										name= ?,
-										date_update= ?
+										date_update= ?,
+										remark= ?,
+										status= ?,
+										del= ?
 									WHERE id= ?`,
-									[id_visitor, name, 'CURRENT_TIMESTAMP', id],
+									[id_visitor, name, 'CURRENT_TIMESTAMP', remark, status, del, id],
 									(err, data= false)=>{
 										const { affectedRows }= data;
-										affectedRows ? resolve( this.msg.edit ) : reject( { data: this.msg.err, err : err } );
+										affectedRows ? resolve( !del ? this.msg.edit : this.msg.delete ) : reject( { data: this.msg.err, err : err } );
 										connection.release();
 									});
 							} else {
@@ -101,14 +103,43 @@ class Division{
 		});
 	}
 
+	getNDivisionById(req){
+		const { id }= req.params;
+		return new Promise((resolve, reject)=>{
+			this.db.getConnection((err, connection)=>{
+				if(!err){
+					connection.query(`SELECT
+							*
+						FROM ff_division
+						WHERE id = ? AND del = 0`,
+						[id],
+						(err, data)=>{
+							data ? resolve(data[0]) : reject( { data: this.msg.err, err : err } );
+							connection.release();
+						});
+				} else {
+					reject( { data: this.msg.err, err : err } );
+				}
+			});
+		});
+	}
+
 	getDivisionAll(){
 		return new Promise((resolve, reject)=>{
 			this.db.getConnection((err, connection)=>{
 				if(!err){
-					connection.query(`SELECT COUNT(*) as count_record FROM ff_division`,
+					connection.query(`SELECT 
+								COUNT(*) as count_record 
+							FROM ff_division
+							WHERE del= 0`,
 						(err, data_count)=>{
 							if(data_count){
-									connection.query(`SELECT * FROM ff_division ORDER BY name ASC`,
+									connection.query(`SELECT 
+											*,
+											DATE_FORMAT(date_create, '%d.%m.%Y') as date_create
+										FROM ff_division 
+										WHERE del= 0
+										ORDER BY name ASC`,
 								(err, data)=>{
 									data_count= Math.ceil( data_count[0].count_record / this.countRecord );
 									data ? resolve(Object.assign(data, {count_record: data_count})) : reject( { data: this.msg.err, err : err } );
@@ -164,13 +195,13 @@ class Division{
 	}
 
 	editRank(req){
-		const { id, id_division, name }= req.body;
+		const { id, name, id_division, remark, status, del }= req.body;
 		const { id_visitor }= req.session.user;
 
 		return new Promise((resolve, reject)=>{
 			this.getRankСheckExists(id_division, name)
 				.then((data)=>{
-					if(data.length === 0){
+					if(data.length === 0 || data[0].id == id){
 						this.db.getConnection((err, connection)=>{
 							if(!err){
 								connection.query(`UPDATE ff_rank
@@ -178,12 +209,15 @@ class Division{
 										id_visitor_update= ?,
 										id_division= ?,
 										name= ?,
-										date_update= ?
+										date_update= ?,
+										remark= ?,
+										status= ?,
+										del= ?
 									WHERE id= ?`,
-									[id_visitor, id_division, name, 'CURRENT_TIMESTAMP', id],
+									[id_visitor, id_division, name, 'CURRENT_TIMESTAMP', remark, status, del, id],
 									(err, data= false)=>{
 										const { affectedRows }= data;
-										affectedRows ? resolve( this.msg.edit ) : reject( { data: this.msg.err, err : err } );
+										affectedRows ? resolve( !del ? this.msg.edit : this.msg.delete ) : reject( { data: this.msg.err, err : err } );
 										connection.release();
 									});
 							} else {

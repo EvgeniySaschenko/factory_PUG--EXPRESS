@@ -1,0 +1,6 @@
+extends ../_layout/main
+
+block content
+	+b.page_admin-division-edit
+		+e.H1.title= title
+		+b-form_edit-name(division_cur, '_division-edit', api_editDivision)

@@ -47,13 +47,13 @@ class Equipment{
 		}
 
 	editEquipment(req){
-		const { id, name, model, num }= req.body;
+		const { id, name, model, num, remark, status, del }= req.body;
 		const { id_visitor }= req.session.user;
 		
 		return new Promise((resolve, reject)=>{
 			this.getEquipmentСheckExists(name, model, num)
 				.then((data)=>{
-					if(data.length === 0){
+					if(data.length === 0 || data[0].id == id){
 						this.db.getConnection((err, connection)=>{
 							if(!err){
 								connection.query(`UPDATE ff_equipment
@@ -62,12 +62,15 @@ class Equipment{
 										name= ?,
 										model= ?,
 										num= ?,
-										date_update= ?
+										date_update= ?, 
+										remark= ?,
+										status= ?,
+										del= ?
 									WHERE id= ?`,
-									[id_visitor, name, model, num, 'CURRENT_TIMESTAMP', id],
+									[id_visitor, name, model, num, 'CURRENT_TIMESTAMP', remark, status, del, id],
 									(err, data= false)=>{
 										const { affectedRows }= data;
-										affectedRows ? resolve( this.msg.edit ) : reject( { data: this.msg.err, err : err } );
+										affectedRows ? resolve( !del ? this.msg.edit : this.msg.delete ) : reject( { data: this.msg.err, err : err } );
 										connection.release();
 									});
 							} else {

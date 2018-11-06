@@ -3,13 +3,13 @@ let response= (obj, res, next) => {
 		.then((data)=>{
 			res.status(200);
 			res.json(data);
-			next();
+			res.end();
 		})
 		.catch((err)=>{
 			res.status(200);
 			res.json(err.data);
 			console.log( err );
-			next();
+			res.end();
 		})
 }
 

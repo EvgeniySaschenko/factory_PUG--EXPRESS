@@ -48,13 +48,13 @@ class Material{
 	}
 
 	editMaterial(req){
-		const { id, id_type, id_use, mark, standart }= req.body;
+		const { id, id_type, id_use, mark, standart, remark, status, del }= req.body;
 		const { id_visitor }= req.session.user;
 
 		return new Promise((resolve, reject)=>{
 			this.getMaterialСheckExists(id_type, id_use, mark, standart)
 				.then((data)=>{
-					if(data.length === 0){
+					if(data.length === 0 || data[0].id == id){
 						this.db.getConnection((err, connection)=>{
 							if(!err){
 								connection.query(`UPDATE ff_material
@@ -64,12 +64,15 @@ class Material{
 										id_use= ?,
 										mark= ?,
 										standart= ?,
-										date_update= ?
+										date_update= ?, 
+										remark= ?,
+										status= ?,
+										del= ?
 									WHERE id= ?`,
-									[id_visitor, id_type, id_use, mark, standart, 'CURRENT_TIMESTAMP', id],
+									[id_visitor, id_type, id_use, mark, standart, 'CURRENT_TIMESTAMP', remark, status, del, id],
 									(err, data= false)=>{
 										const { affectedRows }= data;
-										affectedRows ? resolve( this.msg.edit ) : reject( { data: this.msg.err, err : err } );
+										affectedRows ? resolve( !del ? this.msg.edit : this.msg.delete ) : reject( { data: this.msg.err, err : err } );
 										connection.release();
 									});
 							} else {
@@ -208,25 +211,28 @@ class Material{
 		}
 
 	editType(req){
-		const { id, name }= req.body;
+		const { id, name, remark, status, del }= req.body;
 		const { id_visitor }= req.session.user;
 
 		return new Promise((resolve, reject)=>{
 			this.getTypeСheckExists(name)
 				.then((data)=>{
-					if(data.length === 0){
+					if(data.length === 0 || data[0].id == id){
 						this.db.getConnection((err, connection)=>{
 							if(!err){
 								connection.query(`UPDATE ff_material_type
 									SET
 										id_visitor_update= ?,
 										name= ?,
-										date_update= ?
+										date_update= ?, 
+										remark= ?, 
+										status= ?, 
+										del= ?
 									WHERE id= ?`,
-									[id_visitor, name, 'CURRENT_TIMESTAMP', id],
+									[id_visitor, name, 'CURRENT_TIMESTAMP', remark, status, del, id],
 									(err, data= false)=>{
 										const { affectedRows }= data;
-										affectedRows ? resolve( this.msg.edit ) : reject( { data: this.msg.err, err : err } );
+										affectedRows ? resolve( !del ? this.msg.edit : this.msg.delete ) : reject( { data: this.msg.err, err : err } );
 										connection.release();
 									});
 							} else {

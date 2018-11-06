@@ -175,7 +175,7 @@ class DocAutomatMap{
 	}
 	
 	editAutomatMapItem(req){
-		const { id, id_automat_map, name, pi, d_v, l, t, i, s, n, v, t_o, t_v }= req.body;
+		const { id, id_automat_map, name, pi, d_v, l, t, i, s, n, v, t_o, t_v, remark, status, del }= req.body;
 		const { id_visitor }= req.session.user;
 
 		return new Promise((resolve, reject)=>{
@@ -196,9 +196,12 @@ class DocAutomatMap{
 							v= ?, 
 							t_o= ?, 
 							t_v= ?, 
-							date_update= ?
+							date_update= ?,
+							remark= ?,
+							status= ?,
+							del= ?
 						WHERE id= ?`,
-						[id_visitor, id_automat_map, name, pi, d_v, l, t, i, s, n, v, t_o, t_v, 'CURRENT_TIMESTAMP', id],
+						[id_visitor, id_automat_map, name, pi, d_v, l, t, i, s, n, v, t_o, t_v, 'CURRENT_TIMESTAMP', remark, status, del, id],
 						(err, data= false)=>{
 							const { affectedRows }= data;
 							affectedRows ? resolve( this.msg.edit ) : reject( { data: this.msg.err, err : err } );

@@ -11,7 +11,7 @@ const division= {
 
 	editDivision(){
 		return {
-			action: `/division`,
+			action: `/api/division`,
 			method: 'put'
 		}
 	},
@@ -27,21 +27,21 @@ const division= {
 
 	addRank(){
 		return {
-			action: `/division/rank`,
+			action: `/api/division/rank`,
 			method: 'post'
 		}
 	},
 
 	editRank(){
 		return {
-			action: `/division/rank`,
+			action: `/api/division/rank`,
 			method: 'put'
 		}
 	},
 
 	getRankByIdDividion(obj){
 		return {
-			action: `/division/rank/id_division/` + obj.id_division,
+			action: `/api/division/rank/id_division/` + obj.id_division,
 			method: 'get'
 		}
 	},

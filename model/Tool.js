@@ -48,13 +48,13 @@ class Tool{
 	}
 
 	editTool(req){
-		const { id, id_material, id_type, description, standart }= req.body;
+		const { id, id_material, id_type, description, standart, remark, status, del }= req.body;
 		const { id_visitor }= req.session.user;
 
 		return new Promise((resolve, reject)=>{
 			this.getToolСheckExists(id_material, id_type, description, standart)
 				.then((data)=>{
-					if(data.length === 0){
+					if(data.length === 0 || data[0].id == id){
 						this.db.getConnection((err, connection)=>{
 							if(!err){
 								connection.query(`UPDATE ff_tool
@@ -64,12 +64,15 @@ class Tool{
 										id_type= ?,
 										description= ?,
 										standart= ?,
-										date_update= ?
+										date_update= ?, 
+										remark= ?, 
+										status= ?, 
+										del= ?
 									WHERE id= ?`,
-									[id_visitor, id_material, id_type, description, standart, 'CURRENT_TIMESTAMP', id],
+									[id_visitor, id_material, id_type, description, standart, 'CURRENT_TIMESTAMP', remark, status, del, id],
 									(err, data= false)=>{
 										const { affectedRows }= data;
-										affectedRows ? resolve( this.msg.edit ) : reject( { data: this.msg.err, err : err } );
+										affectedRows ? resolve( !del ? this.msg.edit : this.msg.delete ) : reject( { data: this.msg.err, err : err } );
 										connection.release();
 									});
 							} else {
@@ -186,7 +189,7 @@ class Tool{
 	}
 
 	editType(req){
-		const { id, name }= req.body;
+		const { id, name, remark, status, del }= req.body;
 		const { id_visitor }= req.session.user;
 
 		return new Promise((resolve, reject)=>{
@@ -199,12 +202,15 @@ class Tool{
 									SET
 										id_visitor_update= ?,
 										name= ?,
-										date_update= ?
+										date_update= ?, 
+										remark= ?, 
+										status= ?, 
+										del= ?
 									WHERE id= ?`,
-									[id_visitor, name, 'CURRENT_TIMESTAMP', id],
+									[id_visitor, name, 'CURRENT_TIMESTAMP', remark, status, del, id],
 									(err, data= false)=>{
 										const { affectedRows }= data;
-										affectedRows ? resolve( this.msg.edit ) : reject( { data: this.msg.err, err : err } );
+										affectedRows ? resolve( !del ? this.msg.edit : this.msg.delete ) : reject( { data: this.msg.err, err : err } );
 										connection.release();
 									});
 							} else {
