@@ -8,12 +8,13 @@ const nav= new Nav();
 /* GET home page. */
 router.get('/', (req, res, next)=> {
 	const menu_main= nav.getNavByType({type: 'main'});
-	
-	Promise.all([menu_main]).then(val => { 
+	const menu_breadCrumbs= nav.getBreadCrumbs(req);
+	Promise.all([menu_main, menu_breadCrumbs]).then(val => { 
 			res.render('index', { 
 				title: 'Главная', 
 				curUrl: req.originalUrl,
-				menu_main: val[0]
+				menu_main: val[0],
+				menu_breadCrumbs: val[1],
 			});
 		}, reason => {
 			console.log(reason)

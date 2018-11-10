@@ -12,7 +12,7 @@ class Operation{
 	addOperation(req){
 		const { name }= req.body;
 		const { id_visitor }= req.session.user;
-
+		console.log( 11 )
 		return new Promise((resolve, reject)=>{
 			this.getOperationСheckExists(name)
 				.then((data)=>{
@@ -51,7 +51,7 @@ class Operation{
 		return new Promise((resolve, reject)=>{
 			this.getOperationСheckExists(name)
 				.then((data)=>{
-					if(data.length === 0 || data[0].id == id){
+					 if(data.length === 0 || data[0].id == id && data[0].del == 0){
 						this.db.getConnection((err, connection)=>{
 							if(!err){
 								connection.query(`UPDATE ff_operation
@@ -74,7 +74,7 @@ class Operation{
 							}
 						});
 					} else {
-						resolve( this.msg.exists );
+						resolve( data[0].del ? this.msg.delete : this.msg.exists );
 					}
 				})
 				.catch((err)=>{
@@ -109,9 +109,10 @@ class Operation{
 			this.db.getConnection((err, connection)=>{
 				if(!err){
 					connection.query(`SELECT
-							id,
-							name
+							*,
+							DATE_FORMAT(date_create, '%d.%m.%Y') as date_create
 						FROM ff_operation
+						WHERE del = 0
 						ORDER BY name ASC, id ASC`,
 						(err, data)=>{
 							data ? resolve(data) : reject( { data: this.msg.err, err : err } );
@@ -124,6 +125,27 @@ class Operation{
 		});
 	}
 
+	getOperationById(req){
+		const { id }= req.params;
+		console.log( id )
+		return new Promise((resolve, reject)=>{
+			this.db.getConnection((err, connection)=>{
+				if(!err){
+					connection.query(`SELECT
+							*
+						FROM ff_operation
+						WHERE id = ? AND del = 0`,
+						[id],
+						(err, data)=>{
+							data ? resolve(data[0]) : reject( { data: this.msg.err, err : err } );
+							connection.release();
+						});
+				} else {
+					reject( { data: this.msg.err, err : err } );
+				}
+			});
+		});
+	}
 }
 
 module.exports= Operation;

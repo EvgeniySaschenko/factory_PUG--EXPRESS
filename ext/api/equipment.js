@@ -3,19 +3,31 @@ const equipment= {
 	/* EQUIPMENT */
 
 	addEquipment(){
-		return `/equipment`;
+		return {
+			action: `/api/equipment`,
+			method: 'post'
+		}
 	},
 
 	editEquipment(){
-		return `/equipment`;
+		return {
+			action: `/api/equipment`,
+			method: 'put'
+		}
 	},
 
 	getEquipmentAll(){
-		return `/equipment/all`;
+		return {
+			action: `/api/equipment/all`,
+			method: 'get'
+		}
 	},
 
 	getEquipmentById(obj){
-		return `/equipment/id/` + obj.id;
+		return {
+			action: `/api/equipment/id/` + obj.id,
+			method: 'get'
+		}
 	},
 
 }

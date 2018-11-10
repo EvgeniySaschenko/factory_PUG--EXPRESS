@@ -3,33 +3,54 @@ const material= {
 	/* MATERIAL */
 
 	addMaterial(){
-		return `/material`;
+		return {
+			action: `/api/material`,
+			method: 'post'
+		}
 	},
 
 	editMaterial(){
-		return `/material`;
+		return {
+			action: `/api/material`,
+			method: 'put'
+		}
 	},
 
 	getMaterialById(obj){
-		return `/material/id/` + obj.id;
+		return {
+			action: `/api/material/id/` + obj.id,
+			method: 'get'
+		}
 	},
 
 	getMaterialByTypeAndUse(obj){
-		return `/material/id_type/` + obj.id_type + `/id_use/` + obj.id_use;
+		return {
+			action: `/api/material/id_type/` + obj.id_type + `/id_use/` + obj.id_use,
+			method: 'get'
+		}
 	},
 	
 	/** MATERIAL TYPE */
 
 	addType(){
-		return `/material/type`;
+		return {
+			action: `/api/material/type`,
+			method: 'post'
+		}
 	},
 
 	editType(){
-		return `/material/type`;
+		return {
+			action: `/api/material/type`,
+			method: 'put'
+		}
 	},
 
 	getMaterialTypeAll(){
-		return `/material/type/all`;
+		return {
+			action: `/api/material/type/all`,
+			method: 'get'
+		}
 	},
 
 }

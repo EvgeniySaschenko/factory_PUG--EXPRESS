@@ -1,7 +1,7 @@
-mixin b-menu-bread-crumbs(data, cls)
+mixin b-menu-bread-crumbs(data, cls, title)
 	if data
 		+b.MENU.menu-bread-crumbs(class= cls)
 			+e.UL.list
 					each e in data
 						+e.LI.list-item
-							+e.A.list-item-link(href= e.link)= e.name
+							+e.A.list-item-link(href= e.link)= e.name ? e.name : title

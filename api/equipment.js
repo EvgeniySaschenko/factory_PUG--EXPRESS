@@ -11,7 +11,7 @@ router.post('/', (req, res, next)=>{
 });
 
 router.put('/', (req, res, next)=>{
-	response(equipment.editEquipment(req, res, next));
+	response(equipment.editEquipment(req), res, next);
 });
 
 router.get('/all', (req, res, next)=>{

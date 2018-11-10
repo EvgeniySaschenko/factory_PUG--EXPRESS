@@ -1,14 +1,14 @@
 extends ../_layout/main
 
 block content
-	+b.page_admin-division-edit
+	+b.page_admin-tech-process-edit
 		+e.H1.title= title
-
-		- var data= division_cur
-		- var api= api_editDivision
+		
+		- var data= operation_cur
+		- var api= api_editOperation
 
 		if data
-			+b.FORM.form_admin(class="_division-edit" data-api=api)
+			+b.FORM.form_admin(class="_operation-edit" data-api=api)
 				+e.INPUT.hidden(value=data.id type="hidden" name="id")
 				+e.group(class="form-group")
 					+e.LABEL.label Название

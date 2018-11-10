@@ -52,6 +52,9 @@ class Nav{
 									}
 								}
 							}
+							if(nav.length < arr.length - 1){
+								nav.push({name: false, link: originalUrl});
+							}
 
 							data ? resolve(nav) : reject( { data: this.msg.err, err : err } );
 							connection.release();

@@ -51,7 +51,7 @@ class Division{
 		return new Promise((resolve, reject)=>{
 			this.getDivisionСheckExists(name)
 				.then((data)=>{
-					if(data.length === 0 || data[0].id == id){
+					 if(data.length === 0 || data[0].id == id && data[0].del == 0){
 						this.db.getConnection((err, connection)=>{
 							if(!err){
 								connection.query(`UPDATE ff_division
@@ -74,7 +74,7 @@ class Division{
 							}
 						});
 					} else {
-						resolve( this.msg.exists );
+						resolve( data[0].del ? this.msg.delete : this.msg.exists );
 					}
 				})
 				.catch((err)=>{
@@ -103,7 +103,7 @@ class Division{
 		});
 	}
 
-	getNDivisionById(req){
+	getDivisionById(req){
 		const { id }= req.params;
 		return new Promise((resolve, reject)=>{
 			this.db.getConnection((err, connection)=>{
@@ -159,9 +159,8 @@ class Division{
 	/** RANK */
 
 	addRank(req){
-		const { name }= req.body;
+		const { name, id_type : id_division }= req.body;
 		const { id_visitor }= req.session.user;
-
 		return new Promise((resolve, reject)=>{
 			this.getRankСheckExists(id_division, name)
 				.then((data)=>{
@@ -195,13 +194,12 @@ class Division{
 	}
 
 	editRank(req){
-		const { id, name, id_division, remark, status, del }= req.body;
+		const { id, name, id_type: id_division, remark, status, del }= req.body;
 		const { id_visitor }= req.session.user;
-
 		return new Promise((resolve, reject)=>{
 			this.getRankСheckExists(id_division, name)
 				.then((data)=>{
-					if(data.length === 0 || data[0].id == id){
+					 if(data.length === 0 || data[0].id == id && data[0].del == 0){
 						this.db.getConnection((err, connection)=>{
 							if(!err){
 								connection.query(`UPDATE ff_rank
@@ -225,7 +223,7 @@ class Division{
 							}
 						});
 					} else {
-						resolve( this.msg.exists );
+						resolve( data[0].del ? this.msg.delete : this.msg.exists );
 					}
 				})
 				.catch((err)=>{
@@ -263,10 +261,55 @@ class Division{
 					connection.query(`SELECT 
 						*
 					FROM ff_rank
-					WHERE id_division = ?`,
+					WHERE id_division = ? AND del= 0`,
 					[id_division],
 					(err, data)=>{
 						data ? resolve(data) : reject( { data: this.msg.err, err : err } );
+						connection.release();
+					});
+				} else {
+					reject( { data: this.msg.err, err : err } );
+				}
+			});
+		});
+	}
+
+	getRankAll(){
+		return new Promise((resolve, reject)=>{
+			this.db.getConnection((err, connection)=>{
+				if(!err){
+					connection.query(`SELECT 
+						r.*,
+						DATE_FORMAT(r.date_create, '%d.%m.%Y') as date_create,
+						d.name as name_division
+					FROM ff_rank r
+					INNER JOIN ff_division d ON d.id = r.id_division
+					WHERE r.del= 0 AND d.del= 0
+					ORDER BY d.name ASC, r.name ASC`,
+					(err, data)=>{
+						data ? resolve(data) : reject( { data: this.msg.err, err : err } );
+						connection.release();
+					});
+				} else {
+					reject( { data: this.msg.err, err : err } );
+				}
+			});
+		});
+	}
+
+	getRankById(req){
+		const { id }= req.params; 
+
+		return new Promise((resolve, reject)=>{
+			this.db.getConnection((err, connection)=>{
+				if(!err){
+					connection.query(`SELECT 
+						*
+					FROM ff_rank
+					WHERE id= ?`,
+					[id],
+					(err, data)=>{
+						data ? resolve(data[0]) : reject( { data: this.msg.err, err : err } );
 						connection.release();
 					});
 				} else {

@@ -1,0 +1,13 @@
+mixin b-form_add-name-type(data, cls, api)
+	+b.FORM.form_add-name-type(class= cls data-api= api)
+		+e.group(class="form-group")
+			+e.LABEL.label Название
+			+e.INPUT.field(class="form-control" type="text" name="name" placeholder="Название" required)
+		+e.group(class="form-group")
+			+e.LABEL.label Привязать к категории
+			+e.SELECT.select(class="form-control" name="id_type" required)
+				each e in data
+					+e.OPTION(value= e.id).option= e.name
+		+e.alert(class="alert hidden")
+		+e.box-btn
+			+e.BUTTON.btn(class="btn btn-primary" type="submit") Отправить

@@ -53,7 +53,7 @@ class Equipment{
 		return new Promise((resolve, reject)=>{
 			this.getEquipmentСheckExists(name, model, num)
 				.then((data)=>{
-					if(data.length === 0 || data[0].id == id){
+					 if(data.length === 0 || data[0].id == id && data[0].del == 0){
 						this.db.getConnection((err, connection)=>{
 							if(!err){
 								connection.query(`UPDATE ff_equipment
@@ -78,7 +78,7 @@ class Equipment{
 							}
 						});
 					} else {
-						resolve( this.msg.exists );
+						resolve( data[0].del ? this.msg.delete : this.msg.exists );
 					}
 				})
 				.catch((err)=>{
@@ -119,15 +119,12 @@ class Equipment{
 			this.db.getConnection((err, connection)=>{
 				if(!err){
 					connection.query(`SELECT
-							id, 
-							name, 
-							model, 
-							num
+							*
 						FROM ff_equipment
-						WHERE id= ?`,
+						WHERE id= ? AND del= 0`,
 						[id],
 						(err, data)=>{
-							data ? resolve(data) : reject( { data: this.msg.err, err : err } );
+							data ? resolve(data[0]) : reject( { data: this.msg.err, err : err } );
 							connection.release();
 						});
 				} else {
@@ -142,12 +139,11 @@ class Equipment{
 			this.db.getConnection((err, connection)=>{
 				if(!err){
 					connection.query(`SELECT
-							id, 
-							name, 
-							model, 
-							num
+							*,
+							DATE_FORMAT(date_create, '%d.%m.%Y') as date_create
 						FROM ff_equipment
-						ORDER BY name ASC, model ASC, id ASC`,
+						WHERE del= 0
+						ORDER BY name ASC, model ASC, num ASC`,
 						(err, data)=>{
 							data ? resolve(data) : reject( { data: this.msg.err, err : err } );
 							connection.release();

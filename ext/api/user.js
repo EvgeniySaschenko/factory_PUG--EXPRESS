@@ -3,11 +3,11 @@ const user= {
 	/** USER */
 
 	addUser: ()=>{
-		return `/user`;
+		return `/api/user`;
 	},
 
 	getUserById: (obj)=>{
-		return `/user/id/` + obj.id;
+		return `/api/user/id/` + obj.id;
 	}
 
 }

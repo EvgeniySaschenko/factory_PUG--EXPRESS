@@ -54,7 +54,7 @@ class Tool{
 		return new Promise((resolve, reject)=>{
 			this.getToolСheckExists(id_material, id_type, description, standart)
 				.then((data)=>{
-					if(data.length === 0 || data[0].id == id){
+					 if(data.length === 0 || data[0].id == id && data[0].del == 0){
 						this.db.getConnection((err, connection)=>{
 							if(!err){
 								connection.query(`UPDATE ff_tool
@@ -80,7 +80,7 @@ class Tool{
 							}
 						});
 					} else {
-						resolve( this.msg.exists );
+						resolve( data[0].del ? this.msg.delete : this.msg.exists );
 					}
 				})
 				.catch((err)=>{
@@ -137,7 +137,7 @@ class Tool{
 						INNER JOIN ff_tool_type tt ON t.id_type = tt.id
 						INNER JOIN ff_material m ON t.id_material = m.id
 						INNER JOIN ff_material_type mt ON m.id_type = mt.id
-						WHERE t.id_type = ?
+						WHERE t.id_type = ? AND m.del = 0 AND t.del = 0 AND tt.del = 0 AND mt.del = 0
 						ORDER BY tt.name ASC, t.id ASC`,
 						[id_type],
 						(err, data)=>{
@@ -218,7 +218,7 @@ class Tool{
 							}
 						});
 					} else {
-						resolve( this.msg.exists );
+						resolve( data[0].del ? this.msg.delete : this.msg.exists );
 					}
 				})
 				.catch((err)=>{
@@ -255,6 +255,7 @@ class Tool{
 					connection.query(`SELECT
 							*
 						FROM ff_tool_type
+						WHERE del = 0
 						ORDER BY name ASC, id ASC`,
 						(err, data)=>{
 							data ? resolve(data) : reject( { data: this.msg.err, err : err } );

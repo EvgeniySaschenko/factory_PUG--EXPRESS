@@ -1,0 +1,16 @@
+.menu-bread-crumbs
+	&__list
+		display: flex
+		flex-wrap: wrap
+		&-item
+			&::after
+				content: "/"
+			&:last-child::after
+				display: none
+			&-link
+				display: inline-block
+				padding: 10px
+			&:last-child
+				.menu-bread-crumbs
+					&__list-item-link
+						text-decoration: underline

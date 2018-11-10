@@ -1,0 +1,103 @@
+extends ../_layout/main
+
+block content
+	+b.page_admin-material
+		+e.H1.title= title
+
+		+b.tab_tech-process
+			+e.list
+				+e.item(data-id="tab_material-1")
+					+e.I.item-icon.fa.fa-plus
+					+e.SPAN.item-name Добавить базовый материал
+				+e.item(data-id="tab_material-2") 
+					+e.I.item-icon.fa.fa-list-alt
+					+e.SPAN.item-name Список базовых материалов
+				+e.item(data-id="tab_material-3")
+					+e.I.item-icon.fa.fa-plus
+					+e.SPAN.item-name Добавить материал
+				+e.item(data-id="tab_material-4")
+					+e.I.item-icon.fa.fa-list-alt
+					+e.SPAN.item-name Список материалов
+
+
+			+e.H2.title Добавить материал
+
+			+e.box-content
+				+e.content(id="tab_material-1")
+					// Добавить базовый материал
+					- var api= api_addMaterialType
+
+					+b.FORM.form_admin(class='_material-type' data-api=api)
+						+e.group(class="form-group")
+							+e.LABEL.label Название
+							+e.INPUT.field(class="form-control" type="text" name="name" placeholder="Название" required)
+
+						+e.alert(class="alert hidden")
+						+e.box-btn
+							+e.BUTTON.btn(class="btn btn-primary" type="submit") Отправить
+
+
+				+e.content(id="tab_material-2")
+					// Список базовых материалов
+					- var data= materialType_list
+
+					if data
+						+b.table_admin(class="_material-type table-responsive")
+							+e.TABLE.table(class="table table-hover")
+								thead
+									tr
+										th Название
+										th Дата создания
+										th Редактировать
+								tbody
+									each e in data
+										+e.TR.row(class= e.status ? 'highlight-warning' : '')
+											+e.TD.col_name= e.name
+											+e.TD.col_date-create= e.date_create
+											+e.TD.col_btn
+												+e.A.btn(class="btn btn-success" href= curUrl + '/edit/type/id/' + e.id) Редактировать
+
+				+e.content(id="tab_material-3")
+					// Добавить материал
+
+					- var api= api_addMaterial
+					- var dataSelect= materialType_list
+
+					+b.FORM.form_admin(class='_rank' data-api= api)
+						+e.group(class="form-group")
+							+e.LABEL.label Базовый материал
+							+e.SELECT.select(class="form-control" name="id_type" required)
+								each e in dataSelect
+									+e.OPTION(value= e.id).option= e.name
+
+							+e.LABEL.label Сфера применения
+							+e.SELECT.select(class="form-control" name="id_use" required)
+								+e.OPTION(value="1").option Продукция
+								+e.OPTION(value="2").option Инструмент
+										
+						+e.group(class="form-group")
+							+e.LABEL.label Марка
+							+e.INPUT.field(class="form-control" type="text" name="mark" placeholder="Марка" required)
+										
+						+e.group(class="form-group")
+							+e.LABEL.label ГОСТ / ТУ
+							+e.INPUT.field(class="form-control" type="text" name="standart" placeholder="ГОСТ / ТУ" required)
+
+						+e.alert(class="alert hidden")
+						+e.box-btn
+							+e.BUTTON.btn(class="btn btn-primary" type="submit") Отправить
+
+
+				+e.content(id="tab_material-4")
+					// Список материалов
+					- var data= material_list
+
+					+b.table_admin(class="_material table-responsive")
+						+e.TABLE.table(class="table table-hover")
+							thead
+								tr
+									th Название
+									th Дата создания
+									th Редактировать
+							tbody#table_admin-material
+								

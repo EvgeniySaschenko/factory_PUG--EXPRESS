@@ -1,0 +1,50 @@
+extends ../_layout/main
+
+block content
+	+b.page_admin-tech-process
+		+e.H1.title= title
+
+		+b.tab_tech-process
+			+e.list
+				+e.item(data-id="tab_tech-process-1")
+					+e.I.item-icon.fa.fa-plus
+					+e.SPAN.item-name Добавить операцию
+				+e.item(data-id="tab_tech-process-2") 
+					+e.I.item-icon.fa.fa-list-alt
+					+e.SPAN.item-name Список операций
+
+			+e.H2.title Добавить операцию
+
+			+e.box-content
+				+e.content(id="tab_tech-process-1")
+					// Добавить подразделение
+					- var api= api_addOperation
+
+					+b.FORM.form_admin(class='_operation' data-api=api)
+						+e.group(class="form-group")
+							+e.LABEL.label Название
+							+e.INPUT.field(class="form-control" type="text" name="name" placeholder="Название" required)
+						+e.alert(class="alert hidden")
+						+e.box-btn
+							+e.BUTTON.btn(class="btn btn-primary" type="submit") Отправить
+
+
+				+e.content(id="tab_tech-process-2")
+					// Список подразделений
+					- var data= operation_list
+
+					if data
+						+b.table_admin(class="_operation table-responsive")
+							+e.TABLE.table(class="table table-hover")
+								thead
+									tr
+										th Название
+										th Дата создания
+										th Редактировать
+								tbody
+									each e in data
+										+e.TR.row(class= e.status ? 'highlight-warning' : '')
+											+e.TD.col_name= e.name
+											+e.TD.col_date-create= e.date_create
+											+e.TD.col_btn
+												+e.A.btn(class="btn btn-success" href= curUrl + '/edit/id/' + e.id) Редактировать

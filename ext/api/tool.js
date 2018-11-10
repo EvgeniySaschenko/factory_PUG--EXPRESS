@@ -3,29 +3,29 @@ const tool= {
 	/** TOOL */
 	
 	addTool(){
-		return `/tool`;
+		return `/api/tool`;
 	},
 
 	editTool(){
-		return `/tool`;
+		return `/api/tool`;
 	},
 
 	getToolByType(obj){
-		return `/tool/id_type/` + obj.id_type;
+		return `/api/tool/id_type/` + obj.id_type;
 	},
 	
 	/** TOOL TYPE */
 
 	addType(){
-		return `/tool/type`;
+		return `/api/tool/type`;
 	},
 
 	editType(){
-		return `/tool/type`;
+		return `/api/tool/type`;
 	},
 
 	ggetToolType(){
-		return `/tool/type`;
+		return `/api/tool/type`;
 	},
 
 }

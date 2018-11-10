@@ -54,7 +54,7 @@ class Material{
 		return new Promise((resolve, reject)=>{
 			this.getMaterialСheckExists(id_type, id_use, mark, standart)
 				.then((data)=>{
-					if(data.length === 0 || data[0].id == id){
+					 if(data.length === 0 || data[0].id == id && data[0].del == 0){
 						this.db.getConnection((err, connection)=>{
 							if(!err){
 								connection.query(`UPDATE ff_material
@@ -80,7 +80,7 @@ class Material{
 							}
 						});
 					} else {
-						resolve( this.msg.exists );
+						resolve( data[0].del ? this.msg.delete : this.msg.exists );
 					}
 				})
 				.catch((err)=>{
@@ -117,8 +117,7 @@ class Material{
 	}
 
 	getMaterialById(req){
-		const { id }= req.params;
-
+		console.log( id )
 		return new Promise((resolve, reject)=>{
 			this.db.getConnection((err, connection)=>{
 				if(!err){
@@ -131,10 +130,10 @@ class Material{
 							t.name
 						FROM ff_material m
 						INNER JOIN ff_material_type t ON t.id = m.id_type
-						WHERE m.id = ?`,
+						WHERE m.id = ? AND m.del = 0 AND t.del = 0`,
 						[id],
 						(err, data)=>{
-							data ? resolve(data) : reject( { data: this.msg.err, err : err } );
+							data ? resolve(data[0]) : reject( { data: this.msg.err, err : err } );
 							connection.release();
 						});
 				} else {
@@ -159,8 +158,8 @@ class Material{
 							t.name
 						FROM ff_material m
 						INNER JOIN ff_material_type t ON t.id = m.id_type
-						WHERE m.id_type = ? AND m.id_use = ?
-						ORDER BY t.name ASC, m.id ASC`,
+						WHERE m.id_type = ? AND m.id_use = ? AND m.del = 0 AND t.del = 0
+						ORDER BY t.name ASC, m.mark ASC`,
 						[id_type, id_use],
 						(err, data)=>{
 							data ? resolve(data) : reject( { data: this.msg.err, err : err } );
@@ -217,7 +216,7 @@ class Material{
 		return new Promise((resolve, reject)=>{
 			this.getTypeСheckExists(name)
 				.then((data)=>{
-					if(data.length === 0 || data[0].id == id){
+					 if(data.length === 0 || data[0].id == id && data[0].del == 0){
 						this.db.getConnection((err, connection)=>{
 							if(!err){
 								connection.query(`UPDATE ff_material_type
@@ -240,7 +239,7 @@ class Material{
 							}
 						});
 					} else {
-						resolve( this.msg.exists );
+						resolve( data[0].del ? this.msg.delete : this.msg.exists );
 					}
 				})
 				.catch((err)=>{
@@ -270,13 +269,38 @@ class Material{
 		});
 	}
 
-	getMaterialTypeAll(){
+	getMaterialTypeById(req){
+		const { id }= req.params;
+
 		return new Promise((resolve, reject)=>{
 			this.db.getConnection((err, connection)=>{
 				if(!err){
 					connection.query(`SELECT
 							*
-						FROM ff_material_type`,
+						FROM ff_material_type
+						WHERE id = ? AND del = 0`,
+						[id],
+						(err, data)=>{
+							data ? resolve(data[0]) : reject( { data: this.msg.err, err : err } );
+							connection.release();
+						});
+				} else {
+					reject( { data: this.msg.err, err : err } );
+				}
+			});
+		});
+	}
+
+	getMaterialTypeAll(){
+		return new Promise((resolve, reject)=>{
+			this.db.getConnection((err, connection)=>{
+				if(!err){
+					connection.query(`SELECT
+							*,
+							DATE_FORMAT(date_create, '%d.%m.%Y') as date_create
+						FROM ff_material_type
+						WHERE del = 0
+						ORDER BY name ASC`,
 						(err, data)=>{
 							data ? resolve(data) : reject( { data: this.msg.err, err : err } );
 							connection.release();

@@ -3,15 +3,24 @@ const operation= {
 /** OPERATION */
 
 	addOperation(){
-		return `/operation`;
+		return {
+			action: `/api/operation`,
+			method: 'post'
+		}
 	},
 
 	editOperation(){
-		return `/operation`;
+		return {
+			action: `/api/operation`,
+			method: 'put'
+		}
 	},
 
 	getOperationAll(){
-		return `/operation/all`;
+		return {
+			action: `/api/operation/all`,
+			method: 'get'
+		}
 	},
 
 }
