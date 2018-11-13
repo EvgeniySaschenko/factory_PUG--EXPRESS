@@ -3,10 +3,12 @@
 		// При первой загрузке страницы активировать нужный Tab
 		if( window.location.hash ){
 			let hash= window.location.hash.replace('#id', '');
+			let tab__title= document.querySelector(`.tab__title`);
 			let tab__item= document.querySelector(`.tab__item[data-id=${hash}]`);
 			let tab__content= document.getElementById(hash);
 			tab__item.classList.add('active');
 			tab__content.classList.add('active');
+			tab__title.textContent= tab__item.textContent;
 		} else {
 			let tab__item= document.querySelector(`.tab__item`);
 			let tab__content= document.querySelector(`.tab__content`);

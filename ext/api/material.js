@@ -29,6 +29,14 @@ const material= {
 			method: 'get'
 		}
 	},
+
+	getMaterialSearch(obj= false){
+		let { id_type= '@dummy', id_use= '@dummy', mark= '@dummy' }= obj;
+		return {
+			action: `/api/material/id_type/` + id_type + `/id_use/` + id_use + `/mark/` + mark,
+			method: 'get'
+		}
+	},
 	
 	/** MATERIAL TYPE */
 

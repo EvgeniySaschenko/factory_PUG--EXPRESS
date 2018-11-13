@@ -1,7 +1,7 @@
 extends ../_layout/main
 
 block content
-	+b.page_admin-division-edit-rank
+	+b.page_admin
 		+e.H1.title= title
 
 		- var data= rank_cur
@@ -9,7 +9,7 @@ block content
 		- var api= api_editRank
 
 		if data
-			+b.FORM.form_admin(class="_rank" data-api=api)
+			+b.FORM.form_admin(data-api=api)
 				+e.INPUT.hidden(value=data.id type="hidden" name="id")
 				
 				+e.group(class="form-group")

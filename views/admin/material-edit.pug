@@ -3,31 +3,44 @@ extends ../_layout/main
 block content
 	+b.page_admin
 		+e.H1.title= title
-		
-		- var data= equipment_cur
-		- var api= api_editEquipment
+
+		- var data= material_cur
+		- var dataSelectType= materialType_list
+		- var dataSelectUse= materialUse_list
+		- var api= api_editMaterial
 
 		if data
 			+b.FORM.form_admin(data-api=api)
 				+e.INPUT.hidden(value=data.id type="hidden" name="id")
-				+e.group(class="form-group")
-					+e.LABEL.label Название
-					+e.INPUT.field(value=data.name class="form-control" type="text" name="name" placeholder="Название" required)
 
 				+e.group(class="form-group")
-					+e.LABEL.label Модель
-					+e.INPUT.field(value=data.model class="form-control" type="text" name="model" placeholder="Модель" required)
+					+e.LABEL.label Базовый материал
+					+e.SELECT.select(class="form-control" name="id_type" required)
+						each e in dataSelectType
+							+e.OPTION(value= e.id selected= e.id == data.id_type ? true : false).option= e.name
 
 				+e.group(class="form-group")
-					+e.LABEL.label Номер
-					+e.INPUT.field(value=data.num class="form-control" type="number" name="num" placeholder="Номер" required)
+					+e.LABEL.label Марка
+					+e.INPUT.field(value=data.mark class="form-control" type="text" name="mark" placeholder="Марка" required)
+
+				+e.group(class="form-group")
+					+e.LABEL.label ГОСТ / ТУ
+					+e.INPUT.field(value=data.standart class="form-control" type="text" name="standart" placeholder="ГОСТ / ТУ" required)
+
+				+e.group(class="form-group")
+					+e.LABEL.label Сфера применения
+					+e.SELECT.select(class="form-control" name="id_use" required)
+						each e in dataSelectUse
+							+e.OPTION(value= e.id selected= e.id == data.id_use ? true : false).option= e.name
 
 				+e.group(class="form-group")
 					+e.LABEL.label Комментарий
 					+e.INPUT.field(value=data.remark class="form-control" type="text" name="remark" placeholder="Комментарий")
+
 				+e.group(class="form-group form-check")
 					+e.INPUT.checkbox(value="1" class="form-check-input" type="checkbox" name="status" checked= data.status ? true : false)
 					+e.LABEL.label(class="form-check-label") Выделить цветом в общем списке
+
 				+e.group(class="form-group form-check")
 					+e.INPUT.checkbox(value="1" class="form-check-input" type="checkbox" name="del")
 					+e.LABEL.label(class="form-check-label") Удалить

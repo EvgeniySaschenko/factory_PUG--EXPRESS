@@ -1,32 +1,32 @@
 extends ../_layout/main
 
 block content
-	+b.page_admin-division
+	+b.page_admin
 		+e.H1.title= title
 
-		+b.tab_division
+		+b.tab
 			+e.list
-				+e.item(data-id="tab_division-1")
+				+e.item(data-id="tab_1")
 					+e.I.item-icon.fa.fa-plus
 					+e.SPAN.item-name Добавить подразделение
-				+e.item(data-id="tab_division-2") 
+				+e.item(data-id="tab_2") 
 					+e.I.item-icon.fa.fa-list-alt
 					+e.SPAN.item-name Список подразделений
-				+e.item(data-id="tab_division-3")
+				+e.item(data-id="tab_3")
 					+e.I.item-icon.fa.fa-plus
 					+e.SPAN.item-name  Добавить должность
-				+e.item(data-id="tab_division-4")
+				+e.item(data-id="tab_4")
 					+e.I.item-icon.fa.fa-list-alt
 					+e.SPAN.item-name Список должностей
 
 			+e.H2.title Добавить подразделение
 
 			+e.box-content
-				+e.content(id="tab_division-1")
+				+e.content(id="tab_1")
 					// Добавить подразделение
 					- var api= api_addDivision
 
-					+b.FORM.form_admin(class='_division' data-api= api)
+					+b.FORM.form_admin(data-api= api)
 						+e.group(class="form-group")
 							+e.LABEL.label Название
 							+e.INPUT.field(class="form-control" type="text" name="name" placeholder="Название" required)
@@ -35,10 +35,10 @@ block content
 							+e.BUTTON.btn(class="btn btn-primary" type="submit") Отправить
 
 
-				+e.content(id="tab_division-2")
+				+e.content(id="tab_2")
 					// Список подразделений
 					if division_list
-						+b.table_items-to-edit(class="_division table-responsive")
+						+b.table_items-to-edit(class="table-responsive")
 							+e.TABLE.table(class="table table-hover")
 								thead
 									tr
@@ -53,12 +53,12 @@ block content
 											+e.TD.col_btn
 												+e.A.btn(class="btn btn-success" href= curUrl + '/edit/id/' + e.id) Редактировать
 
-				+e.content(id="tab_division-3")
+				+e.content(id="tab_3")
 					// Добавить должность
 					- var api= api_addRank
 					- var data= division_list
 
-					+b.FORM.form_admin(class='_rank' data-api= api)
+					+b.FORM.form_admin(data-api= api)
 						+e.group(class="form-group")
 							+e.LABEL.label Название
 							+e.INPUT.field(class="form-control" type="text" name="name" placeholder="Название" required)
@@ -71,12 +71,12 @@ block content
 						+e.box-btn
 							+e.BUTTON.btn(class="btn btn-primary" type="submit") Отправить
 
-				+e.content(id="tab_division-4")
+				+e.content(id="tab_4")
 					// Список должностей
 					- var data= rank_list
 
 					if data
-						+b.table_admin(class="_rank table-responsive")
+						+b.table_admin(class="table-responsive")
 							+e.TABLE.table(class="table table-hover")
 								thead
 									tr

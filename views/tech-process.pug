@@ -1,23 +1,17 @@
-extends ../_layout/main
+extends _layout/main
 
 block content
-	+b.page_admin
+	+b.page_tech-process
 		+e.H1.title= title
 
 		+b.tab
 			+e.list
 				+e.item(data-id="tab_1")
 					+e.I.item-icon.fa.fa-plus
-					+e.SPAN.item-name Добавить базовый материал
+					+e.SPAN.item-name Добавить маршрутную карту
 				+e.item(data-id="tab_2") 
 					+e.I.item-icon.fa.fa-list-alt
-					+e.SPAN.item-name Список базовых материалов
-				+e.item(data-id="tab_3")
-					+e.I.item-icon.fa.fa-plus
-					+e.SPAN.item-name Добавить материал
-				+e.item(data-id="tab_4")
-					+e.I.item-icon.fa.fa-list-alt
-					+e.SPAN.item-name Список материалов
+					+e.SPAN.item-name Найти маршрутную карту
 
 
 			+e.H2.title Добавить материал
@@ -129,4 +123,3 @@ block content
 									th Дата создания
 									th Редактировать
 							tbody#table__body_admin-material
-								

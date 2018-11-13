@@ -17,7 +17,7 @@ class Nav{
 					connection.query(`SELECT
 							*
 						FROM ff_nav
-						WHERE type = ? 
+						WHERE type = ? AND del <> 1
 						ORDER BY id_parent ASC, priority ASC`,
 						[type],
 						(err, data)=>{
@@ -39,6 +39,7 @@ class Nav{
 					connection.query(`SELECT
 							*
 						FROM ff_nav
+						WHERE del <> 1
 						ORDER BY id_parent ASC, priority ASC`,
 						(err, data)=>{
 							const arr= originalUrl.split('/');

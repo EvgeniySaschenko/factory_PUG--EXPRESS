@@ -5,6 +5,7 @@ class Material{
 	constructor(){
 		this.db= db;
 		this.msg= nconf.get('msg');
+		this.limitRous= nconf.get('db:limitRous');
 	}
 
 	/** MATERIAL */
@@ -50,7 +51,7 @@ class Material{
 	editMaterial(req){
 		const { id, id_type, id_use, mark, standart, remark, status, del }= req.body;
 		const { id_visitor }= req.session.user;
-
+		console.log( id, id_type, id_use, mark, standart, remark, status, del )
 		return new Promise((resolve, reject)=>{
 			this.getMaterialСheckExists(id_type, id_use, mark, standart)
 				.then((data)=>{
@@ -117,7 +118,32 @@ class Material{
 	}
 
 	getMaterialById(req){
-		console.log( id )
+		const { id }= req.params;
+
+		return new Promise((resolve, reject)=>{
+			this.db.getConnection((err, connection)=>{
+				if(!err){
+					connection.query(`SELECT
+							m.*,
+							t.name
+						FROM ff_material m
+						INNER JOIN ff_material_type t ON t.id = m.id_type
+						WHERE m.id = ? AND m.del = 0 AND t.del = 0`,
+						[id],
+						(err, data)=>{
+							data ? resolve(data[0]) : reject( { data: this.msg.err, err : err } );
+							connection.release();
+						});
+				} else {
+					reject( { data: this.msg.err, err : err } );
+				}
+			});
+		});
+	}
+
+	getMaterialSearch(req){
+		const {  id_type, id_use, mark }= req.params;
+
 		return new Promise((resolve, reject)=>{
 			this.db.getConnection((err, connection)=>{
 				if(!err){
@@ -127,13 +153,18 @@ class Material{
 							m.id_use,
 							m.mark,
 							m.standart,
+							m.status,
+							m.remark,
+							DATE_FORMAT(m.date_create, '%d.%m.%Y') as date_create,
 							t.name
 						FROM ff_material m
 						INNER JOIN ff_material_type t ON t.id = m.id_type
-						WHERE m.id = ? AND m.del = 0 AND t.del = 0`,
-						[id],
+						WHERE m.id_type = ? AND m.id_use = ? AND m.mark REGEXP ? AND m.del = 0 AND t.del = 0
+						ORDER BY m.mark LIKE ? DESC, m.mark ASC
+						LIMIT 0, ${this.limitRous}`,
+						[id_type, id_use, `^${mark}`, `${mark}`],
 						(err, data)=>{
-							data ? resolve(data[0]) : reject( { data: this.msg.err, err : err } );
+							data ? resolve(data) : reject( { data: this.msg.err, err : err } );
 							connection.release();
 						});
 				} else {
