@@ -7,16 +7,14 @@ class GlobalSettings{
 		this.msg= nconf.get('msg');
 	}
 
-	getByTypeAll(type){
+	getAll(){
 		return new Promise((resolve, reject)=>{
 			this.db.getConnection((err, connection)=>{
 				if(!err){
 					connection.query(`SELECT
 							*
 						FROM ff_global_settings
-						WHERE type = ?
-						ORDER BY priority ASC`,
-						[type],
+						ORDER BY type ASC, priority ASC`,
 						(err, data)=>{
 							data ? resolve(data) : reject( { data: this.msg.err, err : err } );
 							connection.release();

@@ -14,22 +14,57 @@ block content
 					+e.SPAN.item-name Найти маршрутную карту
 
 
-			+e.H2.title Добавить материал
+			+e.H2.title Добавить маршрутную карту
 
 			+e.box-content
 				+e.content(id="tab_1")
-					// Добавить базовый материал
-					- var api= api_addMaterialType
+					// Добавить маршрутную карту
+					- var dataSelectMaterialType= materialType_list
+					- var dataSelectUnitsMeasure= unitsMeasure_list
+					- var dataSelectTypeIngot= typeIngot_list
+
 
 					+b.FORM.form_admin(data-api=api)
 						+e.group(class="form-group")
-							+e.LABEL.label Название
-							+e.INPUT.field(class="form-control" type="text" name="name" placeholder="Название" required)
+							+e.LABEL.label Назание детали
+							+e.INPUT.field(class="form-control" type="text" name="name" placeholder="Назание детали" required)
 
+						+e.group(class="form-group")
+							+e.LABEL.label Номер детали
+							+e.INPUT.field(class="form-control" type="text" name="num_detail" placeholder="Номер" required)
+
+						+e.group(class="form-group")
+							+e.LABEL.label Материал
+							+e.SELECT.select(class="form-control" name="id_type" required)
+								each e in dataSelectMaterialType
+									+e.OPTION(value= e.id).option= e.name
+
+						+e.group(class="form-group")
+							+e.LABEL.label Марка материала
+							+e.INPUT.field(class="form-control" type="text" name="mark" placeholder="Марка материала" required)
+
+						+e.group(class="form-group")
+							+e.LABEL.label Вес детали
+							+e.INPUT.field(class="form-control" type="number" name="weight" placeholder="Вес детали" required)
+							// ед. измер
+							+e.SELECT.select(class="form-control" name="units_measure" required)
+								each e in dataSelectUnitsMeasure
+									+e.OPTION(value= e.id).option= e.name
+							// тип заготовки
+							+e.LABEL.label Тип заготовки
+							+e.SELECT.select(class="form-control" name="type_ingot" required)
+								each e in dataSelectTypeIngot
+									+e.OPTION(value= e.id).option= e.name
+
+						+e.group(class="form-group")
+							+e.LABEL.label Диаметр
+							+e.INPUT.field(class="form-control" type="number" name="	size_d" placeholder="Диаметр" required)
+							+e.LABEL.label Длина
+							+e.INPUT.field(class="form-control" type="number" name="size_w" placeholder="Длина" required)
+							
 						+e.alert(class="alert hidden")
 						+e.box-btn
 							+e.BUTTON.btn(class="btn btn-primary" type="submit") Отправить
-
 
 				+e.content(id="tab_2")
 					// Список базовых материалов
@@ -50,76 +85,3 @@ block content
 											+e.TD.col_date-create= e.date_create
 											+e.TD.col_btn
 												+e.A.btn(class="btn btn-success" href= curUrl + '/edit/type/id/' + e.id) Редактировать
-
-				+e.content(id="tab_3")
-					// Добавить материал
-
-					- var api= api_addMaterial
-					- var dataSelectType= materialType_list
-					- var dataSelectUse= materialUse_list
-
-					+b.FORM.form_admin(data-api= api)
-						+e.group(class="form-group")
-							+e.LABEL.label Базовый материал
-							+e.SELECT.select(class="form-control" name="id_type" required)
-								each e in dataSelectType
-									+e.OPTION(value= e.id).option= e.name
-
-						+e.group(class="form-group")
-							+e.LABEL.label Сфера применения
-							+e.SELECT.select(class="form-control" name="id_use" required)
-								each e in dataSelectUse
-									+e.OPTION(value= e.id).option= e.name
-										
-						+e.group(class="form-group")
-							+e.LABEL.label Марка
-							+e.INPUT.field(class="form-control" type="text" name="mark" placeholder="Марка" required)
-										
-						+e.group(class="form-group")
-							+e.LABEL.label ГОСТ / ТУ
-							+e.INPUT.field(class="form-control" type="text" name="standart" placeholder="ГОСТ / ТУ" required)
-
-						+e.alert(class="alert hidden")
-						+e.box-btn
-							+e.BUTTON.btn(class="btn btn-primary" type="submit") Отправить
-
-
-				+e.content(id="tab_4")
-					// Список материалов
-					- var data= material_list
-
-					- var api= api_getMaterialSearch
-					- var dataSelectType= materialType_list
-					- var dataSelectUse= materialUse_list
-
-					+b.FORM.form_admin(class="_search" id="form_search-table-admin-material" data-api= api)
-						+e.group(class="form-group")
-							+e.LABEL.label Базовый материал
-							+e.SELECT.select(class="form-control" name="id_type" required)
-								each e in dataSelectType
-									+e.OPTION(value= e.id).option= e.name
-
-						+e.group(class="form-group")
-							+e.LABEL.label Сфера применения
-							+e.SELECT.select(class="form-control" name="id_use" required)
-								each e in dataSelectUse
-									+e.OPTION(value= e.id).option= e.name
-
-						+e.group(class="form-group")
-							+e.LABEL.label Марка
-							+e.INPUT.field(class="form-control" type="text" name="mark" placeholder="Марка" required)
-
-					+e.alert(class="alert alert-warning") Для того чтобы найти нужный материал заполните соответсвующие поля в форме 
-
-					+b.table_admin(class="table-responsive")
-
-						+e.TABLE.table(class="table table-hover")
-							thead
-								tr
-									th 
-										i.fa.fa-info-circle()
-									th Название
-									th ГОСТ / ТУ
-									th Дата создания
-									th Редактировать
-							tbody#table__body_admin-material
