@@ -35,7 +35,7 @@ block content
 
 				+e.group(class="form-group")
 					+e.LABEL.label Комментарий
-					+e.INPUT.field(value=data.remark class="form-control" type="text" name="remark" placeholder="Комментарий")
+					+e.TEXTAREA.textarea(class="form-control" type="text" name="remark" placeholder="Комментарий")= data.remark
 
 				+e.group(class="form-group form-check")
 					+e.INPUT.checkbox(value="1" class="form-check-input" type="checkbox" name="status" checked= data.status ? true : false)

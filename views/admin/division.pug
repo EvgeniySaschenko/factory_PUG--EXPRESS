@@ -42,12 +42,16 @@ block content
 							+e.TABLE.table(class="table table-hover")
 								thead
 									tr
+										th 
+											i.fa.fa-info-circle
 										th Название
 										th Дата создания
 										th Редактировать
 								tbody
 									each e in division_list
 										+e.TR.row(class= e.status ? 'highlight-warning' : '')
+											+e.TD.col_info
+												i.fa.fa-info-circle(data-tooltip= e.remark)
 											+e.TD.col_name= e.name
 											+e.TD.col_date-create= e.date_create
 											+e.TD.col_btn
@@ -80,6 +84,8 @@ block content
 							+e.TABLE.table(class="table table-hover")
 								thead
 									tr
+										th 
+											i.fa.fa-info-circle
 										th Должность
 										th Подразделение
 										th Дата создания
@@ -87,6 +93,8 @@ block content
 								tbody
 									each e in data
 										+e.TR.row(class= e.status ? 'highlight-warning' : '')
+											+e.TD.col_info
+												i.fa.fa-info-circle(data-tooltip= e.remark)
 											+e.TD.col_name= e.name
 											+e.TD.col_name-division= e.name_division
 											+e.TD.col_date-create= e.date_create

@@ -1,0 +1,228 @@
+[
+{"type":"header","version":"4.8.2","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"dvm02_factory"},
+{"type":"table","name":"ff_division","database":"dvm02_factory","data":
+[
+{"id":"1","id_visitor_create":"1","id_visitor_update":"1","name":"Технологи","date_create":"2018-11-06 17:20:05","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"2","id_visitor_create":"1","id_visitor_update":"0","name":"Цех","date_create":"2018-11-06 17:20:12","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"3","id_visitor_create":"1","id_visitor_update":"1","name":"Бухгалтерия","date_create":"2018-11-06 17:20:20","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"4","id_visitor_create":"1","id_visitor_update":"1","name":"sadsa","date_create":"2018-11-08 22:54:55","date_update":"0000-00-00 00:00:00","remark":"fsfdsf","status":"0","del":"1"},
+{"id":"5","id_visitor_create":"1","id_visitor_update":"0","name":"sd","date_create":"2018-11-08 22:54:59","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"}
+]
+}
+,{"type":"table","name":"ff_doc_automat_map","database":"dvm02_factory","data":
+[
+{"id":"1","id_rout_map_item":"1","id_visitor_create":"1","id_visitor_update":"1","id_equipment":"1","firmness":"333firmness","ev":"ev","md":"md","profile":"profile","mz":"mz","koi":"koi","program":"program","t_o":"t_o","t_v":"t_v","t_pz":"t_pz","t_st":"t_st","emulsion":"emulsion","date_create":"2018-10-14 19:29:25","date_update":"0000-00-00 00:00:00","approve_1":"{\"approve_1\": \"1\"}","approve_2":"{\"approve_1\": \"1\"}","approve_3":"{\"approve_1\": \"1\"}","approve_4":"{\"approve_1\": \"1\"}","approve_5":"{\"approve_1\": \"1\"}","approve_6":"{\"approve_1\": \"1\"}","approve_7":"{\"approve_1\": \"1\"}","approve_8":"{\"approve_1\": \"1\"}","remark":"","status":"0","del":"0"},
+{"id":"2","id_rout_map_item":"2","id_visitor_create":"1","id_visitor_update":"0","id_equipment":"2","firmness":"firmness","ev":"ev","md":"md","profile":"profile","mz":"mz","koi":"koi","program":"program","t_o":"t_o","t_v":"t_v","t_pz":"t_pz","t_st":"t_st","emulsion":"emulsion","date_create":"2018-10-14 19:29:28","date_update":"0000-00-00 00:00:00","approve_1":"{\"approve_2\": \"1\"}","approve_2":"{\"approve_1\": \"2\"}","approve_3":"{\"approve_1\": \"3\"}","approve_4":"{\"approve_1\": \"4\"}","approve_5":"{\"approve_1\": \"5\"}","approve_6":"{\"approve_1\": \"6\"}","approve_7":"{\"approve_1\": \"7\"}","approve_8":"{\"approve_1\": \"8\"}","remark":"","status":"0","del":"0"},
+{"id":"3","id_rout_map_item":"2","id_visitor_create":"1","id_visitor_update":"0","id_equipment":"2","firmness":"firmness","ev":"ev","md":"md","profile":"profile","mz":"mz","koi":"koi","program":"program","t_o":"t_o","t_v":"t_v","t_pz":"t_pz","t_st":"t_st","emulsion":"emulsion","date_create":"2018-10-14 19:29:31","date_update":"0000-00-00 00:00:00","approve_1":"{\"approve_2\": \"1\"}","approve_2":"{\"approve_1\": \"2\"}","approve_3":"{\"approve_1\": \"3\"}","approve_4":"{\"approve_1\": \"4\"}","approve_5":"{\"approve_1\": \"5\"}","approve_6":"{\"approve_1\": \"6\"}","approve_7":"{\"approve_1\": \"7\"}","approve_8":"{\"approve_1\": \"8\"}","remark":"","status":"0","del":"0"},
+{"id":"4","id_rout_map_item":"2","id_visitor_create":"1","id_visitor_update":"0","id_equipment":"2","firmness":"firmness","ev":"ev","md":"md","profile":"profile","mz":"mz","koi":"koi","program":"program","t_o":"t_o","t_v":"t_v","t_pz":"t_pz","t_st":"t_st","emulsion":"emulsion","date_create":"2018-10-14 19:29:33","date_update":"0000-00-00 00:00:00","approve_1":"{\"approve_2\": \"1\"}","approve_2":"{\"approve_1\": \"2\"}","approve_3":"{\"approve_1\": \"3\"}","approve_4":"{\"approve_1\": \"4\"}","approve_5":"{\"approve_1\": \"5\"}","approve_6":"{\"approve_1\": \"6\"}","approve_7":"{\"approve_1\": \"7\"}","approve_8":"{\"approve_1\": \"8\"}","remark":"","status":"0","del":"0"},
+{"id":"5","id_rout_map_item":"2","id_visitor_create":"1","id_visitor_update":"0","id_equipment":"2","firmness":"firmness","ev":"ev","md":"md","profile":"profile","mz":"mz","koi":"koi","program":"program","t_o":"t_o","t_v":"t_v","t_pz":"t_pz","t_st":"t_st","emulsion":"emulsion","date_create":"2018-10-14 19:29:35","date_update":"0000-00-00 00:00:00","approve_1":"{\"approve_2\": \"1\"}","approve_2":"{\"approve_1\": \"2\"}","approve_3":"{\"approve_1\": \"3\"}","approve_4":"{\"approve_1\": \"4\"}","approve_5":"{\"approve_1\": \"5\"}","approve_6":"{\"approve_1\": \"6\"}","approve_7":"{\"approve_1\": \"7\"}","approve_8":"{\"approve_1\": \"8\"}","remark":"","status":"0","del":"0"},
+{"id":"6","id_rout_map_item":"2","id_visitor_create":"1","id_visitor_update":"0","id_equipment":"2","firmness":"firmness","ev":"ev","md":"md","profile":"profile","mz":"mz","koi":"koi","program":"program","t_o":"t_o","t_v":"t_v","t_pz":"t_pz","t_st":"t_st","emulsion":"emulsion","date_create":"2018-10-14 19:31:14","date_update":"0000-00-00 00:00:00","approve_1":"{\"approve_2\": \"1\"}","approve_2":"{\"approve_1\": \"2\"}","approve_3":"{\"approve_1\": \"3\"}","approve_4":"{\"approve_1\": \"4\"}","approve_5":"{\"approve_1\": \"5\"}","approve_6":"{\"approve_1\": \"6\"}","approve_7":"{\"approve_1\": \"7\"}","approve_8":"{\"approve_1\": \"8\"}","remark":"","status":"0","del":"0"},
+{"id":"7","id_rout_map_item":"2","id_visitor_create":"1","id_visitor_update":"0","id_equipment":"2","firmness":"firmness","ev":"ev","md":"md","profile":"profile","mz":"mz","koi":"koi","program":"program","t_o":"t_o","t_v":"t_v","t_pz":"t_pz","t_st":"t_st","emulsion":"emulsion","date_create":"2018-10-14 19:35:03","date_update":"0000-00-00 00:00:00","approve_1":"{\"approve_2\": \"1\"}","approve_2":"{\"approve_1\": \"2\"}","approve_3":"{\"approve_1\": \"3\"}","approve_4":"{\"approve_1\": \"4\"}","approve_5":"{\"approve_1\": \"5\"}","approve_6":"{\"approve_1\": \"6\"}","approve_7":"{\"approve_1\": \"7\"}","approve_8":"{\"approve_1\": \"8\"}","remark":"","status":"0","del":"0"},
+{"id":"8","id_rout_map_item":"2","id_visitor_create":"1","id_visitor_update":"0","id_equipment":"2","firmness":"firmness","ev":"ev","md":"md","profile":"profile","mz":"mz","koi":"koi","program":"program","t_o":"t_o","t_v":"t_v","t_pz":"t_pz","t_st":"t_st","emulsion":"emulsion","date_create":"2018-10-14 19:35:07","date_update":"0000-00-00 00:00:00","approve_1":"{\"approve_2\": \"1\"}","approve_2":"{\"approve_1\": \"2\"}","approve_3":"{\"approve_1\": \"3\"}","approve_4":"{\"approve_1\": \"4\"}","approve_5":"{\"approve_1\": \"5\"}","approve_6":"{\"approve_1\": \"6\"}","approve_7":"{\"approve_1\": \"7\"}","approve_8":"{\"approve_1\": \"8\"}","remark":"","status":"0","del":"0"},
+{"id":"9","id_rout_map_item":"2","id_visitor_create":"1","id_visitor_update":"0","id_equipment":"2","firmness":"firmness","ev":"ev","md":"md","profile":"profile","mz":"mz","koi":"koi","program":"program","t_o":"t_o","t_v":"t_v","t_pz":"t_pz","t_st":"t_st","emulsion":"emulsion","date_create":"2018-10-14 19:35:09","date_update":"0000-00-00 00:00:00","approve_1":"{\"approve_2\": \"1\"}","approve_2":"{\"approve_1\": \"2\"}","approve_3":"{\"approve_1\": \"3\"}","approve_4":"{\"approve_1\": \"4\"}","approve_5":"{\"approve_1\": \"5\"}","approve_6":"{\"approve_1\": \"6\"}","approve_7":"{\"approve_1\": \"7\"}","approve_8":"{\"approve_1\": \"8\"}","remark":"","status":"0","del":"0"},
+{"id":"10","id_rout_map_item":"2","id_visitor_create":"1","id_visitor_update":"0","id_equipment":"2","firmness":"firmness","ev":"ev","md":"md","profile":"profile","mz":"mz","koi":"koi","program":"program","t_o":"t_o","t_v":"t_v","t_pz":"t_pz","t_st":"t_st","emulsion":"emulsion","date_create":"2018-10-14 19:38:50","date_update":"0000-00-00 00:00:00","approve_1":"{\"approve_2\": \"1\"}","approve_2":"{\"approve_1\": \"2\"}","approve_3":"{\"approve_1\": \"3\"}","approve_4":"{\"approve_1\": \"4\"}","approve_5":"{\"approve_1\": \"5\"}","approve_6":"{\"approve_1\": \"6\"}","approve_7":"{\"approve_1\": \"7\"}","approve_8":"{\"approve_1\": \"8\"}","remark":"","status":"0","del":"0"},
+{"id":"11","id_rout_map_item":"2","id_visitor_create":"1","id_visitor_update":"0","id_equipment":"2","firmness":"firmness","ev":"ev","md":"md","profile":"profile","mz":"mz","koi":"koi","program":"program","t_o":"t_o","t_v":"t_v","t_pz":"t_pz","t_st":"t_st","emulsion":"emulsion","date_create":"2018-10-14 19:58:39","date_update":"0000-00-00 00:00:00","approve_1":"{\"approve_2\": \"1\"}","approve_2":"{\"approve_1\": \"2\"}","approve_3":"{\"approve_1\": \"3\"}","approve_4":"{\"approve_1\": \"4\"}","approve_5":"{\"approve_1\": \"5\"}","approve_6":"{\"approve_1\": \"6\"}","approve_7":"{\"approve_1\": \"7\"}","approve_8":"{\"approve_1\": \"8\"}","remark":"","status":"0","del":"0"}
+]
+}
+,{"type":"table","name":"ff_doc_automat_map_item","database":"dvm02_factory","data":
+[
+{"id":"1","id_automat_map":"1","id_visitor_create":"1","id_visitor_update":"1","name":"name","pi":"pi55554","d_v":"d_v","l":"l","t":"t","i":"i","s":"s","n":"n","v":"v","t_o":"t_o","t_v":"t_v","date_create":"2018-10-14 19:59:36","date_update":"0000-00-00 00:00:00","del":"0"},
+{"id":"2","id_automat_map":"1","id_visitor_create":"1","id_visitor_update":"0","name":"name","pi":"pi","d_v":"d_v","l":"l","t":"t","i":"i","s":"s","n":"n","v":"v","t_o":"t_o","t_v":"t_v","date_create":"2018-10-14 19:59:38","date_update":"0000-00-00 00:00:00","del":"0"},
+{"id":"3","id_automat_map":"1","id_visitor_create":"1","id_visitor_update":"0","name":"name","pi":"pi","d_v":"d_v","l":"l","t":"t","i":"i","s":"s","n":"n","v":"v","t_o":"t_o","t_v":"t_v","date_create":"2018-10-14 19:59:40","date_update":"0000-00-00 00:00:00","del":"0"},
+{"id":"4","id_automat_map":"1","id_visitor_create":"1","id_visitor_update":"0","name":"name","pi":"pi","d_v":"d_v","l":"l","t":"t","i":"i","s":"s","n":"n","v":"v","t_o":"t_o","t_v":"t_v","date_create":"2018-10-14 19:59:41","date_update":"0000-00-00 00:00:00","del":"0"},
+{"id":"5","id_automat_map":"1","id_visitor_create":"1","id_visitor_update":"0","name":"name","pi":"pi","d_v":"d_v","l":"l","t":"t","i":"i","s":"s","n":"n","v":"v","t_o":"t_o","t_v":"t_v","date_create":"2018-10-14 19:59:42","date_update":"0000-00-00 00:00:00","del":"0"},
+{"id":"6","id_automat_map":"1","id_visitor_create":"1","id_visitor_update":"0","name":"name","pi":"pi","d_v":"d_v","l":"l","t":"t","i":"i","s":"s","n":"n","v":"v","t_o":"t_o","t_v":"t_v","date_create":"2018-10-14 19:59:44","date_update":"0000-00-00 00:00:00","del":"0"},
+{"id":"7","id_automat_map":"1","id_visitor_create":"1","id_visitor_update":"0","name":"name","pi":"pi","d_v":"d_v","l":"l","t":"t","i":"i","s":"s","n":"n","v":"v","t_o":"t_o","t_v":"t_v","date_create":"2018-10-14 20:11:18","date_update":"0000-00-00 00:00:00","del":"0"},
+{"id":"8","id_automat_map":"1","id_visitor_create":"1","id_visitor_update":"0","name":"name","pi":"pi","d_v":"d_v","l":"l","t":"t","i":"i","s":"s","n":"n","v":"v","t_o":"t_o","t_v":"t_v","date_create":"2018-10-14 20:14:26","date_update":"0000-00-00 00:00:00","del":"0"}
+]
+}
+,{"type":"table","name":"ff_doc_rout_map","database":"dvm02_factory","data":
+[
+{"id":"12","id_visitor_create":"1","id_visitor_update":"0","id_material":"8","name":"asdasd","num_detail":"323.131312.3213.123","weight":"22","units_measure":"3","size_d":"55","size_w":"555","type_ingot":"0","date_create":"2018-11-15 02:55:01","date_update":"0000-00-00 00:00:00","approve_1":"null","approve_2":"null","approve_3":"null","approve_4":"null","approve_5":"null","approve_6":"null","approve_7":"null","approve_8":"null","remark":"erwreqrwerer","status":"1","del":"0"},
+{"id":"11","id_visitor_create":"1","id_visitor_update":"0","id_material":"8","name":"asdasd","num_detail":"323.131312.3213.123","weight":"22","units_measure":"3","size_d":"55","size_w":"555","type_ingot":"0","date_create":"2018-11-15 02:23:07","date_update":"0000-00-00 00:00:00","approve_1":"null","approve_2":"null","approve_3":"null","approve_4":"null","approve_5":"null","approve_6":"null","approve_7":"null","approve_8":"null","remark":"erwreqrwerer","status":"1","del":"0"},
+{"id":"10","id_visitor_create":"1","id_visitor_update":"0","id_material":"8","name":"asdasd","num_detail":"323.131312.3213.123","weight":"22","units_measure":"3","size_d":"55","size_w":"555","type_ingot":"0","date_create":"2018-11-15 02:22:38","date_update":"0000-00-00 00:00:00","approve_1":"null","approve_2":"null","approve_3":"null","approve_4":"null","approve_5":"null","approve_6":"null","approve_7":"null","approve_8":"null","remark":"erwreqrwerer","status":"0","del":"0"},
+{"id":"13","id_visitor_create":"1","id_visitor_update":"0","id_material":"4","name":"fasfsd","num_detail":"sadfsdfsdfa","weight":"34343","units_measure":"3","size_d":"343","size_w":"3434","type_ingot":"Пруток","date_create":"2018-11-15 03:03:25","date_update":"0000-00-00 00:00:00","approve_1":"null","approve_2":"null","approve_3":"null","approve_4":"null","approve_5":"null","approve_6":"null","approve_7":"null","approve_8":"null","remark":"3433443343","status":"0","del":"0"},
+{"id":"14","id_visitor_create":"1","id_visitor_update":"0","id_material":"4","name":"Колесо","num_detail":"3231313123213124","weight":"5454","units_measure":"3","size_d":"45","size_w":"45","type_ingot":"Пруток","date_create":"2018-11-16 22:19:17","date_update":"0000-00-00 00:00:00","approve_1":"null","approve_2":"null","approve_3":"null","approve_4":"null","approve_5":"null","approve_6":"null","approve_7":"null","approve_8":"null","remark":"","status":"0","del":"0"}
+]
+}
+,{"type":"table","name":"ff_doc_rout_map_item","database":"dvm02_factory","data":
+[
+{"id":"1","id_visitor_create":"1","id_visitor_update":"1","id_rout_map":"2","id_material":"3","id_rank":"4","num_shop":"555num_shop","num_area":"num_area","rm":"rm","num_operation":"num_operation","sm":"sm","rank_level":"rank_level","ut":"ut","kr":"kr","koid":"koid","en":"en","op":"op","kst":"kst","tpz":"tpz","tst":"tst","date_create":"2018-10-13 23:53:49","date_update":"0000-00-00 00:00:00","del":"0"},
+{"id":"2","id_visitor_create":"1","id_visitor_update":"0","id_rout_map":"2","id_material":"3","id_rank":"4","num_shop":"num_shop","num_area":"num_area","rm":"rm","num_operation":"num_operation","sm":"sm","rank_level":"rank_level","ut":"ut","kr":"kr","koid":"koid","en":"en","op":"op","kst":"kst","tpz":"tpz","tst":"tst","date_create":"2018-10-13 23:53:52","date_update":"0000-00-00 00:00:00","del":"0"},
+{"id":"3","id_visitor_create":"1","id_visitor_update":"0","id_rout_map":"2","id_material":"3","id_rank":"4","num_shop":"num_shop","num_area":"num_area","rm":"rm","num_operation":"num_operation","sm":"sm","rank_level":"rank_level","ut":"ut","kr":"kr","koid":"koid","en":"en","op":"op","kst":"kst","tpz":"tpz","tst":"tst","date_create":"2018-10-13 23:53:56","date_update":"0000-00-00 00:00:00","del":"0"}
+]
+}
+,{"type":"table","name":"ff_equipment","database":"dvm02_factory","data":
+[
+{"id":"1","id_visitor_create":"1","id_visitor_update":"1","name":"name qwq ","model":"wq","num":"1","date_create":"2018-10-13 14:38:43","date_update":"0000-00-00 00:00:00","remark":"0","status":"1","del":"0"},
+{"id":"2","id_visitor_create":"1","id_visitor_update":"1","name":"122112","model":"чсясчя","num":"2","date_create":"2018-10-13 14:38:52","date_update":"0000-00-00 00:00:00","remark":"0","status":"1","del":"1"},
+{"id":"3","id_visitor_create":"1","id_visitor_update":"1","name":"name","model":"model6666","num":"3","date_create":"2018-10-13 14:38:57","date_update":"0000-00-00 00:00:00","remark":"0","status":"0","del":"0"}
+]
+}
+,{"type":"table","name":"ff_global_settings","database":"dvm02_factory","data":
+[
+{"id":"1","name":"Продукция","type":"material_use","priority":"1"},
+{"id":"2","name":"Инструмент","type":"material_use","priority":"2"},
+{"id":"3","name":"кг","type":"units_measure","priority":"1"},
+{"id":"4","name":"т","type":"units_measure","priority":"2"},
+{"id":"5","name":"Пруток","type":"type_ingot","priority":"1"}
+]
+}
+,{"type":"table","name":"ff_material","database":"dvm02_factory","data":
+[
+{"id":"1","id_visitor_create":"1","id_visitor_update":"1","id_type":"1","id_use":"2","mark":"ф12апв","standart":"ввыfsdfdsfапавпав","date_create":"2018-11-12 18:37:48","date_update":"0000-00-00 00:00:00","remark":"","status":"1","del":"0"},
+{"id":"2","id_visitor_create":"1","id_visitor_update":"1","id_type":"1","id_use":"1","mark":"ф13","standart":"ГОСТ \/ ТУ 55555555555555555","date_create":"2018-11-12 18:38:02","date_update":"0000-00-00 00:00:00","remark":"$$$$","status":"1","del":"1"},
+{"id":"3","id_visitor_create":"1","id_visitor_update":"1","id_type":"1","id_use":"2","mark":"ф13aa","standart":"ввыfsdfdsf","date_create":"2018-11-12 18:38:16","date_update":"0000-00-00 00:00:00","remark":"gdfgterge","status":"1","del":"0"},
+{"id":"4","id_visitor_create":"1","id_visitor_update":"0","id_type":"1","id_use":"1","mark":"11ф13aa","standart":"ввыfsdfdsf","date_create":"2018-11-12 18:38:37","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"5","id_visitor_create":"1","id_visitor_update":"0","id_type":"1","id_use":"1","mark":"Ч55","standart":"ГОСТ 24168-80","date_create":"2018-11-14 23:56:38","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"6","id_visitor_create":"1","id_visitor_update":"0","id_type":"1","id_use":"1","mark":"Ч56","standart":"ГОСТ 24168-80","date_create":"2018-11-14 23:56:45","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"7","id_visitor_create":"1","id_visitor_update":"0","id_type":"1","id_use":"1","mark":"Ч57","standart":"ГОСТ 24168-80","date_create":"2018-11-14 23:56:55","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"8","id_visitor_create":"1","id_visitor_update":"0","id_type":"2","id_use":"1","mark":"У333","standart":"ГОСТ 24168-80","date_create":"2018-11-14 23:57:50","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"}
+]
+}
+,{"type":"table","name":"ff_material_type","database":"dvm02_factory","data":
+[
+{"id":"1","id_visitor_create":"1","id_visitor_update":"0","name":"Сталь","date_create":"2018-11-12 18:37:27","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"2","id_visitor_create":"1","id_visitor_update":"0","name":"Чугун","date_create":"2018-11-14 23:55:22","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"3","id_visitor_create":"1","id_visitor_update":"1","name":"Evgeniy Saschenko","date_create":"2018-11-15 03:32:42","date_update":"0000-00-00 00:00:00","remark":"У Києві 27 жовтня з 13:00 до 17:00 в Національному культурно-художньому комплексі «Мистецький Арсенал» (вул. Лаврська 10-12) пройде п’ятий ювілейний фестиваль культур народів світу OUTLOOK WORLD CULTURE FESTIVAL, який представить у різних проявах культуру понад 30 країн світу за участі посольств іноземних держав і діаспор. Фестиваль щорічно організовує проект OUTLOOK (theoutlook.com.ua), який працює у сфері медіа та культурної дипломатії. Цього року захід пройде за підтримки Українського культурного фонду. ","status":"0","del":"0"}
+]
+}
+,{"type":"table","name":"ff_nav","database":"dvm02_factory","data":
+[
+{"id":"1","id_parent":"0","name":"Админ панель","link":"\/admin","type":"main","priority":"1","del":"0"},
+{"id":"2","id_parent":"0","name":"Тех. процессы","link":"\/tech-process","type":"main","priority":"2","del":"0"},
+{"id":"3","id_parent":"1","name":"Пользователи","link":"\/admin\/user","type":"admin","priority":"2","del":"0"},
+{"id":"4","id_parent":"1","name":"Подразделения","link":"\/admin\/division","type":"admin","priority":"1","del":"0"},
+{"id":"5","id_parent":"1","name":"Материалы","link":"\/admin\/material","type":"admin","priority":"3","del":"0"},
+{"id":"6","id_parent":"1","name":"Тех. процессы","link":"\/admin\/tech-process","type":"admin","priority":"6","del":"0"},
+{"id":"7","id_parent":"1","name":"Инструмент","link":"\/admin\/tool","type":"admin","priority":"4","del":"1"},
+{"id":"8","id_parent":"1","name":"Оборудование","link":"\/admin\/equipment","type":"admin","priority":"5","del":"0"}
+]
+}
+,{"type":"table","name":"ff_operation","database":"dvm02_factory","data":
+[
+{"id":"1","id_visitor_create":"1","id_visitor_update":"1","name":"nameadasAWQEWQEQW","date_create":"2018-10-13 12:54:33","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"2","id_visitor_create":"1","id_visitor_update":"0","name":"name22","date_create":"2018-10-13 12:55:09","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"3","id_visitor_create":"1","id_visitor_update":"0","name":"укеуеукцxxczzxc","date_create":"2018-11-09 01:00:26","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"4","id_visitor_create":"1","id_visitor_update":"1","name":"cxzcxzcxzasdasd","date_create":"2018-11-09 01:00:29","date_update":"0000-00-00 00:00:00","remark":"","status":"1","del":"1"},
+{"id":"5","id_visitor_create":"1","id_visitor_update":"1","name":"cxzcxz","date_create":"2018-11-09 01:00:41","date_update":"0000-00-00 00:00:00","remark":"sdfsfsda","status":"1","del":"1"},
+{"id":"6","id_visitor_create":"1","id_visitor_update":"1","name":"grgrasg","date_create":"2018-11-09 13:32:08","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"1"}
+]
+}
+,{"type":"table","name":"ff_rank","database":"dvm02_factory","data":
+[
+{"id":"1","id_division":"1","id_visitor_create":"1","id_visitor_update":"1","name":"namrrtrtrte","date_create":"2018-10-06 16:07:48","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"2","id_division":"1","id_visitor_create":"1","id_visitor_update":"6","name":"name1","date_create":"2018-10-11 00:07:41","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"3","id_division":"1","id_visitor_create":"1","id_visitor_update":"1","name":"12вавав3sdfsdasad","date_create":"2018-10-11 00:07:58","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"4","id_division":"1","id_visitor_create":"1","id_visitor_update":"1","name":"12вавав3вавыавы","date_create":"2018-10-11 00:10:45","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"1"},
+{"id":"5","id_division":"1","id_visitor_create":"1","id_visitor_update":"6","name":"name1","date_create":"2018-10-11 00:23:32","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"6","id_division":"1","id_visitor_create":"1","id_visitor_update":"0","name":"12вавав3","date_create":"2018-10-11 00:25:03","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"7","id_division":"1","id_visitor_create":"1","id_visitor_update":"0","name":"12вавав3","date_create":"2018-10-11 00:34:08","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"8","id_division":"2","id_visitor_create":"1","id_visitor_update":"0","name":"name","date_create":"2018-10-13 01:35:04","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"9","id_division":"1","id_visitor_create":"1","id_visitor_update":"1","name":"парапрапsasdsad","date_create":"2018-11-07 02:31:57","date_update":"0000-00-00 00:00:00","remark":"dfsafdsaf","status":"0","del":"0"},
+{"id":"10","id_division":"1","id_visitor_create":"1","id_visitor_update":"0","name":"vxcvcxv","date_create":"2018-11-07 02:32:09","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"11","id_division":"1","id_visitor_create":"1","id_visitor_update":"0","name":"fdsf","date_create":"2018-11-08 15:12:07","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"12","id_division":"0","id_visitor_create":"1","id_visitor_update":"1","name":"fgag","date_create":"2018-11-08 20:10:35","date_update":"0000-00-00 00:00:00","remark":"","status":"1","del":"1"},
+{"id":"13","id_division":"3","id_visitor_create":"1","id_visitor_update":"0","name":"12вавав3","date_create":"2018-11-09 01:54:24","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"}
+]
+}
+,{"type":"table","name":"ff_tool","database":"dvm02_factory","data":
+[
+{"id":"1","id_visitor_create":"5","id_visitor_update":"1","id_material":"1","id_type":"1","description":"1","standart":"31","date_create":"2018-10-11 02:38:54","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"2","id_visitor_create":"5","id_visitor_update":"0","id_material":"5","id_type":"5","description":"name","standart":"standart","date_create":"2018-10-11 02:38:58","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"3","id_visitor_create":"5","id_visitor_update":"2","id_material":"4","id_type":"5","description":"name88","standart":"standart888","date_create":"2018-10-11 14:35:08","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"4","id_visitor_create":"5","id_visitor_update":"0","id_material":"5","id_type":"5","description":"name","standart":"standart","date_create":"2018-10-11 14:54:38","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"5","id_visitor_create":"5","id_visitor_update":"0","id_material":"5","id_type":"5","description":"name","standart":"standart","date_create":"2018-10-11 14:54:59","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"6","id_visitor_create":"5","id_visitor_update":"0","id_material":"5","id_type":"5","description":"name","standart":"standart","date_create":"2018-10-11 14:56:34","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"7","id_visitor_create":"5","id_visitor_update":"0","id_material":"5","id_type":"5","description":"name","standart":"standart","date_create":"2018-10-11 14:56:58","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"8","id_visitor_create":"1","id_visitor_update":"0","id_material":"1","id_type":"1","description":"1","standart":"1","date_create":"2018-10-13 01:05:18","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"}
+]
+}
+,{"type":"table","name":"ff_tool_type","database":"dvm02_factory","data":
+[
+{"id":"1","id_visitor_create":"1","id_visitor_update":"1","name":"12","date_create":"0000-00-00 00:00:00","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"2","id_visitor_create":"1","id_visitor_update":"0","name":"name","date_create":"0000-00-00 00:00:00","date_update":"2018-10-11 01:55:05","remark":"","status":"0","del":"0"},
+{"id":"3","id_visitor_create":"1","id_visitor_update":"2","name":"888888888","date_create":"0000-00-00 00:00:00","date_update":"2018-10-11 02:38:19","remark":"","status":"0","del":"0"},
+{"id":"4","id_visitor_create":"1","id_visitor_update":"0","name":"name","date_create":"0000-00-00 00:00:00","date_update":"2018-10-11 02:06:48","remark":"","status":"0","del":"0"},
+{"id":"5","id_visitor_create":"1","id_visitor_update":"0","name":"1","date_create":"2018-10-13 00:48:16","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"}
+]
+}
+,{"type":"table","name":"ff_user","database":"dvm02_factory","data":
+[
+{"id":"1","id_visitor_create":"1","id_visitor_update":"0","login":"","pass":"","rank":"{\"rank\": \"111\"}","name":"{\"name\": \"111\"}","date_birth":"1990-01-01","date_create":"2018-10-07 15:41:34","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"2","id_visitor_create":"1","id_visitor_update":"0","login":"admin","pass":"123","rank":"{\"rank\": \"Admin\", \"level\": \"0\"}","name":"{\"name\": \"Evgeniy\", \"lastName\": \"Saschenko\", \"middleName\": \"Vitalievich\"}","date_birth":"1990-01-01","date_create":"2018-10-07 20:05:22","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"3","id_visitor_create":"1","id_visitor_update":"0","login":"admin2","pass":"123","rank":"{\"rank\": \"Admin\", \"level\": \"0\"}","name":"{\"name\": \"Evgeniy\", \"lastName\": \"Saschenko\", \"middleName\": \"Vitalievich\"}","date_birth":"1990-01-01","date_create":"2018-10-07 20:06:02","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"4","id_visitor_create":"1","id_visitor_update":"0","login":"admin5","pass":"123","rank":"{\"rank\": \"Admin\", \"level\": \"0\"}","name":"{\"name\": \"Evgeniy\", \"lastName\": \"Saschenko\", \"middleName\": \"Vitalievich\"}","date_birth":"1990-01-01","date_create":"2018-10-08 15:35:04","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"5","id_visitor_create":"1","id_visitor_update":"0","login":"admin6","pass":"123","rank":"{\"rank\": \"Admin\", \"level\": \"0\"}","name":"{\"name\": \"Evgeniy\", \"lastName\": \"Saschenko\", \"middleName\": \"Vitalievich\"}","date_birth":"1990-01-01","date_create":"2018-10-08 15:43:25","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"6","id_visitor_create":"1","id_visitor_update":"0","login":"admin7","pass":"123","rank":"{\"rank\": \"Admin\", \"level\": \"0\"}","name":"{\"name\": \"Evgeniy\", \"lastName\": \"Saschenko\", \"middleName\": \"Vitalievich\"}","date_birth":"1990-01-01","date_create":"2018-10-08 15:44:55","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"7","id_visitor_create":"1","id_visitor_update":"0","login":"admin8","pass":"123","rank":"{\"rank\": \"Admin\", \"level\": \"0\"}","name":"{\"name\": \"Evgeniy\", \"lastName\": \"Saschenko\", \"middleName\": \"Vitalievich\"}","date_birth":"1990-01-01","date_create":"2018-10-08 16:45:24","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"8","id_visitor_create":"1","id_visitor_update":"0","login":"admin9","pass":"123","rank":"{\"rank\": \"Admin\", \"level\": \"0\"}","name":"{\"name\": \"Evgeniy\", \"lastName\": \"Saschenko\", \"middleName\": \"Vitalievich\"}","date_birth":"1990-01-01","date_create":"2018-10-08 17:24:48","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"9","id_visitor_create":"1","id_visitor_update":"0","login":"admin10","pass":"123","rank":"{\"rank\": \"Admin\", \"level\": \"0\"}","name":"{\"name\": \"Evgeniy\", \"lastName\": \"Saschenko\", \"middleName\": \"Vitalievich\"}","date_birth":"1990-01-01","date_create":"2018-10-08 17:27:26","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"10","id_visitor_create":"1","id_visitor_update":"0","login":"admin11","pass":"123","rank":"{\"rank\": \"Admin\", \"level\": \"0\"}","name":"{\"name\": \"Evgeniy\", \"lastName\": \"Saschenko\", \"middleName\": \"Vitalievich\"}","date_birth":"1990-01-01","date_create":"2018-10-08 17:28:52","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"11","id_visitor_create":"1","id_visitor_update":"0","login":"admin12","pass":"123","rank":"{\"rank\": \"Admin\", \"level\": \"0\"}","name":"{\"name\": \"Evgeniy\", \"lastName\": \"Saschenko\", \"middleName\": \"Vitalievich\"}","date_birth":"1990-01-01","date_create":"2018-10-08 17:30:33","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"12","id_visitor_create":"1","id_visitor_update":"0","login":"admin13","pass":"123","rank":"{\"rank\": \"Admin\", \"level\": \"0\"}","name":"{\"name\": \"Evgeniy\", \"lastName\": \"Saschenko\", \"middleName\": \"Vitalievich\"}","date_birth":"1990-01-01","date_create":"2018-10-08 17:32:14","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"13","id_visitor_create":"1","id_visitor_update":"0","login":"admin14","pass":"123","rank":"{\"rank\": \"Admin\", \"level\": \"0\"}","name":"{\"name\": \"Evgeniy\", \"lastName\": \"Saschenko\", \"middleName\": \"Vitalievich\"}","date_birth":"1990-01-01","date_create":"2018-10-08 17:34:03","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"14","id_visitor_create":"1","id_visitor_update":"0","login":"admin15","pass":"123","rank":"{\"rank\": \"Admin\", \"level\": \"0\"}","name":"{\"name\": \"Evgeniy\", \"lastName\": \"Saschenko\", \"middleName\": \"Vitalievich\"}","date_birth":"1990-01-01","date_create":"2018-10-08 17:34:08","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"15","id_visitor_create":"1","id_visitor_update":"0","login":"admin16","pass":"123","rank":"{\"rank\": \"Admin\", \"level\": \"0\"}","name":"{\"name\": \"Evgeniy\", \"lastName\": \"Saschenko\", \"middleName\": \"Vitalievich\"}","date_birth":"1990-01-01","date_create":"2018-10-08 17:37:33","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"16","id_visitor_create":"1","id_visitor_update":"0","login":"admin17","pass":"3137844e19c507bcc842f0877fb257bd","rank":"{\"rank\": \"Admin\", \"level\": \"0\"}","name":"{\"name\": \"Evgeniy\", \"lastName\": \"Saschenko\", \"middleName\": \"Vitalievich\"}","date_birth":"1990-01-01","date_create":"2018-10-08 20:09:55","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"},
+{"id":"17","id_visitor_create":"1","id_visitor_update":"0","login":"login444433","pass":"4d99065339e8c07efd54e302de837485","rank":"[]","name":"\"name\"","date_birth":"1990-01-01","date_create":"2018-10-17 13:44:24","date_update":"0000-00-00 00:00:00","remark":"","status":"0","del":"0"}
+]
+}
+,{"type":"table","name":"ff_user_visitor","database":"dvm02_factory","data":
+[
+{"id":"1","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-10 19:37:37"},
+{"id":"2","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-10 19:44:51"},
+{"id":"3","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-10 19:47:39"},
+{"id":"4","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-10 19:49:26"},
+{"id":"5","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-10 19:49:40"},
+{"id":"6","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-10 19:49:57"},
+{"id":"7","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-10 19:50:08"},
+{"id":"8","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-10 19:52:02"},
+{"id":"9","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-10 19:52:21"},
+{"id":"10","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-10 19:52:34"},
+{"id":"11","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-10 19:52:52"},
+{"id":"12","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-10 19:53:04"},
+{"id":"13","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-10 19:53:19"},
+{"id":"14","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-10 19:54:30"},
+{"id":"15","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-10 20:17:45"},
+{"id":"16","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-10 20:34:51"},
+{"id":"17","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-10 20:35:52"},
+{"id":"18","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-10 20:36:06"},
+{"id":"19","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-10 20:36:27"},
+{"id":"20","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-10 20:38:19"},
+{"id":"21","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-10 20:38:57"},
+{"id":"22","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-10 20:39:32"},
+{"id":"23","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-10 21:10:21"},
+{"id":"24","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-10 21:10:53"},
+{"id":"25","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-10 21:14:54"},
+{"id":"26","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-10 21:15:55"},
+{"id":"27","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-10 21:16:32"},
+{"id":"28","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-10 21:17:52"},
+{"id":"29","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-10 21:19:16"},
+{"id":"30","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-10 21:20:06"},
+{"id":"31","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-10 21:21:09"},
+{"id":"32","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-12 21:44:33"},
+{"id":"33","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-17 15:53:48"},
+{"id":"34","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-17 15:55:16"},
+{"id":"35","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-17 16:01:22"},
+{"id":"36","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-17 18:32:56"},
+{"id":"37","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-17 18:33:53"},
+{"id":"38","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-17 18:34:07"},
+{"id":"39","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-17 19:51:37"},
+{"id":"40","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-17 19:52:44"},
+{"id":"41","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-17 19:54:23"},
+{"id":"42","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-17 19:54:52"},
+{"id":"43","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-17 19:54:53"},
+{"id":"44","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-17 19:54:53"},
+{"id":"45","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-17 19:54:54"},
+{"id":"46","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-17 19:55:51"},
+{"id":"47","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-17 20:00:43"},
+{"id":"48","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-17 20:00:45"},
+{"id":"49","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-17 20:01:00"},
+{"id":"50","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-17 20:11:43"},
+{"id":"51","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-17 20:12:03"},
+{"id":"52","id_user":"16","ip":"::1","user_agent":"{\"os\": \"Windows 10.0\", \"browser\": \"Chrome\", \"version\": \"69.0.3497.100\", \"platform\": \"Microsoft Windows\"}","date_create":"2018-10-17 20:12:37"}
+]
+}
+]

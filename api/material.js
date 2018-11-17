@@ -22,7 +22,7 @@ router.get('/id_type/:id_type/id_use/:id_use', (req, res, next)=>{
 	response(material.getMaterialByTypeAndUse(req), res, next);
 });
 
-router.get('/id_type/:id_type/id_use/:id_use/mark/:mark', (req, res, next)=>{
+router.get('/search/id_type/:id_type/id_use/:id_use/mark/:mark', (req, res, next)=>{
 	response(material.getMaterialSearch(req), res, next);
 });
 

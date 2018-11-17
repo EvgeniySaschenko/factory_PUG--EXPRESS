@@ -23,8 +23,8 @@ block content
 							+e.OPTION(value= e.id selected= e.id == data.id_division ? true : false).option= e.name
 
 				+e.group(class="form-group")
-					+e.LABEL.label Комментарий (не обязательное поле)
-					+e.INPUT.field(value=data.remark class="form-control" type="text" name="remark" placeholder="Комментарий")
+					+e.LABEL.label Комментарий
+					+e.TEXTAREA.textarea(class="form-control" type="text" name="remark" placeholder="Комментарий")= data.remark
 
 				+e.group(class="form-group form-check")
 					+e.INPUT.checkbox(value="1" class="form-check-input" type="checkbox" name="status" checked= data.status ? true : false)

@@ -39,8 +39,8 @@ class Nav{
 					connection.query(`SELECT
 							*
 						FROM ff_nav
-						WHERE del <> 1
-						ORDER BY id_parent ASC, priority ASC`,
+						WHERE del = 0
+						ORDER BY id_parent ASC, priority ASC, id ASC`,
 						(err, data)=>{
 							const arr= originalUrl.split('/');
 							let nav= [];

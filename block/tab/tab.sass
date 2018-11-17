@@ -1,6 +1,11 @@
 .tab
 	&__list
 		display: flex
+	&__reload-page
+		cursor: pointer
+		position: relative
+		left: 100%
+		color: $corp-1
 	&__title
 		text-align: center
 	&__item
@@ -9,7 +14,7 @@
 			background-color: $corp-1
 			transition-duration: .3s
 	&__content
-		z-index: -1
+		z-index: -10
 		opacity: 0
 		position: absolute
 		&.active

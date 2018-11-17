@@ -6,6 +6,7 @@ const babel = require('gulp-babel'); // Преобразование новог�
 const concat = require('gulp-concat'); // Объеденяет все файлы JS в 1
 const sourcemaps = require('gulp-sourcemaps'); // Необходимо для отладки скриптов - чтобы понимать где произошла ошибка
 const sass = require('gulp-sass'); // CSS преероцессор
+const plumber = require('gulp-plumber');
 const autoprefixer = require('gulp-autoprefixer'); // Добавляет вендорные префиксы CSS
 const csso = require('gulp-csso'); // Минификация CSS
 
@@ -24,6 +25,7 @@ gulp.task('serve', ['js', 'css'], () => {
 // JS
 gulp.task('js', () => {
 	return gulp.src(['./block/**/*.js'])
+		.pipe(plumber())
 		.pipe(babel({presets: ['@babel/env']}))
 		.pipe(sourcemaps.init())
 		.pipe(concat('app.js'))
@@ -40,6 +42,7 @@ gulp.task('js', () => {
 gulp.task('css', () => {
 	setTimeout( () => {
 		return gulp.src(['./assets/style.sass'])
+			.pipe(plumber())
 			.pipe(sass())
 			.pipe(sourcemaps.init())
 			//.pipe(autoprefixer())

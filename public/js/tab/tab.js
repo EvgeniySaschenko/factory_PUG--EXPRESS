@@ -16,14 +16,6 @@
 			tab__content.classList.add('active');
 		}
 
-		// Кнопка обновить страницу
-		let tab__reloadPage= document.getElementsByClassName('tab__reload-page');
-		for(let i= 0, l= tab__reloadPage.length; l > i; i++){
-			tab__reloadPage[i].addEventListener('click', function(){
-				location.reload();
-			});
-		}
-
 		// Активный TAB
 		let tab__item= document.getElementsByClassName('tab__item');
 		for(let i= 0, l= tab__item.length; l > i; i++){

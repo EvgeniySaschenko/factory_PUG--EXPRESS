@@ -3,29 +3,47 @@ const docAutomatMap= {
 	/* DOC AUTOMAT MAP */
 
 	addAutomatMap: ()=>{
-		return `/api/doc-automat-map`;
+		return {
+			action: `/api/doc-automat-map`,
+			method: 'post'
+		}
 	},
 
-	editAutomatMap: ()=>{
-		return `/api/doc-automat-map`;
+	editAutomatMap: (obj)=>{
+		return {
+			action: `/api/doc-automat-map/id/` + obj.id,
+			method: 'put'
+		}
 	},
 
 	getAutomatMapById: (obj)=>{
-		return `/api/doc-automat-map/id/` + obj.id;
+		return {
+			action: `/api/doc-automat-map/id/` + obj.id,
+			method: 'get'
+		}
 	},
 
 	/* DOC AUTOMAT MAP ITEM */
 
 	addAutomatMapItem: ()=>{
-		return `/api/doc-automat-map/item`;
+		return {
+			action: `/api/doc-automat-map/item`,
+			method: 'post'
+		}
 	},
 
-	editAutomatMapItem: ()=>{
-		return `/api/doc-automat-map/item`;
+	editAutomatMapItem: (obj)=>{
+		return {
+			action: `/api/doc-automat-map/item/id/` + obj.id,
+			method: 'put'
+		}
 	},
 
 	getAutomatMapItemAll: (obj)=>{
-		return `/api/doc-automat-map/item/id_automat_map/` + obj.id_automat_map;
+		return {
+			action: `/api/doc-automat-map/item/id_automat_map/` + obj.id_automat_map,
+			method: 'get'
+		}
 	},
 	
 }
