@@ -9,9 +9,9 @@ const docRoutMap= {
 		}
 	},
 
-	editRoutMap: (obj)=>{
+	editRoutMap: ()=>{
 		return {
-			action: `/api/doc-rout-map/id/` + obj.id,
+			action: `/api/doc-rout-map`,
 			method: 'put'
 		}
 	},
@@ -40,9 +40,9 @@ const docRoutMap= {
 		}
 	},
 
-	editRoutMapItem: (obj)=>{
+	editRoutMapItem: ()=>{
 		return {
-			action: `/api/doc-rout-map/item/id/` + obj.id,
+			action: `/api/doc-rout-map/item`,
 			method: 'put'
 		}
 	},

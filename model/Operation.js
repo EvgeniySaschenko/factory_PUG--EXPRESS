@@ -12,7 +12,6 @@ class Operation{
 	addOperation(req){
 		const { name }= req.body;
 		const { id_visitor }= req.session.user;
-		console.log( 11 )
 		return new Promise((resolve, reject)=>{
 			this.getOperationСheckExists(name)
 				.then((data)=>{
@@ -45,7 +44,7 @@ class Operation{
 		}
 
 	editOperation(req){
-		const { id, name, remark, status, del }= req.body;
+		const { id, name, remark, status= 0, del= 0 }= req.body;
 		const { id_visitor }= req.session.user;
 
 		return new Promise((resolve, reject)=>{
@@ -58,12 +57,12 @@ class Operation{
 									SET
 										id_visitor_update= ?,
 										name= ?,
-										date_update= ?, 
+										date_update= CURRENT_TIMESTAMP, 
 										remark= ?, 
 										status= ?, 
 										del= ?
 									WHERE id= ?`,
-									[id_visitor, name, 'CURRENT_TIMESTAMP', remark, status, del, id],
+									[id_visitor, name, remark, status, del, id],
 									(err, data= false)=>{
 										const { affectedRows }= data;
 										affectedRows ? resolve( !del ? this.msg.edit : this.msg.delete ) : reject( { data: this.msg.err, err : err } );

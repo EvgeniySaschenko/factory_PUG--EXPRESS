@@ -47,7 +47,7 @@ class Equipment{
 		}
 
 	editEquipment(req){
-		const { id, name, model, num, remark, status, del }= req.body;
+		const { id, name, model, num, remark, status= 0, del= 0 }= req.body;
 		const { id_visitor }= req.session.user;
 		
 		return new Promise((resolve, reject)=>{
@@ -62,12 +62,12 @@ class Equipment{
 										name= ?,
 										model= ?,
 										num= ?,
-										date_update= ?, 
+										date_update= CURRENT_TIMESTAMP, 
 										remark= ?,
 										status= ?,
 										del= ?
 									WHERE id= ?`,
-									[id_visitor, name, model, num, 'CURRENT_TIMESTAMP', remark, status, del, id],
+									[id_visitor, name, model, num, remark, status, del, id],
 									(err, data= false)=>{
 										const { affectedRows }= data;
 										affectedRows ? resolve( !del ? this.msg.edit : this.msg.delete ) : reject( { data: this.msg.err, err : err } );

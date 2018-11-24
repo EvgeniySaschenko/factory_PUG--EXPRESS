@@ -49,9 +49,8 @@ class Material{
 	}
 
 	editMaterial(req){
-		const { id, id_type, id_use, mark, standart, remark, status, del }= req.body;
+		const { id, id_type, id_use, mark, standart, remark, status= 0, del= 0 }= req.body;
 		const { id_visitor }= req.session.user;
-		console.log( id, id_type, id_use, mark, standart, remark, status, del )
 		return new Promise((resolve, reject)=>{
 			this.getMaterialСheckExists(id_type, id_use, mark, standart)
 				.then((data)=>{
@@ -65,12 +64,12 @@ class Material{
 										id_use= ?,
 										mark= ?,
 										standart= ?,
-										date_update= ?, 
+										date_update= CURRENT_TIMESTAMP, 
 										remark= ?,
 										status= ?,
 										del= ?
 									WHERE id= ?`,
-									[id_visitor, id_type, id_use, mark, standart, 'CURRENT_TIMESTAMP', remark, status, del, id],
+									[id_visitor, id_type, id_use, mark, standart, remark, status, del, id],
 									(err, data= false)=>{
 										const { affectedRows }= data;
 										affectedRows ? resolve( !del ? this.msg.edit : this.msg.delete ) : reject( { data: this.msg.err, err : err } );
@@ -268,7 +267,7 @@ class Material{
 		}
 
 	editType(req){
-		const { id, name, remark, status, del }= req.body;
+		const { id, name, remark, status= 0, del= 0 }= req.body;
 		const { id_visitor }= req.session.user;
 
 		return new Promise((resolve, reject)=>{
@@ -281,12 +280,12 @@ class Material{
 									SET
 										id_visitor_update= ?,
 										name= ?,
-										date_update= ?, 
+										date_update= CURRENT_TIMESTAMP, 
 										remark= ?, 
 										status= ?, 
 										del= ?
 									WHERE id= ?`,
-									[id_visitor, name, 'CURRENT_TIMESTAMP', remark, status, del, id],
+									[id_visitor, name, remark, status, del, id],
 									(err, data= false)=>{
 										const { affectedRows }= data;
 										affectedRows ? resolve( !del ? this.msg.edit : this.msg.delete ) : reject( { data: this.msg.err, err : err } );

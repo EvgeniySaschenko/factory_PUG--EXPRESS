@@ -2,6 +2,7 @@ extends _layout/main
 
 block content
 	+b.page_admin
-		+e.H1.title= title
+		.container
+			+e.H1.title= title
 
-		+b-menu-column(menu_admin, '_admin', curUrl)
+			+b-menu-column(menu_admin, '_admin', curUrl)

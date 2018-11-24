@@ -2,101 +2,103 @@ extends ../_layout/main
 
 block content
 	+b.page_admin
-		+e.H1.title= title
+		.container
+			+e.H1.title= title
 
-		+b.tab
-			+e.list
-				+e.item(data-id="tab_1")
-					+e.I.item-icon.fa.fa-plus
-					+e.SPAN.item-name Добавить подразделение
-				+e.item(data-id="tab_2") 
-					+e.I.item-icon.fa.fa-list-alt
-					+e.SPAN.item-name Список подразделений
-				+e.item(data-id="tab_3")
-					+e.I.item-icon.fa.fa-plus
-					+e.SPAN.item-name  Добавить должность
-				+e.item(data-id="tab_4")
-					+e.I.item-icon.fa.fa-list-alt
-					+e.SPAN.item-name Список должностей
+			+b.tab
+				+e.list
+					+e.item(data-id="tab_1")
+						+e.I.item-icon.fa.fa-plus
+						+e.SPAN.item-name Добавить подразделение
+					+e.item(data-id="tab_2") 
+						+e.I.item-icon.fa.fa-list-alt
+						+e.SPAN.item-name Список подразделений
+					+e.item(data-id="tab_3")
+						+e.I.item-icon.fa.fa-plus
+						+e.SPAN.item-name  Добавить должность
+					+e.item(data-id="tab_4")
+						+e.I.item-icon.fa.fa-list-alt
+						+e.SPAN.item-name Список должностей
 
-			+e.H2.title Добавить подразделение
+				+e.H2.title Добавить подразделение
+				+e.reload-page(class="fa fa-sync-alt" title="Обновить")
+				
+				+e.box-content
+					+e.content(id="tab_1")
+						// Добавить подразделение
+						- var api= api_addDivision
 
-			+e.box-content
-				+e.content(id="tab_1")
-					// Добавить подразделение
-					- var api= api_addDivision
-
-					+b.FORM.form_admin(data-api= api)
-						+e.group(class="form-group")
-							+e.LABEL.label Название
-							+e.INPUT.field(class="form-control" type="text" name="name" placeholder="Название" required)
-						+e.alert(class="alert hidden")
-						+e.box-btn
-							+e.BUTTON.btn(class="btn btn-primary" type="submit") Отправить
+						+b.FORM.form_admin(data-api= api)
+							+e.group(class="form-group")
+								+e.LABEL.label Название
+								+e.INPUT.field(class="form-control" type="text" name="name" placeholder="Название" required)
+							+e.alert(class="alert hidden")
+							+e.box-btn
+								+e.BUTTON.btn(class="btn btn-primary" type="submit") Отправить
 
 
-				+e.content(id="tab_2")
-					// Список подразделений
-					if division_list
-						+b.table_items-to-edit(class="table-responsive")
-							+e.TABLE.table(class="table table-hover")
-								thead
-									tr
-										th 
-											i.fa.fa-info-circle
-										th Название
-										th Дата создания
-										th Редактировать
-								tbody
-									each e in division_list
-										+e.TR.row(class= e.status ? 'highlight-warning' : '')
-											+e.TD.col_info
-												i.fa.fa-info-circle(data-tooltip= e.remark)
-											+e.TD.col_name= e.name
-											+e.TD.col_date-create= e.date_create
-											+e.TD.col_btn
-												+e.A.btn(class="btn btn-success" href= curUrl + '/edit/id/' + e.id) Редактировать
+					+e.content(id="tab_2")
+						// Список подразделений
+						if division_list
+							+b.table_items-to-edit(class="table-responsive")
+								+e.TABLE.table(class="table table-hover")
+									thead
+										tr
+											th 
+												i.fa.fa-info-circle
+											th Название
+											th Дата создания
+											th Редактировать
+									tbody
+										each e in division_list
+											+e.TR.row(class= e.status ? 'highlight-warning' : '')
+												+e.TD.col_info
+													i.fa.fa-info-circle(data-tooltip= e.remark)
+												+e.TD.col_name= e.name
+												+e.TD.col_date-create= e.date_create
+												+e.TD.col_btn
+													+e.A.btn(class="btn btn-success" href= curUrl + '/edit/id/' + e.id) Редактировать
 
-				+e.content(id="tab_3")
-					// Добавить должность
-					- var api= api_addRank
-					- var data= division_list
+					+e.content(id="tab_3")
+						// Добавить должность
+						- var api= api_addRank
+						- var data= division_list
 
-					+b.FORM.form_admin(data-api= api)
-						+e.group(class="form-group")
-							+e.LABEL.label Название
-							+e.INPUT.field(class="form-control" type="text" name="name" placeholder="Название" required)
-						+e.group(class="form-group")
-							+e.LABEL.label Привязать к категории
-							+e.SELECT.select(class="form-control" name="id_type" required)
-								each e in data
-									+e.OPTION(value= e.id).option= e.name
-						+e.alert(class="alert hidden")
-						+e.box-btn
-							+e.BUTTON.btn(class="btn btn-primary" type="submit") Отправить
-
-				+e.content(id="tab_4")
-					// Список должностей
-					- var data= rank_list
-
-					if data
-						+b.table_admin(class="table-responsive")
-							+e.TABLE.table(class="table table-hover")
-								thead
-									tr
-										th 
-											i.fa.fa-info-circle
-										th Должность
-										th Подразделение
-										th Дата создания
-										th Редактировать
-								tbody
+						+b.FORM.form_admin(data-api= api)
+							+e.group(class="form-group")
+								+e.LABEL.label Название
+								+e.INPUT.field(class="form-control" type="text" name="name" placeholder="Название" required)
+							+e.group(class="form-group")
+								+e.LABEL.label Привязать к категории
+								+e.SELECT.select(class="form-control" name="id_type" required)
 									each e in data
-										+e.TR.row(class= e.status ? 'highlight-warning' : '')
-											+e.TD.col_info
-												i.fa.fa-info-circle(data-tooltip= e.remark)
-											+e.TD.col_name= e.name
-											+e.TD.col_name-division= e.name_division
-											+e.TD.col_date-create= e.date_create
-											+e.TD.col_btn
-												+e.A.btn(class="btn btn-success" href= curUrl + '/edit/rank/id/' + e.id) Редактировать
+										+e.OPTION(value= e.id).option= e.name
+							+e.alert(class="alert hidden")
+							+e.box-btn
+								+e.BUTTON.btn(class="btn btn-primary" type="submit") Отправить
+
+					+e.content(id="tab_4")
+						// Список должностей
+						- var data= rank_list
+
+						if data
+							+b.table_admin(class="table-responsive")
+								+e.TABLE.table(class="table table-hover")
+									thead
+										tr
+											th 
+												i.fa.fa-info-circle
+											th Должность
+											th Подразделение
+											th Дата создания
+											th Редактировать
+									tbody
+										each e in data
+											+e.TR.row(class= e.status ? 'highlight-warning' : '')
+												+e.TD.col_info
+													i.fa.fa-info-circle(data-tooltip= e.remark)
+												+e.TD.col_name= e.name
+												+e.TD.col_name-division= e.name_division
+												+e.TD.col_date-create= e.date_create
+												+e.TD.col_btn
+													+e.A.btn(class="btn btn-success" href= curUrl + '/edit/rank/id/' + e.id) Редактировать

@@ -2,27 +2,28 @@ extends ../_layout/main
 
 block content
 	+b.page_admin
-		+e.H1.title= title
+		.container
+			+e.H1.title= title
 
-		- var data= materialType_cur
-		- var api= api_editMaterialType
+			- var data= materialType_cur
+			- var api= api_editMaterialType
 
-		if data
-			+b.FORM.form_admin(data-api=api)
-				+e.INPUT.hidden(value=data.id type="hidden" name="id")
-				+e.group(class="form-group")
-					+e.LABEL.label Название
-					+e.INPUT.field(value=data.name class="form-control" type="text" name="name" placeholder="Название" required)
-				+e.group(class="form-group")
-					+e.LABEL.label Комментарий
-					+e.TEXTAREA.textarea(class="form-control" type="text" name="remark" placeholder="Комментарий")= data.remark
-				+e.group(class="form-group form-check")
-					+e.INPUT.checkbox(value="1" class="form-check-input" type="checkbox" name="status" checked= data.status ? true : false)
-					+e.LABEL.label(class="form-check-label") Выделить цветом в общем списке
-				+e.group(class="form-group form-check")
-					+e.INPUT.checkbox(value="1" class="form-check-input" type="checkbox" name="del")
-					+e.LABEL.label(class="form-check-label") Удалить
+			if data
+				+b.FORM.form_admin(data-api=api)
+					+e.INPUT.hidden(value=data.id type="hidden" name="id")
+					+e.group(class="form-group")
+						+e.LABEL.label Название
+						+e.INPUT.field(value=data.name class="form-control" type="text" name="name" placeholder="Название" required)
+					+e.group(class="form-group")
+						+e.LABEL.label Комментарий
+						+e.TEXTAREA.textarea(class="form-control" type="text" name="remark" placeholder="Комментарий")= data.remark
+					+e.group(class="form-group form-check")
+						+e.INPUT.checkbox(value="1" class="form-check-input" type="checkbox" name="status" checked= data.status ? true : false)
+						+e.LABEL.label(class="form-check-label") Выделить цветом в общем списке
+					+e.group(class="form-group form-check")
+						+e.INPUT.checkbox(value="1" class="form-check-input" type="checkbox" name="del")
+						+e.LABEL.label(class="form-check-label") Удалить
 
-				+e.alert(class="alert hidden")
-				+e.box-btn
-					+e.BUTTON.btn(class="btn btn-primary" type="submit") Отправить
+					+e.alert(class="alert hidden")
+					+e.box-btn
+						+e.BUTTON.btn(class="btn btn-primary" type="submit") Отправить

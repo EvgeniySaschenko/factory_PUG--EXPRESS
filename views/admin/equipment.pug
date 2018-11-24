@@ -2,66 +2,68 @@ extends ../_layout/main
 
 block content
 	+b.page_admin
-		+e.H1.title= title
+		.container
+			+e.H1.title= title
 
-		+b.tab
-			+e.list
-				+e.item(data-id="tab_1")
-					+e.I.item-icon.fa.fa-plus
-					+e.SPAN.item-name Добавить оборудование
-				+e.item(data-id="tab_2") 
-					+e.I.item-icon.fa.fa-list-alt
-					+e.SPAN.item-name Список оборудования
+			+b.tab
+				+e.list
+					+e.item(data-id="tab_1")
+						+e.I.item-icon.fa.fa-plus
+						+e.SPAN.item-name Добавить оборудование
+					+e.item(data-id="tab_2") 
+						+e.I.item-icon.fa.fa-list-alt
+						+e.SPAN.item-name Список оборудования
 
-			+e.H2.title Добавить оборудование
+				+e.H2.title Добавить оборудование
+				+e.reload-page(class="fa fa-sync-alt" title="Обновить")
+				
+				+e.box-content
+					+e.content(id="tab_1")
+						// Добавить оборудование
+						- var api= api_addEquipment
 
-			+e.box-content
-				+e.content(id="tab_1")
-					// Добавить оборудование
-					- var api= api_addEquipment
+						+b.FORM.form_admin(data-api=api)
+							+e.group(class="form-group")
+								+e.LABEL.label Название
+								+e.INPUT.field(class="form-control" type="text" name="name" placeholder="Название" required)
 
-					+b.FORM.form_admin(data-api=api)
-						+e.group(class="form-group")
-							+e.LABEL.label Название
-							+e.INPUT.field(class="form-control" type="text" name="name" placeholder="Название" required)
+							+e.group(class="form-group")
+								+e.LABEL.label Модель
+								+e.INPUT.field(class="form-control" type="text" name="model" placeholder="Модель" required)
 
-						+e.group(class="form-group")
-							+e.LABEL.label Модель
-							+e.INPUT.field(class="form-control" type="text" name="model" placeholder="Модель" required)
+							+e.group(class="form-group")
+								+e.LABEL.label Номер
+								+e.INPUT.field(class="form-control" type="number" name="num" placeholder="Номер" required)
 
-						+e.group(class="form-group")
-							+e.LABEL.label Номер
-							+e.INPUT.field(class="form-control" type="number" name="num" placeholder="Номер" required)
-
-						+e.alert(class="alert hidden")
-						+e.box-btn
-							+e.BUTTON.btn(class="btn btn-primary" type="submit") Отправить
+							+e.alert(class="alert hidden")
+							+e.box-btn
+								+e.BUTTON.btn(class="btn btn-primary" type="submit") Отправить
 
 
-				+e.content(id="tab_2")
-					// Список оборудования
-					- var data= equipment_list
+					+e.content(id="tab_2")
+						// Список оборудования
+						- var data= equipment_list
 
-					if data
-						+b.table_admin(class="table-responsive")
-							+e.TABLE.table(class="table table-hover")
-								thead
-									tr
-										th 
-											i.fa.fa-info-circle
-										th Название
-										th Модель
-										th Номер
-										th Дата создания
-										th Редактировать
-								tbody
-									each e in data
-										+e.TR.row(class= e.status ? 'highlight-warning' : '')
-											+e.TD.col_info
-												i.fa.fa-info-circle(data-tooltip= e.remark)
-											+e.TD.col_name= e.name
-											+e.TD.col_model= e.model
-											+e.TD.col_num= e.num
-											+e.TD.col_date-create= e.date_create
-											+e.TD.col_btn
-												+e.A.btn(class="btn btn-success" href= curUrl + '/edit/id/' + e.id) Редактировать
+						if data
+							+b.table_admin(class="table-responsive")
+								+e.TABLE.table(class="table table-hover")
+									thead
+										tr
+											th 
+												i.fa.fa-info-circle
+											th Название
+											th Модель
+											th Номер
+											th Дата создания
+											th Редактировать
+									tbody
+										each e in data
+											+e.TR.row(class= e.status ? 'highlight-warning' : '')
+												+e.TD.col_info
+													i.fa.fa-info-circle(data-tooltip= e.remark)
+												+e.TD.col_name= e.name
+												+e.TD.col_model= e.model
+												+e.TD.col_num= e.num
+												+e.TD.col_date-create= e.date_create
+												+e.TD.col_btn
+													+e.A.btn(class="btn btn-success" href= curUrl + '/edit/id/' + e.id) Редактировать

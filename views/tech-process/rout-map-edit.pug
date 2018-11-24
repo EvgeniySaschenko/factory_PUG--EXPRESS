@@ -1,0 +1,335 @@
+extends ../_layout/main
+
+block content
+	+b.page_tech-process
+		.container
+		+e.H1.title= title
+
+		+b.tab
+			+e.list.container
+				+e.item(data-id="tab_1")
+					+e.I.item-icon.fa.fa-edit
+					+e.SPAN.item-name Основная информация маршрутной карты
+				+e.item(data-id="tab_2") 
+					+e.I.item-icon.fa.fa-plus
+					+e.SPAN.item-name Добавить операцию
+				+e.item(data-id="tab_3") 
+					+e.I.item-icon.fa.fa-edit
+					+e.SPAN.item-name Редактировать операции
+
+			+e.H2.title Основная информация маршрутной карты
+			.container
+				+e.reload-page(class="fa fa-sync-alt" title="Обновить")
+			
+			+e.box-content
+				+e.content(class="container" id="tab_1")
+					// Добавить маршрутную карту
+					- var dataRoutMap_cur= routMap_cur
+					- var dataSelectMaterialType= materialType_list
+					- var dataSelectMaterial= material_list
+					- var dataSelectUnitsMeasure= unitsMeasure_list
+					- var dataSelectTypeIngot= typeIngot_list
+					- var api= api_editRoutMap
+
+
+					+b.FORM.form_tech-process(id="form_tech-process-add-rout-map" data-api=api)
+						+e.INPUT.hidden(value= dataRoutMap_cur.id type="hidden" name="id")
+
+						+e.group(class="form-group")
+							+e.LABEL.label Назание детали
+							+e.INPUT.field(value= dataRoutMap_cur.name class="form-control" type="text" name="name" placeholder="Назание детали" required)
+
+						+e.group(class="form-group")
+							+e.LABEL.label Номер детали
+							+e.INPUT.field(value= dataRoutMap_cur.num_detail class="form-control" type="text" name="num_detail" placeholder="Номер" required)
+
+						+e.group(class="form-group")
+							+e.LABEL.label Материал
+							+e.SELECT.select(class="form-control" name="id_type" required)
+								each e in dataSelectMaterialType
+									+e.OPTION(value= e.id, selected= e.id == dataRoutMap_cur.id_type ? true : false).option= e.name
+
+						+e.group(class="form-group")
+							+e.LABEL.label Марка материала
+							+e.SELECT.select(class="form-control" name="id_material" required)
+								each e in dataSelectMaterial
+									+e.OPTION(value= e.id, data-id-type= e.id_type, selected= e.id == dataRoutMap_cur.id_material ? true : false).option!= e.mark +'&nbsp&nbsp&nbsp&nbsp&nbsp'+ e.standart
+
+						+e.group(class="form-group form-inline")
+							+e.LABEL.label Вес детали
+							+e.INPUT.field(value= dataRoutMap_cur.weight class="form-control" type="number" name="weight" placeholder="Вес детали" required)
+							// ед. измер
+							+e.SELECT.select(class="form-control" name="units_measure" required)
+								each e in dataSelectUnitsMeasure
+									+e.OPTION(value= e.id, selected= e.id == dataRoutMap_cur.units_measure ? true : false).option= e.name
+							// тип заготовки
+							+e.LABEL.label Тип заготовки
+							+e.SELECT.select(class="form-control" name="type_ingot" required)
+								each e in dataSelectTypeIngot
+									+e.OPTION(value= e.name, selected= e.name == dataRoutMap_cur.type_ingot ? true : false).option= e.name
+
+						+e.group(class="form-group form-inline")
+							+e.LABEL.label Диаметр
+							+e.INPUT.field(value= dataRoutMap_cur.size_d class="form-control" type="number" name="size_d" placeholder="Диаметр" required)
+							+e.LABEL.label Длина
+							+e.INPUT.field(value= dataRoutMap_cur.size_w class="form-control" type="number" name="size_w" placeholder="Длина" required)
+							
+						+e.group(class="form-group")
+							+e.LABEL.label Комментарий
+							+e.TEXTAREA.textarea(value= dataRoutMap_cur.remark class="form-control" type="text" name="remark" placeholder="Комментарий")
+
+						+e.group(class="form-group form-check")
+							+e.INPUT.checkbox(value="1" class="form-check-input" type="checkbox" name="status" checked= dataRoutMap_cur.status ? true : false)
+							+e.LABEL.label(class="form-check-label") Выделить цветом в общем списке
+							
+						+e.group(class="form-group form-check")
+							+e.INPUT.checkbox(value="1" class="form-check-input" type="checkbox" name="del")
+							+e.LABEL.label(class="form-check-label") Удалить
+
+
+						+e.alert(class="alert hidden")
+						+e.box-btn
+							+e.BUTTON.btn(class="btn btn-primary" type="submit") Отправить
+
+				+e.content(class="container-big" id="tab_2")
+					- var dataSelectRank= rank_list
+					- var dataSelectOperation= operation_list
+					- var api= api_addRoutMapItem
+					- var dataRoutMap_cur= routMap_cur
+
+					+b.table(class="_container-big table-responsive")
+						+b.FORM.form_tech-process(class="_container-big" id="form_tech-process-add-rout-map" data-api=api)
+							+e.INPUT.hidden(value= dataRoutMap_cur.id type="hidden" name="id_rout_map")
+
+							+e.TABLE.table(class="table table-hover")
+								thead
+									tr
+										th Цех
+										th Уч.
+										th Рм
+										th Опер
+										th Код, наименование операции
+										th см
+										th Проф.
+										th Р
+										th УТ
+										th КР
+										th КОИд
+										th ЕН
+										th ОП
+										th К шт.
+										th Тп.з
+										th Т шт.
+								tbody
+									+e.TR.row
+										// Цех
+										+e.TD.col
+											+e.group(class="form-group")
+												+e.INPUT.field(value="02" class="form-control" type="number" name="num_shop")
+
+										// Участок
+										+e.TD.col
+											+e.group(class="form-group")
+												+e.INPUT.field(class="form-control" type="number" name="num_area")
+
+										// Рм
+										+e.TD.col
+											+e.group(class="form-group")
+												+e.INPUT.field(class="form-control" type="text" name="rm")
+												
+										// Опер - номер
+										+e.TD.col
+											+e.group(class="form-group")
+												+e.INPUT.field(class="form-control" type="number" name="num_operation" required)
+
+										// Код, наименование операции
+										+e.TD.col
+											+e.group(class="form-group")
+												+e.SELECT.select(class="form-control" name="id_operation" required)
+													each e in operation_list
+														+e.OPTION(value= e.id).option= e.name
+										// см
+										+e.TD.col
+											+e.group(class="form-group")
+												+e.INPUT.field(class="form-control" type="text" name="sm")
+
+										// Должность
+										+e.TD.col
+											+e.group(class="form-group")
+												+e.SELECT.select(class="form-control" name="id_rank" required)
+													each e in rank_list
+															+e.OPTION(value= e.id).option= e.name
+
+										// Разряд
+										+e.TD.col
+											+e.group(class="form-group")
+												+e.INPUT.field(class="form-control" type="number" name="rank_level")
+
+										// УТ
+										+e.TD.col
+											+e.group(class="form-group")
+												+e.INPUT.field(class="form-control" type="text" name="ut")
+
+										// КР
+										+e.TD.col
+											+e.group(class="form-group")
+												+e.INPUT.field(class="form-control" type="text" name="kr")
+
+										// КОИд
+										+e.TD.col
+											+e.group(class="form-group")
+												+e.INPUT.field(class="form-control" type="text" name="koid")
+
+										// ЕН
+										+e.TD.col
+											+e.group(class="form-group")
+												+e.INPUT.field(class="form-control" type="text" name="en")
+
+										// ОП
+										+e.TD.col
+											+e.group(class="form-group")
+												+e.INPUT.field(class="form-control" type="text" name="op")
+
+										// Участок
+										+e.TD.col
+											+e.group(class="form-group")
+												+e.INPUT.field(class="form-control" type="number" name="kst")
+
+										// Участок
+										+e.TD.col
+											+e.group(class="form-group")
+												+e.INPUT.field(class="form-control" type="number" name="tpz")
+
+										// Участок
+										+e.TD.col
+											+e.group(class="form-group")
+												+e.INPUT.field(class="form-control" type="number" name="tst")
+
+							+e.alert(class="alert hidden")
+							+e.box-btn(class="center")
+								+e.BUTTON.btn(class="btn btn-primary" type="submit") Добавить операцию
+
+				+e.content(class="container-big" id="tab_3")
+					- var dataSelectRank= rank_list
+					- var dataSelectOperation= operation_list
+					- var api= api_editRoutMapItem
+					- var dataRoutMap_cur= routMap_cur
+					- var dataRoutMapItems= routMapItems_list
+					
+					+b.FORM.form_tech-process(class="_container-big" id="form_tech-process-add-rout-edit" data-api=api)
+						+b.table(class="_container-big table-responsive")
+							+e.TABLE.table(class="table table-hover")
+								thead
+									tr
+										th Цех
+										th Уч.
+										th Рм
+										th Опер
+										th Код, наименование операции
+										th см
+										th Проф.
+										th Р
+										th УТ
+										th КР
+										th КОИд
+										th ЕН
+										th ОП
+										th К шт.
+										th Тп.з
+										th Т шт.
+										th Удалить
+								tbody
+									each e in routMapItems_list
+										+e.TR.row
+											// Цех
+											+e.TD.col
+												.form__group(class="form-group")
+													INPUT.form__hidden(value= e.id type="hidden" name="id[]")
+													INPUT.form__field(value= e.num_shop class="form-control" type="number" name="num_shop[]")
+
+											// Участок
+											+e.TD.col
+												.form__group(class="form-group")
+													INPUT.form__field(value= e.num_area class="form-control" type="number" name="num_area[]")
+
+											// Рм
+											+e.TD.col
+												.form__group(class="form-group")
+													INPUT.form__field(value= e.rm class="form-control" type="text" name="rm[]")
+													
+											// Опер - номер
+											+e.TD.col
+												.form__group(class="form-group")
+													INPUT.form__field(value= e.num_operation class="form-control" type="number" name="num_operation[]" required)
+
+											// Код, наименование операции
+											+e.TD.col
+												.form__group(class="form-group")
+													SELECT.form__select(class="form-control" name="id_operation[]" required)
+														each item in operation_list
+															OPTION(value= item.id selected= item.id == e.id_operation ? true : false).form__option= item.name
+							
+											// см
+											+e.TD.col
+												.form__group(class="form-group")
+													INPUT.form__field(value= e.sm class="form-control" type="text" name="sm[]")
+
+											// Должность
+											+e.TD.col
+												.form__group(class="form-group")
+													SELECT.form__select(class="form-control" name="id_rank[]" required)
+														each item in rank_list
+															OPTION(value= item.id selected= item.id == e.id_rank ? true : false).form__option= item.name
+
+											// Разряд
+											+e.TD.col
+												.form__group(class="form-group")
+													INPUT.form__field(value= e.rank_level class="form-control" type="number" name="rank_level[]")
+
+											// УТ
+											+e.TD.col
+												.form__group(class="form-group")
+													INPUT.form__field(value= e.ut class="form-control" type="text" name="ut[]")
+
+											// КР
+											+e.TD.col
+												.form__group(class="form-group")
+													INPUT.form__field(value= e.kr class="form-control" type="text" name="kr[]")
+
+											// КОИд
+											+e.TD.col
+												.form__group(class="form-group")
+													INPUT.form__field(value= e.koid class="form-control" type="text" name="koid[]")
+
+											// ЕН
+											+e.TD.col
+												.form__group(class="form-group")
+													INPUT.form__field(value= e.en class="form-control" type="text" name="en[]")
+
+											// ОП
+											+e.TD.col
+												.form__group(class="form-group")
+													INPUT.form__field(value= e.op class="form-control" type="text" name="op[]")
+
+											// Участок
+											+e.TD.col
+												.form__group(class="form-group")
+													INPUT.form__field(value= e.kst class="form-control" type="number" name="kst[]")
+
+											// Участок
+											+e.TD.col
+												.form__group(class="form-group")
+													INPUT.form__field(value= e.tpz class="form-control" type="number" name="tpz[]")
+
+											// Участок
+											+e.TD.col
+												.form__group(class="form-group")
+													INPUT.form__field(value= e.tst class="form-control" type="number" name="tst[]")
+
+											// Удалить
+											+e.TD.col_center
+												INPUT.form__checkbox(value="1" type="checkbox" name="del[]")
+
+							.form__alert(class="alert hidden")
+							.form__box-btn(class="center")
+								BUTTON.form__btn(class="btn btn-primary" type="submit") Редактировать операцию

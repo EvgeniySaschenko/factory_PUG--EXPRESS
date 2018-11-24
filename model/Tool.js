@@ -48,7 +48,7 @@ class Tool{
 	}
 
 	editTool(req){
-		const { id, id_material, id_type, description, standart, remark, status, del }= req.body;
+		const { id, id_material, id_type, description, standart, remark, status= 0, del= 0 }= req.body;
 		const { id_visitor }= req.session.user;
 
 		return new Promise((resolve, reject)=>{
@@ -64,12 +64,12 @@ class Tool{
 										id_type= ?,
 										description= ?,
 										standart= ?,
-										date_update= ?, 
+										date_update= CURRENT_TIMESTAMP, 
 										remark= ?, 
 										status= ?, 
 										del= ?
 									WHERE id= ?`,
-									[id_visitor, id_material, id_type, description, standart, 'CURRENT_TIMESTAMP', remark, status, del, id],
+									[id_visitor, id_material, id_type, description, standart, remark, status, del, id],
 									(err, data= false)=>{
 										const { affectedRows }= data;
 										affectedRows ? resolve( !del ? this.msg.edit : this.msg.delete ) : reject( { data: this.msg.err, err : err } );
@@ -189,7 +189,7 @@ class Tool{
 	}
 
 	editType(req){
-		const { id, name, remark, status, del }= req.body;
+		const { id, name, remark, status= 0, del= 0 }= req.body;
 		const { id_visitor }= req.session.user;
 
 		return new Promise((resolve, reject)=>{
@@ -202,12 +202,12 @@ class Tool{
 									SET
 										id_visitor_update= ?,
 										name= ?,
-										date_update= ?, 
+										date_update= CURRENT_TIMESTAMP, 
 										remark= ?, 
 										status= ?, 
 										del= ?
 									WHERE id= ?`,
-									[id_visitor, name, 'CURRENT_TIMESTAMP', remark, status, del, id],
+									[id_visitor, name, remark, status, del, id],
 									(err, data= false)=>{
 										const { affectedRows }= data;
 										affectedRows ? resolve( !del ? this.msg.edit : this.msg.delete ) : reject( { data: this.msg.err, err : err } );

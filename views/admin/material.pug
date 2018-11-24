@@ -2,135 +2,137 @@ extends ../_layout/main
 
 block content
 	+b.page_admin
-		+e.H1.title= title
+		.container
+			+e.H1.title= title
 
-		+b.tab
-			+e.list
-				+e.item(data-id="tab_1")
-					+e.I.item-icon.fa.fa-plus
-					+e.SPAN.item-name Добавить базовый материал
-				+e.item(data-id="tab_2") 
-					+e.I.item-icon.fa.fa-list-alt
-					+e.SPAN.item-name Список базовых материалов
-				+e.item(data-id="tab_3")
-					+e.I.item-icon.fa.fa-plus
-					+e.SPAN.item-name Добавить материал
-				+e.item(data-id="tab_4")
-					+e.I.item-icon.fa.fa-list-alt
-					+e.SPAN.item-name Список материалов
-
-
-			+e.H2.title Добавить материал
-
-			+e.box-content
-				+e.content(id="tab_1")
-					// Добавить базовый материал
-					- var api= api_addMaterialType
-
-					+b.FORM.form_admin(data-api=api)
-						+e.group(class="form-group")
-							+e.LABEL.label Название
-							+e.INPUT.field(class="form-control" type="text" name="name" placeholder="Название" required)
-
-						+e.alert(class="alert hidden")
-						+e.box-btn
-							+e.BUTTON.btn(class="btn btn-primary" type="submit") Отправить
+			+b.tab
+				+e.list
+					+e.item(data-id="tab_1")
+						+e.I.item-icon.fa.fa-plus
+						+e.SPAN.item-name Добавить базовый материал
+					+e.item(data-id="tab_2") 
+						+e.I.item-icon.fa.fa-list-alt
+						+e.SPAN.item-name Список базовых материалов
+					+e.item(data-id="tab_3")
+						+e.I.item-icon.fa.fa-plus
+						+e.SPAN.item-name Добавить материал
+					+e.item(data-id="tab_4")
+						+e.I.item-icon.fa.fa-list-alt
+						+e.SPAN.item-name Список материалов
 
 
-				+e.content(id="tab_2")
-					// Список базовых материалов
-					- var data= materialType_list
+				+e.H2.title Добавить материал
+				+e.reload-page(class="fa fa-sync-alt" title="Обновить")
+				
+				+e.box-content
+					+e.content(id="tab_1")
+						// Добавить базовый материал
+						- var api= api_addMaterialType
 
-					if data
+						+b.FORM.form_admin(data-api=api)
+							+e.group(class="form-group")
+								+e.LABEL.label Название
+								+e.INPUT.field(class="form-control" type="text" name="name" placeholder="Название" required)
+
+							+e.alert(class="alert hidden")
+							+e.box-btn
+								+e.BUTTON.btn(class="btn btn-primary" type="submit") Отправить
+
+
+					+e.content(id="tab_2")
+						// Список базовых материалов
+						- var data= materialType_list
+
+						if data
+							+b.table_admin(class="table-responsive")
+								+e.TABLE.table(class="table table-hover")
+									thead
+										tr
+											th 
+												i.fa.fa-info-circle
+											th Название
+											th Дата создания
+											th Редактировать
+									tbody
+										each e in data
+											+e.TR.row(class= e.status ? 'highlight-warning' : '')
+												+e.TD.col_info
+													i.fa.fa-info-circle(data-tooltip= e.remark)
+												+e.TD.col_name= e.name
+												+e.TD.col_date-create= e.date_create
+												+e.TD.col_btn
+													+e.A.btn(class="btn btn-success" href= curUrl + '/edit/type/id/' + e.id) Редактировать
+
+					+e.content(id="tab_3")
+						// Добавить материал
+
+						- var api= api_addMaterial
+						- var dataSelectType= materialType_list
+						- var dataSelectUse= materialUse_list
+
+						+b.FORM.form_admin(data-api= api)
+							+e.group(class="form-group")
+								+e.LABEL.label Базовый материал
+								+e.SELECT.select(class="form-control" name="id_type" required)
+									each e in dataSelectType
+										+e.OPTION(value= e.id).option= e.name
+
+							+e.group(class="form-group")
+								+e.LABEL.label Сфера применения
+								+e.SELECT.select(class="form-control" name="id_use" required)
+									each e in dataSelectUse
+										+e.OPTION(value= e.id).option= e.name
+											
+							+e.group(class="form-group")
+								+e.LABEL.label Марка
+								+e.INPUT.field(class="form-control" type="text" name="mark" placeholder="Марка" required)
+											
+							+e.group(class="form-group")
+								+e.LABEL.label ГОСТ / ТУ
+								+e.INPUT.field(class="form-control" type="text" name="standart" placeholder="ГОСТ / ТУ" required)
+
+							+e.alert(class="alert hidden")
+							+e.box-btn
+								+e.BUTTON.btn(class="btn btn-primary" type="submit") Отправить
+
+
+					+e.content(id="tab_4")
+						// Список материалов
+						- var data= material_list
+
+						- var api= api_getMaterialSearch
+						- var dataSelectType= materialType_list
+						- var dataSelectUse= materialUse_list
+
+						+b.FORM.form_admin(class="_search" id="form_search-table-admin-material" data-api= api)
+							+e.group(class="form-group")
+								+e.LABEL.label Базовый материал
+								+e.SELECT.select(class="form-control" name="id_type" required)
+									each e in dataSelectType
+										+e.OPTION(value= e.id).option= e.name
+
+							+e.group(class="form-group")
+								+e.LABEL.label Сфера применения
+								+e.SELECT.select(class="form-control" name="id_use" required)
+									each e in dataSelectUse
+										+e.OPTION(value= e.id).option= e.name
+
+							+e.group(class="form-group")
+								+e.LABEL.label Марка
+								+e.INPUT.field(class="form-control" type="text" name="mark" placeholder="Марка" required)
+
+						+e.alert(class="alert alert-warning") Для того чтобы найти нужный материал заполните соответсвующие поля в форме 
+
 						+b.table_admin(class="table-responsive")
+
 							+e.TABLE.table(class="table table-hover")
 								thead
 									tr
 										th 
 											i.fa.fa-info-circle
 										th Название
+										th ГОСТ / ТУ
 										th Дата создания
 										th Редактировать
-								tbody
-									each e in data
-										+e.TR.row(class= e.status ? 'highlight-warning' : '')
-											+e.TD.col_info
-												i.fa.fa-info-circle(data-tooltip= e.remark)
-											+e.TD.col_name= e.name
-											+e.TD.col_date-create= e.date_create
-											+e.TD.col_btn
-												+e.A.btn(class="btn btn-success" href= curUrl + '/edit/type/id/' + e.id) Редактировать
-
-				+e.content(id="tab_3")
-					// Добавить материал
-
-					- var api= api_addMaterial
-					- var dataSelectType= materialType_list
-					- var dataSelectUse= materialUse_list
-
-					+b.FORM.form_admin(data-api= api)
-						+e.group(class="form-group")
-							+e.LABEL.label Базовый материал
-							+e.SELECT.select(class="form-control" name="id_type" required)
-								each e in dataSelectType
-									+e.OPTION(value= e.id).option= e.name
-
-						+e.group(class="form-group")
-							+e.LABEL.label Сфера применения
-							+e.SELECT.select(class="form-control" name="id_use" required)
-								each e in dataSelectUse
-									+e.OPTION(value= e.id).option= e.name
-										
-						+e.group(class="form-group")
-							+e.LABEL.label Марка
-							+e.INPUT.field(class="form-control" type="text" name="mark" placeholder="Марка" required)
-										
-						+e.group(class="form-group")
-							+e.LABEL.label ГОСТ / ТУ
-							+e.INPUT.field(class="form-control" type="text" name="standart" placeholder="ГОСТ / ТУ" required)
-
-						+e.alert(class="alert hidden")
-						+e.box-btn
-							+e.BUTTON.btn(class="btn btn-primary" type="submit") Отправить
-
-
-				+e.content(id="tab_4")
-					// Список материалов
-					- var data= material_list
-
-					- var api= api_getMaterialSearch
-					- var dataSelectType= materialType_list
-					- var dataSelectUse= materialUse_list
-
-					+b.FORM.form_admin(class="_search" id="form_search-table-admin-material" data-api= api)
-						+e.group(class="form-group")
-							+e.LABEL.label Базовый материал
-							+e.SELECT.select(class="form-control" name="id_type" required)
-								each e in dataSelectType
-									+e.OPTION(value= e.id).option= e.name
-
-						+e.group(class="form-group")
-							+e.LABEL.label Сфера применения
-							+e.SELECT.select(class="form-control" name="id_use" required)
-								each e in dataSelectUse
-									+e.OPTION(value= e.id).option= e.name
-
-						+e.group(class="form-group")
-							+e.LABEL.label Марка
-							+e.INPUT.field(class="form-control" type="text" name="mark" placeholder="Марка" required)
-
-					+e.alert(class="alert alert-warning") Для того чтобы найти нужный материал заполните соответсвующие поля в форме 
-
-					+b.table_admin(class="table-responsive")
-
-						+e.TABLE.table(class="table table-hover")
-							thead
-								tr
-									th 
-										i.fa.fa-info-circle
-									th Название
-									th ГОСТ / ТУ
-									th Дата создания
-									th Редактировать
-							tbody#table__body_admin-material
-								
+								tbody#table__body_admin-material
+									

@@ -10,9 +10,18 @@
 		text-align: center
 	&__item
 		cursor: pointer
+		padding: 10px
+		border: 1px solid gray
+		border-bottom: 0
+		border-radius: 10px 10px 0 0
+		margin-right: 3px
 		&.active
-			background-color: $corp-1
+			color: $corp-1
+			border: 1px solid $corp-1
+			border-bottom: 0
 			transition-duration: .3s
+		&-icon
+			margin-right: 5px
 	&__content
 		z-index: -10
 		opacity: 0

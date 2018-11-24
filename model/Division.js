@@ -46,7 +46,7 @@ class Division{
 	}
 
 	editDivision(req){
-		const { id, name, remark, status, del }= req.body;
+		const { id, name, remark, status= 0, del= 0 }= req.body;
 		const { id_visitor }= req.session.user;
 		return new Promise((resolve, reject)=>{
 			this.getDivisionСheckExists(name)
@@ -58,12 +58,12 @@ class Division{
 									SET
 										id_visitor_update= ?,
 										name= ?,
-										date_update= ?,
+										date_update= CURRENT_TIMESTAMP,
 										remark= ?,
 										status= ?,
 										del= ?
 									WHERE id= ?`,
-									[id_visitor, name, 'CURRENT_TIMESTAMP', remark, status, del, id],
+									[id_visitor, name, remark, status, del, id],
 									(err, data= false)=>{
 										const { affectedRows }= data;
 										affectedRows ? resolve( !del ? this.msg.edit : this.msg.delete ) : reject( { data: this.msg.err, err : err } );
@@ -194,7 +194,7 @@ class Division{
 	}
 
 	editRank(req){
-		const { id, name, id_type: id_division, remark, status, del }= req.body;
+		const { id, name, id_type: id_division, remark, status= 0, del= 0 }= req.body;
 		const { id_visitor }= req.session.user;
 		return new Promise((resolve, reject)=>{
 			this.getRankСheckExists(id_division, name)
@@ -207,12 +207,12 @@ class Division{
 										id_visitor_update= ?,
 										id_division= ?,
 										name= ?,
-										date_update= ?,
+										date_update= CURRENT_TIMESTAMP,
 										remark= ?,
 										status= ?,
 										del= ?
 									WHERE id= ?`,
-									[id_visitor, id_division, name, 'CURRENT_TIMESTAMP', remark, status, del, id],
+									[id_visitor, id_division, name, remark, status, del, id],
 									(err, data= false)=>{
 										const { affectedRows }= data;
 										affectedRows ? resolve( !del ? this.msg.edit : this.msg.delete ) : reject( { data: this.msg.err, err : err } );

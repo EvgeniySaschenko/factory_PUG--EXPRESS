@@ -56,7 +56,7 @@ class DocAutomatMap{
 	}
 
 	editAutomatMap(req){
-		const { id, id_rout_map_item, id_equipment, firmness, ev, md, profile, mz, koi, program, t_o, t_v, t_pz, t_st, emulsion, approve_1, approve_2, approve_3, approve_4, approve_5, approve_6, approve_7, approve_8 }= req.body;
+		const { id, id_rout_map_item, id_equipment, firmness, ev, md, profile, mz, koi, program, t_o, t_v, t_pz, t_st, emulsion, approve_1, approve_2, approve_3, approve_4, approve_5, approve_6, approve_7, approve_8, remark, status= 0, del= 0 }= req.body;
 		const { id_visitor }= req.session.user;
 
 		return new Promise((resolve, reject)=>{
@@ -87,9 +87,12 @@ class DocAutomatMap{
 							approve_6= ?, 
 							approve_7= ?, 
 							approve_8= ?,
-							date_update= ?
+							date_update= CURRENT_TIMESTAMP,
+							remark= ?,
+							status= ?,
+							del= ?
 						WHERE id= ?`,
-						[id_visitor, id_rout_map_item, id_equipment, firmness, ev, md, profile, mz, koi, program, t_o, t_v, t_pz, t_st, emulsion, approve_1, approve_2, approve_3, approve_4, approve_5, approve_6, approve_7, approve_8, 'CURRENT_TIMESTAMP', id],
+						[id_visitor, id_rout_map_item, id_equipment, firmness, ev, md, profile, mz, koi, program, t_o, t_v, t_pz, t_st, emulsion, approve_1, approve_2, approve_3, approve_4, approve_5, approve_6, approve_7, approve_8, remark, status, del, id],
 						(err, data= false)=>{
 							const { affectedRows }= data;
 							affectedRows ? resolve( this.msg.edit ) : reject( { data: this.msg.err, err : err } );
@@ -175,7 +178,7 @@ class DocAutomatMap{
 	}
 	
 	editAutomatMapItem(req){
-		const { id, id_automat_map, name, pi, d_v, l, t, i, s, n, v, t_o, t_v, remark, status, del }= req.body;
+		const { id, id_automat_map, name, pi, d_v, l, t, i, s, n, v, t_o, t_v, remark, status= 0, del= 0 }= req.body;
 		const { id_visitor }= req.session.user;
 
 		return new Promise((resolve, reject)=>{
@@ -196,12 +199,12 @@ class DocAutomatMap{
 							v= ?, 
 							t_o= ?, 
 							t_v= ?, 
-							date_update= ?,
+							date_update= CURRENT_TIMESTAMP,
 							remark= ?,
 							status= ?,
 							del= ?
 						WHERE id= ?`,
-						[id_visitor, id_automat_map, name, pi, d_v, l, t, i, s, n, v, t_o, t_v, 'CURRENT_TIMESTAMP', remark, status, del, id],
+						[id_visitor, id_automat_map, name, pi, d_v, l, t, i, s, n, v, t_o, t_v, remark, status, del, id],
 						(err, data= false)=>{
 							const { affectedRows }= data;
 							affectedRows ? resolve( this.msg.edit ) : reject( { data: this.msg.err, err : err } );

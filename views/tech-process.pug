@@ -2,123 +2,124 @@ extends _layout/main
 
 block content
 	+b.page_tech-process
-		+e.H1.title= title
+		.container
+			+e.H1.title= title
 
-		+b.tab
-			+e.list
-				+e.item(data-id="tab_1")
-					+e.I.item-icon.fa.fa-plus
-					+e.SPAN.item-name Добавить маршрутную карту
-				+e.item(data-id="tab_2") 
-					+e.I.item-icon.fa.fa-list-alt
-					+e.SPAN.item-name Найти маршрутную карту
-
-
-			+e.H2.title Добавить маршрутную карту
-			+e.reload-page(class="fa fa-sync-alt" title="Обновить")
-			
-			+e.box-content
-				+e.content(id="tab_1")
-					// Добавить маршрутную карту
-					- var dataSelectMaterialType= materialType_list
-					- var dataSelectMaterial= material_list
-					- var dataSelectUnitsMeasure= unitsMeasure_list
-					- var dataSelectTypeIngot= typeIngot_list
-					- var api= api_addRoutMap
+			+b.tab
+				+e.list
+					+e.item(data-id="tab_1")
+						+e.I.item-icon.fa.fa-plus
+						+e.SPAN.item-name Добавить маршрутную карту
+					+e.item(data-id="tab_2") 
+						+e.I.item-icon.fa.fa-list-alt
+						+e.SPAN.item-name Найти маршрутную карту
 
 
-					+b.FORM.form_tech-process(id="form_tech-process-add-rout-map" data-api=api)
-						+e.group(class="form-group")
-							+e.LABEL.label Назание детали
-							+e.INPUT.field(class="form-control" type="text" name="name" placeholder="Назание детали" required)
-
-						+e.group(class="form-group")
-							+e.LABEL.label Номер детали
-							+e.INPUT.field(class="form-control" type="text" name="num_detail" placeholder="Номер" required)
-
-						+e.group(class="form-group")
-							+e.LABEL.label Материал
-							+e.SELECT.select(class="form-control" name="id_type" required)
-								each e in dataSelectMaterialType
-									+e.OPTION(value= e.id).option= e.name
-
-						+e.group(class="form-group")
-							+e.LABEL.label Марка материала
-							+e.SELECT.select(class="form-control" name="id_material" required)
-								each e in dataSelectMaterial
-									+e.OPTION(value= e.id data-id-type= e.id_type).option!= e.mark +'&nbsp&nbsp&nbsp&nbsp&nbsp'+ e.standart
-
-						+e.group(class="form-group form-inline")
-							+e.LABEL.label Вес детали
-							+e.INPUT.field(class="form-control" type="number" name="weight" placeholder="Вес детали" required)
-							// ед. измер
-							+e.SELECT.select(class="form-control" name="units_measure" required)
-								each e in dataSelectUnitsMeasure
-									+e.OPTION(value= e.id).option= e.name
-							// тип заготовки
-							+e.LABEL.label Тип заготовки
-							+e.SELECT.select(class="form-control" name="type_ingot" required)
-								each e in dataSelectTypeIngot
-									+e.OPTION(value= e.name).option= e.name
-
-						+e.group(class="form-group form-inline")
-							+e.LABEL.label Диаметр
-							+e.INPUT.field(class="form-control" type="number" name="size_d" placeholder="Диаметр" required)
-							+e.LABEL.label Длина
-							+e.INPUT.field(class="form-control" type="number" name="size_w" placeholder="Длина" required)
-							
-						+e.group(class="form-group")
-							+e.LABEL.label Комментарий
-							+e.TEXTAREA.textarea(class="form-control" type="text" name="remark" placeholder="Комментарий")
-
-						+e.group(class="form-group form-check")
-							+e.INPUT.checkbox(value="1" class="form-check-input" type="checkbox" name="status")
-							+e.LABEL.label(class="form-check-label") Выделить цветом в общем списке
-
-						+e.alert(class="alert hidden")
-						+e.box-btn
-							+e.BUTTON.btn(class="btn btn-primary" type="submit") Отправить
-
-				+e.content(id="tab_2")
-					// Список базовых материалов
-					- var data= docRoutMap_list
-					- var api= api_getRoutMapSearch
-					
-
-					+b.FORM.form_admin(class="_search" id="form_search-table-tech-process-rout-map" data-api= api)
-						+e.group(class="form-group")
-							+e.LABEL.label Название
-							+e.INPUT.field(class="form-control" type="text" name="name" placeholder="Название")
-
-						+e.group(class="form-group")
-							+e.LABEL.label Номер детали
-							+e.INPUT.field(class="form-control" type="text" name="num_detail" placeholder="Номер детали")
-
-						+e.group(class="form-group")
-							+e.LABEL.label Искать начиная с даты
-							+e.INPUT.field(class="form-control" type="date" name="date_create" placeholder="Дата создания")
-
-					+e.alert(class="alert alert-warning") Для того чтобы найти маршрутную карту введите название или номер детали
+				+e.H2.title Добавить маршрутную карту
+				+e.reload-page(class="fa fa-sync-alt" title="Обновить")
+				
+				+e.box-content
+					+e.content(id="tab_1")
+						// Добавить маршрутную карту
+						- var dataSelectMaterialType= materialType_list
+						- var dataSelectMaterial= material_list
+						- var dataSelectUnitsMeasure= unitsMeasure_list
+						- var dataSelectTypeIngot= typeIngot_list
+						- var api= api_addRoutMap
 
 
-					if data
-						+b.table_admin(class="table-responsive")
-							+e.TABLE.table(class="table table-hover")
-								thead
-									tr
-										th 
-											i.fa.fa-info-circle
-										th Название
-										th Номер
-										th Дата создания
-										th Подробние
-								tbody(id="table__body_tech-process-rout-map")
-									each e in data
-										+e.TR.row(class= e.status ? 'highlight-warning' : '')
-											+e.TD.col_info
-												i.fa.fa-info-circle(data-tooltip= e.remark)
-											+e.TD.col_name= e.name
-											+e.TD.col_num-detail= e.num_detail
-											+e.TD.col_date-create= e.date_create
-											+e.TD.col_btn
-												+e.A.btn(class="btn btn-primary" href= curUrl + '/more/id/' + e.id) Подробние
+						+b.FORM.form_tech-process(id="form_tech-process-add-rout-map" data-api=api)
+							+e.group(class="form-group")
+								+e.LABEL.label Назание детали
+								+e.INPUT.field(class="form-control" type="text" name="name" placeholder="Назание детали" required)
+
+							+e.group(class="form-group")
+								+e.LABEL.label Номер детали
+								+e.INPUT.field(class="form-control" type="text" name="num_detail" placeholder="Номер" required)
+
+							+e.group(class="form-group")
+								+e.LABEL.label Материал
+								+e.SELECT.select(class="form-control" name="id_type" required)
+									each e in dataSelectMaterialType
+										+e.OPTION(value= e.id).option= e.name
+
+							+e.group(class="form-group")
+								+e.LABEL.label Марка материала
+								+e.SELECT.select(class="form-control" name="id_material" required)
+									each e in dataSelectMaterial
+										+e.OPTION(value= e.id data-id-type= e.id_type).option!= e.mark +'&nbsp&nbsp&nbsp&nbsp&nbsp'+ e.standart
+
+							+e.group(class="form-group form-inline")
+								+e.LABEL.label Вес детали
+								+e.INPUT.field(class="form-control" type="number" step="any" name="weight" placeholder="Вес детали" required)
+								// ед. измер
+								+e.SELECT.select(class="form-control" name="units_measure" required)
+									each e in dataSelectUnitsMeasure
+										+e.OPTION(value= e.id).option= e.name
+								// тип заготовки
+								+e.LABEL.label Тип заготовки
+								+e.SELECT.select(class="form-control" name="type_ingot" required)
+									each e in dataSelectTypeIngot
+										+e.OPTION(value= e.name).option= e.name
+
+							+e.group(class="form-group form-inline")
+								+e.LABEL.label Диаметр
+								+e.INPUT.field(class="form-control" type="number" step="any" name="size_d" placeholder="Диаметр" required)
+								+e.LABEL.label Длина
+								+e.INPUT.field(class="form-control" type="number" step="any" name="size_w" placeholder="Длина" required)
+								
+							+e.group(class="form-group")
+								+e.LABEL.label Комментарий
+								+e.TEXTAREA.textarea(class="form-control" type="text" name="remark" placeholder="Комментарий")
+
+							+e.group(class="form-group form-check")
+								+e.INPUT.checkbox(value="1" class="form-check-input" type="checkbox" name="status")
+								+e.LABEL.label(class="form-check-label") Выделить цветом в общем списке
+
+							+e.alert(class="alert hidden")
+							+e.box-btn
+								+e.BUTTON.btn(class="btn btn-primary" type="submit") Отправить
+
+					+e.content(id="tab_2")
+						// Список базовых материалов
+						- var data= docRoutMap_list
+						- var api= api_getRoutMapSearch
+						
+
+						+b.FORM.form_admin(class="_search" id="form_search-table-tech-process-rout-map" data-api= api)
+							+e.group(class="form-group")
+								+e.LABEL.label Название
+								+e.INPUT.field(class="form-control" type="text" name="name" placeholder="Название")
+
+							+e.group(class="form-group")
+								+e.LABEL.label Номер детали
+								+e.INPUT.field(class="form-control" type="text" name="num_detail" placeholder="Номер детали")
+
+							+e.group(class="form-group")
+								+e.LABEL.label Искать начиная с даты
+								+e.INPUT.field(class="form-control" type="date" name="date_create" placeholder="Дата создания")
+
+						+e.alert(class="alert alert-warning") Для того чтобы найти маршрутную карту введите название или номер детали
+
+
+						if data
+							+b.table(class="table-responsive")
+								+e.TABLE.table(class="table table-hover")
+									thead
+										tr
+											th 
+												i.fa.fa-info-circle
+											th Название
+											th Номер
+											th Дата создания
+											th Подробние
+									tbody(id="table__body_tech-process-rout-map")
+										each e in data
+											+e.TR.row(class= e.status ? 'highlight-warning' : '')
+												+e.TD.col_info
+													i.fa.fa-info-circle(data-tooltip= e.remark)
+												+e.TD.col_name= e.name
+												+e.TD.col_num-detail= e.num_detail
+												+e.TD.col_date-create= e.date_create
+												+e.TD.col_btn
+													+e.A.btn(class="btn btn-success" href= curUrl + '/rout-map/edit/id/' + e.id) Редактровать
