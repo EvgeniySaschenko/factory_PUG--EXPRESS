@@ -1,5 +1,5 @@
 let db= require(__APPROOT + '/ext/db.js');
-const nconf= require(__APPROOT + '/config');
+let nconf= require(__APPROOT + '/config');
 
 class Nav{
 	constructor(){
@@ -10,7 +10,7 @@ class Nav{
 	/** NAV */
 
 	getNavByType(req){
-		const { type }= req;
+		let { type }= req;
 		return new Promise((resolve, reject)=>{
 			this.db.getConnection((err, connection)=>{
 				if(!err){
@@ -32,7 +32,7 @@ class Nav{
 	}
 
 	getBreadCrumbs(req){
-		const { originalUrl }= req;
+		let { originalUrl }= req;
 		return new Promise((resolve, reject)=>{
 			this.db.getConnection((err, connection)=>{
 				if(!err){
@@ -42,7 +42,7 @@ class Nav{
 						WHERE del = 0
 						ORDER BY id_parent ASC, priority ASC, id ASC`,
 						(err, data)=>{
-							const arr= originalUrl.split('/');
+							let arr= originalUrl.split('/');
 							let nav= [];
 							let url= '';
 							for(let i= 1, l= arr.length; l > i; i++){

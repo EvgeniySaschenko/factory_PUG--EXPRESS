@@ -16,6 +16,10 @@ block content
 				+e.item(data-id="tab_3") 
 					+e.I.item-icon.fa.fa-edit
 					+e.SPAN.item-name Редактировать операции
+				+e.item(data-id="tab_4") 
+					+e.I.item-icon.fa.fa-list-alt
+					+e.SPAN.item-name Список операционных карт
+
 
 			+e.H2.title Основная информация маршрутной карты
 			.container
@@ -98,9 +102,9 @@ block content
 					- var dataRoutMap_cur= routMap_cur
 
 					+b.table(class="_container-big table-responsive")
-						+b.FORM.form_tech-process(class="_container-big" id="form_tech-process-add-rout-map" data-api=api)
+						+b.FORM.form_tech-process(class="_container-big" data-api=api)
 							+e.INPUT.hidden(value= dataRoutMap_cur.id type="hidden" name="id_rout_map")
-
+							+e.INPUT.hidden(value= dataRoutMap_cur.id_material type="hidden" name="id_material")
 							+e.TABLE.table(class="table table-hover")
 								thead
 									tr
@@ -328,8 +332,32 @@ block content
 
 											// Удалить
 											+e.TD.col_center
-												INPUT.form__checkbox(value="1" type="checkbox" name="del[]")
+												.form__group-checkbox-delete
+													INPUT.form__hidden(value="0" type="hidden" name="del[]")
+													INPUT.form__checkbox(type="checkbox")
 
 							.form__alert(class="alert hidden")
 							.form__box-btn(class="center")
 								BUTTON.form__btn(class="btn btn-primary" type="submit") Редактировать операцию
+
+				+e.content(class="container" id="tab_4")
+						- var data= operatingMapItems_list
+
+						if data
+							+b.table_admin(class="table-responsive")
+								+e.TABLE.table(class="table table-hover")
+									thead
+										tr
+											th Название
+											th Дата создания
+											th Редактировать
+											th Скачать
+									tbody
+										each e in data
+											+e.TR.row(class= e.status ? 'highlight-warning' : '')
+												+e.TD.col_name= e.name
+												+e.TD.col_date-create= e.date_create
+												+e.TD.col_btn
+													+e.A.btn(class="btn btn-success" target="_blank" href='tech-process/operating-map/edit/id/' + e.id) Редактировать
+												+e.TD.col_btn
+													+e.A.btn(class="btn btn-primary" href='tech-process/operating-map/download/id/' + e.id) Скачать

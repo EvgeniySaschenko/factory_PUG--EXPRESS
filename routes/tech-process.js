@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const routMapRouter = require(__APPROOT + '/routes/tech-process/rout-map');
+const operatingMapRouter = require(__APPROOT + '/routes/tech-process/operating-map');
 const API = require(__APPROOT + '/ext/api');
 const Nav = require(__APPROOT + '/model/Nav');
 const GlobalSettings = require(__APPROOT + '/model/GlobalSettings');
@@ -44,5 +45,6 @@ router.get('/', (req, res, next)=> {
 });
 
 router.use('/rout-map', routMapRouter);
+router.use('/operating-map', operatingMapRouter);
 
 module.exports = router;

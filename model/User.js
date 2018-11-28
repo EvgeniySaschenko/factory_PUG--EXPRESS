@@ -1,6 +1,6 @@
-const db= require(__APPROOT + '/ext/db.js');
-const md5= require('md5');
-const conf = require(__APPROOT + '/config');
+let db= require(__APPROOT + '/ext/db.js');
+let md5= require('md5');
+let conf = require(__APPROOT + '/config');
 
 class User{
 	constructor(){
@@ -16,9 +16,9 @@ class User{
 	/* USER */
 	
 	addUser(req){
-		const { login, pass, name, rank, date_birth }= req.body;
-		const { id_visitor }= req.session.user;
-		const passEncrypt= this.encryptPassword(pass);
+		let { login, pass, name, rank, date_birth }= req.body;
+		let { id_visitor }= req.session.user;
+		let passEncrypt= this.encryptPassword(pass);
 
 		return new Promise( (resolve, reject)=> {
 			this.getUserByLogin(login)
@@ -44,7 +44,7 @@ class User{
 									date_birth
 								], 
 								(err, data= false)=>{
-									const { insertId }= data;
+									let { insertId }= data;
 									insertId ? resolve(Object.assign( {}, this.msg.add, { id : data.insertId } )) : reject( { data: this.msg.err, err : err } );
 									connection.release();
 								});
@@ -83,7 +83,7 @@ class User{
 	}
 
 	getUserByLoginAndPass(login, pass){
-		const passEncrypt= this.encryptPassword(pass);
+		let passEncrypt= this.encryptPassword(pass);
 		
 		return new Promise((resolve, reject)=>{
 			this.db.getConnection((err, connection)=>{
@@ -105,7 +105,7 @@ class User{
 	}
 	
 	getUserById(req){
-		const { id }= req.params;
+		let { id }= req.params;
 
 		return new Promise((resolve, reject)=>{
 			this.db.getConnection((err, connection)=>{

@@ -1,0 +1,278 @@
+extends ../_layout/main
+
+block content
+	+b.page_tech-process
+		.container
+		+e.H1.title= title
+
+		+b.tab
+			+e.list.container
+				+e.item(data-id="tab_1")
+					+e.I.item-icon.fa.fa-edit
+					+e.SPAN.item-name Основная информация операционной карты
+				+e.item(data-id="tab_2") 
+					+e.I.item-icon.fa.fa-plus
+					+e.SPAN.item-name Добавить операцию
+				+e.item(data-id="tab_3") 
+					+e.I.item-icon.fa.fa-edit
+					+e.SPAN.item-name Редактировать операции
+
+
+			+e.H2.title Основная информация маршрутной карты
+			.container
+				+e.reload-page(class="fa fa-sync-alt" title="Обновить")
+			
+			+e.box-content
+				+e.content(class="container" id="tab_1")
+					- var dataOperatingMap_cur= operatingMap_cur
+					- var dataSelectEquipment= equipment_list
+					- var api= api_editOperatingMap
+
+
+					+b.FORM.form_tech-process(data-api=api)
+						+e.INPUT.hidden(value= dataOperatingMap_cur.id type="hidden" name="id")
+
+						+e.group(class="form-group form-inline")
+							+e.title Операция:
+							+e.text= dataOperatingMap_cur.operation_name + ' №' + dataOperatingMap_cur.operation_num 
+
+						+e.group(class="form-group form-inline")
+							+e.title Назание детали:
+							+e.text= dataOperatingMap_cur.name 
+
+						+e.group(class="form-group form-inline")
+							+e.title Номер детали:
+							+e.text= dataOperatingMap_cur.num_detail
+							
+						+e.group(class="form-group form-inline")
+							+e.title Материал: 
+							+e.text= dataOperatingMap_cur.material_name + ' ' + dataOperatingMap_cur.material_mark + ' ' + dataOperatingMap_cur.material_standart
+
+						+e.group(class="form-group form-inline")
+							+e.LABEL.label Оборудование; устройство ЧПУ
+							+e.SELECT.select(class="form-control" name="id_equipment" required)
+								each e in dataSelectEquipment
+									+e.OPTION(value= e.name, selected= e.id == dataOperatingMap_cur.id_equipment ? true : false).option= e.name + ' - ' + e.model
+
+						+e.group(class="form-group")
+							+e.LABEL.label Твердость
+							+e.INPUT.field(value= dataOperatingMap_cur.firmness class="form-control" type="text" name="firmness")
+
+						+e.group(class="form-group")
+							+e.LABEL.label ЕВ
+							+e.INPUT.field(value= dataOperatingMap_cur.ev class="form-control" type="text" name="ev")
+
+						+e.group(class="form-group")
+							+e.LABEL.label МД
+							+e.INPUT.field(value= dataOperatingMap_cur.md class="form-control" type="text" name="md")
+
+						+e.group(class="form-group")
+							+e.LABEL.label Профиль, разм., заготовка
+							+e.INPUT.field(value= dataOperatingMap_cur.profile class="form-control" type="text" name="profile")
+
+						+e.group(class="form-group")
+							+e.LABEL.label МЗ
+							+e.INPUT.field(value= dataOperatingMap_cur.mz class="form-control" type="text" name="mz")
+
+						+e.group(class="form-group")
+							+e.LABEL.label КОИД
+							+e.INPUT.field(value= dataOperatingMap_cur.koid class="form-control" type="text" name="koid")
+
+						+e.group(class="form-group")
+							+e.LABEL.label Обозначение программы
+							+e.INPUT.field(value= dataOperatingMap_cur.program class="form-control" type="text" name="program")
+
+						+e.group(class="form-group form-inline")
+							+e.LABEL.label Т<sub>о</sub>
+							+e.INPUT.field(value= dataOperatingMap_cur.t_o class="form-control" type="text" name="t_o")
+
+						+e.group(class="form-group form-inline")
+							+e.LABEL.label Т<sub>в</sub>
+							+e.INPUT.field(value= dataOperatingMap_cur.t_v class="form-control" type="text" name="t_v")
+
+						+e.group(class="form-group form-inline")
+							+e.LABEL.label Т<sub>пз</sub>
+							+e.INPUT.field(value= dataOperatingMap_cur.t_pz class="form-control" type="text" name="t_pz")
+
+						+e.group(class="form-group form-inline")
+							+e.LABEL.label Т<sub>шт</sub>
+							+e.INPUT.field(value= dataOperatingMap_cur.t_st class="form-control" type="text" name="t_st")
+
+						+e.group(class="form-group form-inline")
+							+e.LABEL.label Сож
+							+e.INPUT.field(value= dataOperatingMap_cur.emulsion class="form-control" type="text" name="emulsion")
+
+						+e.group(class="form-group")
+							+e.LABEL.label Комментарий
+							+e.TEXTAREA.textarea(class="form-control" type="text" name="remark")= dataOperatingMap_cur.remark
+
+						+e.alert(class="alert hidden")
+						+e.box-btn
+							+e.BUTTON.btn(class="btn btn-primary" type="submit") Отправить
+
+			
+			+e.box-content
+				+e.content(class="container-big" id="tab_2")
+					- var dataOperatingMap_cur= operatingMap_cur
+					- var dataOperatingMapItems= operatingMapItems_list
+					- var api= api_addOperatingMapItem
+
+					+b.FORM.form_tech-process(class="_container-big" data-api=api)
+						+b.table(class="_container-big table-responsive")
+							INPUT.form__hidden(value= dataOperatingMap_cur.id type="hidden" name="id_operating_map")
+							+e.TABLE.table(class="table table-hover")
+								thead
+									tr
+										th Номер операции
+										th Описание
+										th ПИ
+										th D или B
+										th L
+										th t
+										th i
+										th S
+										th n
+										th V
+										th То
+										th Тв
+								tbody
+									+e.TR.row
+
+										+e.TD.col
+											.form__group(class="form-group")
+												INPUT.form__field(value= dataOperatingMapItems.length + 1 class="form-control" type="number" name="num_operation" required)
+
+										+e.TD.col
+											.form__group(class="form-group")
+												INPUT.form__field(class="form__field_w400 form-control" type="text" name="description" required)
+
+										+e.TD.col
+											.form__group(class="form-group")
+												INPUT.form__field(class="form-control" type="text" name="val_pi")
+
+										+e.TD.col
+											.form__group(class="form-group")
+												INPUT.form__field(class="form-control" type="text" name="val_d_v")
+
+										+e.TD.col
+											.form__group(class="form-group")
+												INPUT.form__field(class="form-control" type="text" name="val_l")
+
+										+e.TD.col
+											.form__group(class="form-group")
+												INPUT.form__field(class="form-control" type="text" name="val_t")
+
+										+e.TD.col
+											.form__group(class="form-group")
+												INPUT.form__field(class="form-control" type="text" name="val_i")
+
+										+e.TD.col
+											.form__group(class="form-group")
+												INPUT.form__field(class="form-control" type="text" name="val_s")
+
+										+e.TD.col
+											.form__group(class="form-group")
+												INPUT.form__field(class="form-control" type="text" name="val_n")
+
+										+e.TD.col
+											.form__group(class="form-group")
+												INPUT.form__field(class="form-control" type="text" name="val_v")
+
+										+e.TD.col
+											.form__group(class="form-group")
+												INPUT.form__field(class="form-control" type="text" name="val_t_o")
+
+										+e.TD.col
+											.form__group(class="form-group")
+												INPUT.form__field(class="form-control" type="text" name="val_t_v")
+									
+							.form__alert(class="alert hidden")
+							.form__box-btn(class="center")
+								BUTTON.form__btn(class="btn btn-primary" type="submit") Добавить операцию
+
+
+			+e.box-content
+				+e.content(class="container-big" id="tab_3")
+					- var dataOperatingMapItems= operatingMapItems_list
+					- var api= api_editOperatingMapItem
+
+					if dataOperatingMapItems
+						+b.FORM.form_tech-process(class="_container-big" data-api=api)
+							+b.table(class="_container-big table-responsive")
+								+e.TABLE.table(class="table table-hover")
+									thead
+										tr
+											th Номер операции
+											th Описание
+											th ПИ
+											th D или B
+											th L
+											th t
+											th i
+											th S
+											th n
+											th V
+											th То
+											th Тв
+											th Удалить	
+									tbody
+										each e in dataOperatingMapItems
+											INPUT.form__hidden(value= e.id type="hidden" name="id[]")
+											+e.TR.row
+
+												+e.TD.col
+													.form__group(class="form-group")
+														INPUT.form__field(value= e.num_operation class="form-control" type="number" name="num_operation[]" required)
+
+												+e.TD.col
+													.form__group(class="form-group")
+														INPUT.form__field(value= e.description class="form__field_w400 form-control" type="text" name="description[]" required)
+
+												+e.TD.col
+													.form__group(class="form-group")
+														INPUT.form__field(value= e.val_pi class="form-control" type="text" name="val_pi[]")
+
+												+e.TD.col
+													.form__group(class="form-group")
+														INPUT.form__field(value= e.val_d_v class="form-control" type="text" name="val_d_v[]")
+
+												+e.TD.col
+													.form__group(class="form-group")
+														INPUT.form__field(value= e.val_l class="form-control" type="text" name="val_l[]")
+
+												+e.TD.col
+													.form__group(class="form-group")
+														INPUT.form__field(value= e.val_t class="form-control" type="text" name="val_t[]")
+
+												+e.TD.col
+													.form__group(class="form-group")
+														INPUT.form__field(value= e.val_i class="form-control" type="text" name="val_i[]")
+
+												+e.TD.col
+													.form__group(class="form-group")
+														INPUT.form__field(value= e.val_s class="form-control" type="text" name="val_s[]")
+
+												+e.TD.col
+													.form__group(class="form-group")
+														INPUT.form__field(value= e.val_n class="form-control" type="text" name="val_n[]")
+
+												+e.TD.col
+													.form__group(class="form-group")
+														INPUT.form__field(value= e.val_v class="form-control" type="text" name="val_v[]")
+
+												+e.TD.col
+													.form__group(class="form-group")
+														INPUT.form__field(value= e.val_t_o class="form-control" type="text" name="val_t_o[]")
+
+												+e.TD.col
+													.form__group(class="form-group")
+														INPUT.form__field(value= e.val_t_v class="form-control" type="text" name="val_t_v[]")
+
+												+e.TD.col_center
+													.form__group-checkbox-delete
+														INPUT.form__hidden(value="0" type="hidden" name="del[]")
+														INPUT.form__checkbox(type="checkbox")
+										
+								.form__alert(class="alert hidden")
+								.form__box-btn(class="center")
+									BUTTON.form__btn(class="btn btn-primary" type="submit") Редактировать операции

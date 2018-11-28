@@ -1,5 +1,5 @@
 let db= require(__APPROOT + '/ext/db.js');
-const nconf= require(__APPROOT + '/config');
+let nconf= require(__APPROOT + '/config');
 
 class GlobalSettings{
 	constructor(){

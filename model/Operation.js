@@ -1,5 +1,5 @@
 let db= require(__APPROOT + '/ext/db.js');
-const nconf= require(__APPROOT + '/config');
+let nconf= require(__APPROOT + '/config');
 
 class Operation{
 	constructor(){
@@ -10,8 +10,8 @@ class Operation{
 	/** OPERATION */
 
 	addOperation(req){
-		const { name }= req.body;
-		const { id_visitor }= req.session.user;
+		let { name }= req.body;
+		let { id_visitor }= req.session.user;
 		return new Promise((resolve, reject)=>{
 			this.getOperationСheckExists(name)
 				.then((data)=>{
@@ -25,7 +25,7 @@ class Operation{
 										VALUE(?, ?)`,
 										[id_visitor, name],
 										(err, data= false)=>{
-											const { insertId }= data;
+											let { insertId }= data;
 											insertId ? resolve(Object.assign( {}, this.msg.add, { id : data.insertId } )) : reject( { data: this.msg.err, err : err } );
 											connection.release();
 										});
@@ -44,8 +44,8 @@ class Operation{
 		}
 
 	editOperation(req){
-		const { id, name, remark, status= 0, del= 0 }= req.body;
-		const { id_visitor }= req.session.user;
+		let { id, name, remark, status= 0, del= 0 }= req.body;
+		let { id_visitor }= req.session.user;
 
 		return new Promise((resolve, reject)=>{
 			this.getOperationСheckExists(name)
@@ -64,7 +64,7 @@ class Operation{
 									WHERE id= ?`,
 									[id_visitor, name, remark, status, del, id],
 									(err, data= false)=>{
-										const { affectedRows }= data;
+										let { affectedRows }= data;
 										affectedRows ? resolve( !del ? this.msg.edit : this.msg.delete ) : reject( { data: this.msg.err, err : err } );
 										connection.release();
 									});
@@ -125,7 +125,7 @@ class Operation{
 	}
 
 	getOperationById(req){
-		const { id }= req.params;
+		let { id }= req.params;
 		console.log( id )
 		return new Promise((resolve, reject)=>{
 			this.db.getConnection((err, connection)=>{

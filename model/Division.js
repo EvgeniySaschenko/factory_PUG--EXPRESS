@@ -1,5 +1,5 @@
-const db= require(__APPROOT + '/ext/db.js');
-const nconf= require(__APPROOT + '/config');
+let db= require(__APPROOT + '/ext/db.js');
+let nconf= require(__APPROOT + '/config');
 
 class Division{
 	constructor(){
@@ -11,8 +11,8 @@ class Division{
 	/** DIVISION */
 
 	addDivision(req){
-		const { name }= req.body;
-		const { id_visitor }= req.session.user;
+		let { name }= req.body;
+		let { id_visitor }= req.session.user;
 
 		return new Promise((resolve, reject)=>{
 			this.getDivisionСheckExists(name)
@@ -27,7 +27,7 @@ class Division{
 									VALUE(?, ?)`,
 									[id_visitor, name],
 									(err, data= false)=>{
-										const { insertId }= data;
+										let { insertId }= data;
 										insertId ? resolve(Object.assign( {}, this.msg.add, { id : data.insertId } )) : reject( { data: this.msg.err, err : err } );
 										connection.release();
 									});
@@ -46,8 +46,8 @@ class Division{
 	}
 
 	editDivision(req){
-		const { id, name, remark, status= 0, del= 0 }= req.body;
-		const { id_visitor }= req.session.user;
+		let { id, name, remark, status= 0, del= 0 }= req.body;
+		let { id_visitor }= req.session.user;
 		return new Promise((resolve, reject)=>{
 			this.getDivisionСheckExists(name)
 				.then((data)=>{
@@ -65,7 +65,7 @@ class Division{
 									WHERE id= ?`,
 									[id_visitor, name, remark, status, del, id],
 									(err, data= false)=>{
-										const { affectedRows }= data;
+										let { affectedRows }= data;
 										affectedRows ? resolve( !del ? this.msg.edit : this.msg.delete ) : reject( { data: this.msg.err, err : err } );
 										connection.release();
 									});
@@ -104,7 +104,7 @@ class Division{
 	}
 
 	getDivisionById(req){
-		const { id }= req.params;
+		let { id }= req.params;
 		return new Promise((resolve, reject)=>{
 			this.db.getConnection((err, connection)=>{
 				if(!err){
@@ -159,8 +159,8 @@ class Division{
 	/** RANK */
 
 	addRank(req){
-		const { name, id_type : id_division }= req.body;
-		const { id_visitor }= req.session.user;
+		let { name, id_type : id_division }= req.body;
+		let { id_visitor }= req.session.user;
 		return new Promise((resolve, reject)=>{
 			this.getRankСheckExists(id_division, name)
 				.then((data)=>{
@@ -175,7 +175,7 @@ class Division{
 									VALUE(?, ?, ?)`,
 									[id_visitor, id_division, name],
 									(err, data= false)=>{
-										const { insertId }= data;
+										let { insertId }= data;
 										insertId ? resolve(Object.assign( {}, this.msg.add, { id : data.insertId } )) : reject( { data: this.msg.err, err : err } );
 										connection.release();
 									});
@@ -194,8 +194,8 @@ class Division{
 	}
 
 	editRank(req){
-		const { id, name, id_type: id_division, remark, status= 0, del= 0 }= req.body;
-		const { id_visitor }= req.session.user;
+		let { id, name, id_type: id_division, remark, status= 0, del= 0 }= req.body;
+		let { id_visitor }= req.session.user;
 		return new Promise((resolve, reject)=>{
 			this.getRankСheckExists(id_division, name)
 				.then((data)=>{
@@ -214,7 +214,7 @@ class Division{
 									WHERE id= ?`,
 									[id_visitor, id_division, name, remark, status, del, id],
 									(err, data= false)=>{
-										const { affectedRows }= data;
+										let { affectedRows }= data;
 										affectedRows ? resolve( !del ? this.msg.edit : this.msg.delete ) : reject( { data: this.msg.err, err : err } );
 										connection.release();
 									});
@@ -253,7 +253,7 @@ class Division{
 	}
 
 	getRankByIdDividion(req){
-		const { id_division }= req.params; 
+		let { id_division }= req.params; 
 
 		return new Promise((resolve, reject)=>{
 			this.db.getConnection((err, connection)=>{
@@ -298,7 +298,7 @@ class Division{
 	}
 
 	getRankById(req){
-		const { id }= req.params; 
+		let { id }= req.params; 
 
 		return new Promise((resolve, reject)=>{
 			this.db.getConnection((err, connection)=>{

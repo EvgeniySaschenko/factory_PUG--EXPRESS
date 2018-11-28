@@ -1,5 +1,5 @@
 let db= require(__APPROOT + '/ext/db.js');
-const nconf= require(__APPROOT + '/config');
+let nconf= require(__APPROOT + '/config');
 
 class Material{
 	constructor(){
@@ -11,8 +11,8 @@ class Material{
 	/** MATERIAL */
 
 	addMaterial(req){
-		const { id_type, id_use, mark, standart }= req.body;
-		const { id_visitor }= req.session.user;
+		let { id_type, id_use, mark, standart }= req.body;
+		let { id_visitor }= req.session.user;
 
 			return new Promise((resolve, reject)=>{
 				this.getMaterialСheckExists(id_type, id_use, mark, standart)
@@ -30,7 +30,7 @@ class Material{
 									VALUE(?, ?, ?, ?, ?)`,
 									[id_visitor, id_type, id_use, mark, standart],
 									(err, data= false)=>{
-										const { insertId }= data;
+										let { insertId }= data;
 										insertId ? resolve(Object.assign( {}, this.msg.add, { id : data.insertId } )) : reject( { data: this.msg.err, err : err } );
 										connection.release();
 									});
@@ -49,8 +49,8 @@ class Material{
 	}
 
 	editMaterial(req){
-		const { id, id_type, id_use, mark, standart, remark, status= 0, del= 0 }= req.body;
-		const { id_visitor }= req.session.user;
+		let { id, id_type, id_use, mark, standart, remark, status= 0, del= 0 }= req.body;
+		let { id_visitor }= req.session.user;
 		return new Promise((resolve, reject)=>{
 			this.getMaterialСheckExists(id_type, id_use, mark, standart)
 				.then((data)=>{
@@ -71,7 +71,7 @@ class Material{
 									WHERE id= ?`,
 									[id_visitor, id_type, id_use, mark, standart, remark, status, del, id],
 									(err, data= false)=>{
-										const { affectedRows }= data;
+										let { affectedRows }= data;
 										affectedRows ? resolve( !del ? this.msg.edit : this.msg.delete ) : reject( { data: this.msg.err, err : err } );
 										connection.release();
 									});
@@ -117,7 +117,7 @@ class Material{
 	}
 
 	getMaterialById(req){
-		const { id }= req.params;
+		let { id }= req.params;
 
 		return new Promise((resolve, reject)=>{
 			this.db.getConnection((err, connection)=>{
@@ -141,7 +141,7 @@ class Material{
 	}
 
 	getMaterialSearch(req){
-		const {  id_type, id_use, mark }= req.params;
+		let {  id_type, id_use, mark }= req.params;
 
 		return new Promise((resolve, reject)=>{
 			this.db.getConnection((err, connection)=>{
@@ -174,7 +174,7 @@ class Material{
 	}
 
 	getMaterialByTypeAndUse(req){
-		const { id_type, id_use }= req.params;
+		let { id_type, id_use }= req.params;
 
 		return new Promise((resolve, reject)=>{
 			this.db.getConnection((err, connection)=>{
@@ -232,8 +232,8 @@ class Material{
 	/** MATERIAL TYPE */
 
 	addType(req){
-		const { name }= req.body;
-		const { id_visitor }= req.session.user;
+		let { name }= req.body;
+		let { id_visitor }= req.session.user;
 
 		return new Promise((resolve, reject)=>{
 			this.getTypeСheckExists(name)
@@ -248,7 +248,7 @@ class Material{
 										VALUE(?, ?)`,
 										[id_visitor, name],
 										(err, data= false)=>{
-											const { insertId }= data;
+											let { insertId }= data;
 											insertId ? resolve(Object.assign( {}, this.msg.add, { id : data.insertId } )) : reject( { data: this.msg.err, err : err } );
 											connection.release();
 										});
@@ -267,8 +267,8 @@ class Material{
 		}
 
 	editType(req){
-		const { id, name, remark, status= 0, del= 0 }= req.body;
-		const { id_visitor }= req.session.user;
+		let { id, name, remark, status= 0, del= 0 }= req.body;
+		let { id_visitor }= req.session.user;
 
 		return new Promise((resolve, reject)=>{
 			this.getTypeСheckExists(name)
@@ -287,7 +287,7 @@ class Material{
 									WHERE id= ?`,
 									[id_visitor, name, remark, status, del, id],
 									(err, data= false)=>{
-										const { affectedRows }= data;
+										let { affectedRows }= data;
 										affectedRows ? resolve( !del ? this.msg.edit : this.msg.delete ) : reject( { data: this.msg.err, err : err } );
 										connection.release();
 									});
@@ -327,7 +327,7 @@ class Material{
 	}
 
 	getMaterialTypeById(req){
-		const { id }= req.params;
+		let { id }= req.params;
 
 		return new Promise((resolve, reject)=>{
 			this.db.getConnection((err, connection)=>{

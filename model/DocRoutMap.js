@@ -1,5 +1,7 @@
-const db= require(__APPROOT + '/ext/db.js');
-const nconf= require(__APPROOT + '/config');
+let db= require(__APPROOT + '/ext/db.js');
+let nconf= require(__APPROOT + '/config');
+let DocOperatingMap= require(__APPROOT + '/model/DocOperatingMap');
+
 
 class DocRoutMap{
 	constructor(){
@@ -9,8 +11,8 @@ class DocRoutMap{
 	}
 
 	addRoutMap(req){
-		const { id_material, name, num_detail, weight, units_measure, type_ingot, size_d, size_w, remark, status= 0 }= req.body;
-		const { id_visitor }= req.session.user;
+		let { id_material, name, num_detail, weight, units_measure, type_ingot, size_d, size_w, remark, status= 0 }= req.body;
+		let { id_visitor }= req.session.user;
 
 		return new Promise((resolve, reject)=>{
 				this.db.getConnection((err, connection)=>{
@@ -31,20 +33,21 @@ class DocRoutMap{
 							VALUE(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
 							[id_visitor, id_material, name, num_detail, weight, units_measure, type_ingot, size_d, size_w, remark, status],
 							(err, data= false)=>{
-								const { insertId }= data;
+								let { insertId }= data;
 								insertId ? resolve(Object.assign( {}, this.msg.add, { id : data.insertId } )) : reject( { data: this.msg.err, err : err } );
 								connection.release();
 							});
 					} else {
 						reject( { data: this.msg.err, err : err } );
+						connection.release();
 					}
 				});
 			})
 	}
 
 	editRoutMap(req){
-		const { id, id_material, name, num_detail, weight, units_measure, type_ingot, size_d, size_w, approve_1= '{}', approve_2= '{}', approve_3= '{}', approve_4= '{}', approve_5= '{}', approve_6= '{}', approve_7= '{}', approve_8= '{}', remark, status= 0, del= 0 }= req.body;
-		const { id_visitor }= req.session.user;
+		let { id, id_material, name, num_detail, weight, units_measure, type_ingot, size_d, size_w, approve_1= '{}', approve_2= '{}', approve_3= '{}', approve_4= '{}', approve_5= '{}', approve_6= '{}', approve_7= '{}', approve_8= '{}', remark, status= 0, del= 0 }= req.body;
+		let { id_visitor }= req.session.user;
 		
 		return new Promise((resolve, reject)=>{
 			this.db.getConnection((err, connection)=>{
@@ -75,19 +78,20 @@ class DocRoutMap{
 						WHERE id= ?`,
 						[id_visitor, id_material, name, num_detail, weight, units_measure, type_ingot, size_d, size_w, approve_1, approve_2, approve_3, approve_4, approve_5, approve_6, approve_7, approve_8, remark, status, del, id],
 						(err, data= false)=>{
-							const { affectedRows }= data;
+							let { affectedRows }= data;
 							affectedRows ? resolve( this.msg.edit ) : reject( { data: this.msg.err, err : err } );
 							connection.release();
 						});
 				} else {
 					reject( { data: this.msg.err, err : err } );
+					connection.release();
 				}
 			});
 		});
 	}
 
 	getRoutMapById(req){
-		const { id }= req.params;
+		let { id }= req.params;
 
 		return new Promise((resolve, reject)=>{
 			this.db.getConnection((err, connection)=>{
@@ -103,6 +107,7 @@ class DocRoutMap{
 						});
 				} else {
 					reject( { data: this.msg.err, err : err } );
+					connection.release();
 				}
 			});
 		});
@@ -125,6 +130,7 @@ class DocRoutMap{
 						});
 				} else {
 					reject( { data: this.msg.err, err : err } );
+					connection.release();
 				}
 			});
 		});
@@ -150,20 +156,110 @@ class DocRoutMap{
 						});
 				} else {
 					reject( { data: this.msg.err, err : err } );
+					connection.release();
 				}
 			});
 		});
 	}
 
 
-	/* DOC ROUT MAP ITEM */
+	addRoutMapItem(req){
+		let { id_rout_map, id_rank, id_operation, num_shop, num_area, rm, num_operation, sm, rank_level, ut, kr, koid, en, op, kst, tpz, tst }= req.body;
+		let { id_visitor }= req.session.user;
+
+		return new Promise((resolve, reject)=>{
+			this.db.getConnection((err, connection)=>{
+				if(!err){
+					connection.beginTransaction((err)=> {
+						if(!err){
+							// Добавить операцию в маршрутную карту
+							connection.query(`INSERT
+								INTO ff_doc_rout_map_item
+									(id_visitor_create, 
+									id_rout_map, 
+									id_rank, 
+									id_operation, 
+									num_shop, 
+									num_area, 
+									rm, 
+									num_operation, 
+									sm, 
+									rank_level, 
+									ut, 
+									kr, 
+									koid, 
+									en, 
+									op, 
+									kst, 
+									tpz, 
+									tst)
+								VALUE(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+								[id_visitor, id_rout_map, id_rank, id_operation, num_shop, num_area, rm, num_operation, sm, rank_level, ut, kr, koid, en, op, kst, tpz, tst],
+								(err, data= false)=>{
+									let { insertId: id_rout_map_item }= data;
+									// Добавить операционную карту
+									if(!err){
+										connection.query(`INSERT
+											INTO ff_doc_operating_map
+												(id_visitor_create, 
+												id_rout_map_item)
+											VALUE(?, ?)`,
+										[id_visitor, id_rout_map_item],
+										(err, data= false)=>{
+											if(!err){
+												let { insertId }= data;
+												connection.commit((err)=> {
+													if(!err){
+														resolve(Object.assign( {}, this.msg.add, { id : insertId } ));
+														connection.release();
+													} else {
+														return connection.rollback(()=> {
+															reject({ data: this.msg.err, err : err });
+															connection.release();
+														});
+													}
+												});
+											} else {
+												return connection.rollback(()=> {
+													// error
+													reject({ data: this.msg.err, err : err });
+													connection.release();
+												});
+											}
+										});
+									} else {
+										return connection.rollback(()=> {
+											reject({ data: this.msg.err, err : err });
+											connection.release();
+										});
+									}
+
+								});
+						} else {
+							return connection.rollback(()=> {
+								reject({ data: this.msg.err, err : err });
+								connection.release();
+							});
+						}
+					});
+				}else{
+					reject({ data: this.msg.err, err : err });
+					connection.release();
+				}
+			});
+		})
+	}
+
+/*
 
 	addRoutMapItem(req){
-		const { id_rout_map, id_rank, id_operation, num_shop, num_area, rm, num_operation, sm, rank_level, ut, kr, koid, en, op, kst, tpz, tst }= req.body;
-		const { id_visitor }= req.session.user;
+		let { id_rout_map, id_material, id_rank, id_operation, num_shop, num_area, rm, num_operation, sm, rank_level, ut, kr, koid, en, op, kst, tpz, tst }= req.body;
+		let { id_visitor }= req.session.user;
 
 		return new Promise((resolve, reject)=>{
 				this.db.getConnection((err, connection)=>{
+
+					
 					if(!err){
 						connection.query(`INSERT
 							INTO ff_doc_rout_map_item
@@ -188,20 +284,22 @@ class DocRoutMap{
 							VALUE(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
 							[id_visitor, id_rout_map, id_rank, id_operation, num_shop, num_area, rm, num_operation, sm, rank_level, ut, kr, koid, en, op, kst, tpz, tst],
 							(err, data= false)=>{
-								const { insertId }= data;
+								let { insertId }= data;
 								insertId ? resolve(Object.assign( {}, this.msg.add, { id : data.insertId } )) : reject( { data: this.msg.err, err : err } );
 								connection.release();
 							});
+
 					} else {
 						reject( { data: this.msg.err, err : err } );
 					}
 				});
 			})
 	}
-	
+*/
+
 	editRoutMapItem(req){
-		const { id, id_operation, id_rank, num_shop, num_area, rm, num_operation, sm, rank_level, ut, kr, koid, en, op, kst, tpz, tst, del= 0  }= req.body;
-		const { id_visitor }= req.session.user;
+		let { id, id_operation, id_rank, num_shop, num_area, rm, num_operation, sm, rank_level, ut, kr, koid, en, op, kst, tpz, tst, del }= req.body;
+		let { id_visitor }= req.session.user;
 
 		return new Promise((resolve, reject)=>{
 			for(let i= 0, l= id.length; l > i; i++){
@@ -232,12 +330,13 @@ class DocRoutMap{
 							WHERE id= ?`,
 							[id_visitor, id_operation[i], id_rank[i], num_shop[i], num_area[i], rm[i], num_operation[i], sm[i], rank_level[i], ut[i], kr[i], koid[i], en[i], op[i], kst[i], tpz[i], tst[i], del[i] , id[i]],
 							(err, data= false)=>{
-								const { affectedRows }= data;
+								let { affectedRows }= data;
 								affectedRows ? resolve( this.msg.edit ) : reject( { data: this.msg.err, err : err } );
 								connection.release();
 							});
 					} else {
 						reject( { data: this.msg.err, err : err } );
+						connection.release();
 					}
 				});
 
@@ -262,6 +361,7 @@ class DocRoutMap{
 						});
 				} else {
 					reject( { data: this.msg.err, err : err } );
+					connection.release();
 				}
 			});
 		});

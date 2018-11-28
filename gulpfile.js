@@ -26,8 +26,8 @@ gulp.task('serve', ['js', 'css'], () => {
 gulp.task('js', () => {
 	return gulp.src(['./block/**/*.js'])
 		.pipe(plumber())
-		.pipe(babel({presets: ['@babel/env']}))
 		.pipe(sourcemaps.init())
+		.pipe(babel({presets: ['@babel/env']}))
 		.pipe(concat('app.js'))
 		.pipe(minify({ext : {
 				src : '-debug.js',

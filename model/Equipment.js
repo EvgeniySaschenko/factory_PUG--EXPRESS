@@ -1,5 +1,5 @@
-const db= require(__APPROOT + '/ext/db.js');
-const nconf= require(__APPROOT + '/config');
+let db= require(__APPROOT + '/ext/db.js');
+let nconf= require(__APPROOT + '/config');
 
 class Equipment{
 	constructor(){
@@ -10,8 +10,8 @@ class Equipment{
 	/* EQUIPMENT */
 	
 	addEquipment(req){
-		const { name, model, num }= req.body;
-		const { id_visitor }= req.session.user;
+		let { name, model, num }= req.body;
+		let { id_visitor }= req.session.user;
 
 		return new Promise((resolve, reject)=>{
 			this.getEquipmentСheckExists(name, model, num)
@@ -28,7 +28,7 @@ class Equipment{
 										VALUE(?, ?, ?, ?)`,
 										[id_visitor, name, model, num],
 										(err, data= false)=>{
-											const { insertId }= data;
+											let { insertId }= data;
 											insertId ? resolve(Object.assign( {}, this.msg.add, { id : data.insertId } )) : reject( { data: this.msg.err, err : err } );
 											connection.release();
 										});
@@ -47,8 +47,8 @@ class Equipment{
 		}
 
 	editEquipment(req){
-		const { id, name, model, num, remark, status= 0, del= 0 }= req.body;
-		const { id_visitor }= req.session.user;
+		let { id, name, model, num, remark, status= 0, del= 0 }= req.body;
+		let { id_visitor }= req.session.user;
 		
 		return new Promise((resolve, reject)=>{
 			this.getEquipmentСheckExists(name, model, num)
@@ -69,7 +69,7 @@ class Equipment{
 									WHERE id= ?`,
 									[id_visitor, name, model, num, remark, status, del, id],
 									(err, data= false)=>{
-										const { affectedRows }= data;
+										let { affectedRows }= data;
 										affectedRows ? resolve( !del ? this.msg.edit : this.msg.delete ) : reject( { data: this.msg.err, err : err } );
 										connection.release();
 									});
@@ -113,7 +113,7 @@ class Equipment{
 	}
 
 	getEquipmentById(req){
-		const { id }= req.params;
+		let { id }= req.params;
 		
 		return new Promise((resolve, reject)=>{
 			this.db.getConnection((err, connection)=>{
@@ -143,7 +143,29 @@ class Equipment{
 							DATE_FORMAT(date_create, '%d.%m.%Y') as date_create
 						FROM ff_equipment
 						WHERE del= 0
-						ORDER BY name ASC, model ASC, num ASC`,
+						ORDER BY name ASC, model ASC, num ASC, id ASC`,
+						(err, data)=>{
+							data ? resolve(data) : reject( { data: this.msg.err, err : err } );
+							connection.release();
+						});
+				} else {
+					reject( { data: this.msg.err, err : err } );
+				}
+			});
+		});
+	}
+
+	getEquipmentGroupByNameAndModel(){
+		return new Promise((resolve, reject)=>{
+			this.db.getConnection((err, connection)=>{
+				if(!err){
+					connection.query(`SELECT
+							*,
+							DATE_FORMAT(date_create, '%d.%m.%Y') as date_create
+						FROM ff_equipment
+						WHERE del= 0
+						GROUP BY name, model
+						ORDER BY name ASC, model ASC, num ASC, id ASC`,
 						(err, data)=>{
 							data ? resolve(data) : reject( { data: this.msg.err, err : err } );
 							connection.release();

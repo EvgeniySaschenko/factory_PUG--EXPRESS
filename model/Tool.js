@@ -1,5 +1,5 @@
-const db= require(__APPROOT + '/ext/db.js');
-const nconf= require(__APPROOT + '/config');
+let db= require(__APPROOT + '/ext/db.js');
+let nconf= require(__APPROOT + '/config');
 
 class Tool{
 	constructor(){
@@ -10,8 +10,8 @@ class Tool{
 	/** TOOL */
 
 	addTool( req ){
-		const { id_material, id_type, description, standart }= req.body;
-		const { id_visitor }= req.session.user;
+		let { id_material, id_type, description, standart }= req.body;
+		let { id_visitor }= req.session.user;
 
 		return new Promise((resolve, reject)=>{
 			this.getToolСheckExists(id_material, id_type, description, standart)
@@ -29,7 +29,7 @@ class Tool{
 									VALUE (?, ?, ?, ?, ?)`,
 									[id_visitor, id_material, id_type, description, standart],
 									(err, data= false)=>{
-										const { insertId }= data;
+										let { insertId }= data;
 										insertId ? resolve(Object.assign( {}, this.msg.add, { id : data.insertId } )) : reject( { data: this.msg.err, err : err } );
 										connection.release();
 									});
@@ -48,8 +48,8 @@ class Tool{
 	}
 
 	editTool(req){
-		const { id, id_material, id_type, description, standart, remark, status= 0, del= 0 }= req.body;
-		const { id_visitor }= req.session.user;
+		let { id, id_material, id_type, description, standart, remark, status= 0, del= 0 }= req.body;
+		let { id_visitor }= req.session.user;
 
 		return new Promise((resolve, reject)=>{
 			this.getToolСheckExists(id_material, id_type, description, standart)
@@ -71,7 +71,7 @@ class Tool{
 									WHERE id= ?`,
 									[id_visitor, id_material, id_type, description, standart, remark, status, del, id],
 									(err, data= false)=>{
-										const { affectedRows }= data;
+										let { affectedRows }= data;
 										affectedRows ? resolve( !del ? this.msg.edit : this.msg.delete ) : reject( { data: this.msg.err, err : err } );
 										connection.release();
 									});
@@ -117,7 +117,7 @@ class Tool{
 	}
 
 	getToolByType(req){
-		const { id_type }= req.params;
+		let { id_type }= req.params;
 
 		return new Promise((resolve, reject)=>{
 			this.db.getConnection((err, connection)=>{
@@ -154,8 +154,8 @@ class Tool{
 	/** TOOL TYPE */
 
 	addType(req){
-		const { name }= req.body;
-		const { id_visitor }= req.session.user;
+		let { name }= req.body;
+		let { id_visitor }= req.session.user;
 
 		return new Promise((resolve, reject)=>{
 			this.getTypeСheckExists(name)
@@ -170,7 +170,7 @@ class Tool{
 									VALUE(?, ?)`,
 									[id_visitor, name],
 									(err, data= false)=>{
-										const { insertId }= data;
+										let { insertId }= data;
 										insertId ? resolve(Object.assign( {}, this.msg.add, { id : data.insertId } )) : reject( { data: this.msg.err, err : err } );
 										connection.release();
 									});
@@ -189,8 +189,8 @@ class Tool{
 	}
 
 	editType(req){
-		const { id, name, remark, status= 0, del= 0 }= req.body;
-		const { id_visitor }= req.session.user;
+		let { id, name, remark, status= 0, del= 0 }= req.body;
+		let { id_visitor }= req.session.user;
 
 		return new Promise((resolve, reject)=>{
 			this.getTypeСheckExists(name)
@@ -209,7 +209,7 @@ class Tool{
 									WHERE id= ?`,
 									[id_visitor, name, remark, status, del, id],
 									(err, data= false)=>{
-										const { affectedRows }= data;
+										let { affectedRows }= data;
 										affectedRows ? resolve( !del ? this.msg.edit : this.msg.delete ) : reject( { data: this.msg.err, err : err } );
 										connection.release();
 									});

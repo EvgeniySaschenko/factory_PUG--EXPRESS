@@ -1,4 +1,4 @@
-const User= require(__APPROOT + '/model/User');
+let User= require(__APPROOT + '/model/User');
 
 class UserAuth extends User{
 	constructor(){
@@ -21,7 +21,7 @@ class UserAuth extends User{
 							userAgent
 						],
 						(err, data= false)=>{
-							const { insertId }= data;
+							let { insertId }= data;
 							insertId ? resolve(data.insertId) : reject( { data: this.msg.err, err : err } );
 							connection.release();
 						});
@@ -33,7 +33,7 @@ class UserAuth extends User{
 	}
 
 	login(req){
-		const { login, pass }= req.body;
+		let { login, pass }= req.body;
 
 		return new Promise((resolve, reject)=>{
 			this.getUserByLoginAndPass(login, pass)
