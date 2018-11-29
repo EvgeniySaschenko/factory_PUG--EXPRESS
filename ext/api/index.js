@@ -1,5 +1,4 @@
 const division= require('./division');
-const nav= require('./nav');
 const operation= require('./operation');
 const equipment= require('./equipment');
 const docOperatingMap= require('./doc-operating-map');
@@ -14,7 +13,6 @@ const API= {
 	docRoutMap,
 	material,
 	equipment,
-	nav,
 	operation,
 	tool,
 	user,

@@ -16,9 +16,22 @@ const docOperatingMap= {
 		}
 	},
 
-	getOperatingMapById: (obj)=>{
+	/**
+	 * DOWNLOAD | VIEW
+	 */
+
+	downloadOperatingMap: (obj= false)=>{
+		let { id= '@dummy' }= obj;
 		return {
-			action: `/api/doc-operating-map/id/` + obj.id,
+			action: `/api/doc-operating-map/download/id/` + id,
+			method: 'get'
+		}
+	},
+
+	viewOperatingMap: (obj= false)=>{
+		let { id= '@dummy' }= obj;
+		return {
+			action: `/api/doc-operating-map/view/id/` + id,
 			method: 'get'
 		}
 	},
@@ -36,13 +49,6 @@ const docOperatingMap= {
 		return {
 			action: `/api/doc-operating-map/item`,
 			method: 'put'
-		}
-	},
-
-	getOperatingMapItemAll: (obj)=>{
-		return {
-			action: `/api/doc-operating-map/item/id_operating_map/` + obj.id_operating_map,
-			method: 'get'
 		}
 	},
 	

@@ -23,13 +23,6 @@ const equipment= {
 		}
 	},
 
-	getEquipmentById(obj){
-		return {
-			action: `/api/equipment/id/` + obj.id,
-			method: 'get'
-		}
-	},
-
 }
 
 module.exports= equipment;

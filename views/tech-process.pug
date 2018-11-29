@@ -30,8 +30,8 @@ block content
 
 						+b.FORM.form_tech-process(id="form_tech-process-add-rout-map" data-api=api)
 							+e.group(class="form-group")
-								+e.LABEL.label Назание детали
-								+e.INPUT.field(class="form-control" type="text" name="name" placeholder="Назание детали" required)
+								+e.LABEL.label Название детали
+								+e.INPUT.field(class="form-control" type="text" name="name" placeholder="Название детали" required)
 
 							+e.group(class="form-group")
 								+e.LABEL.label Номер детали
@@ -112,7 +112,8 @@ block content
 											th Название
 											th Номер
 											th Дата создания
-											th Подробние
+											th Редактровать
+											th Скачать документы
 									tbody(id="table__body_tech-process-rout-map")
 										each e in data
 											+e.TR.row(class= e.status ? 'highlight-warning' : '')
@@ -123,3 +124,5 @@ block content
 												+e.TD.col_date-create= e.date_create
 												+e.TD.col_btn
 													+e.A.btn(class="btn btn-success" href= curUrl + '/rout-map/edit/id/' + e.id) Редактровать
+												+e.TD.col_btn
+													+e.A.btn(class="btn btn-primary" href= curUrl + '/rout-map/doc-list/id/' + e.id) Скачать документы

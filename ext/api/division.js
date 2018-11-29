@@ -38,14 +38,7 @@ const division= {
 			method: 'put'
 		}
 	},
-
-	getRankByIdDividion(obj){
-		return {
-			action: `/api/division/rank/id_division/` + obj.id_division,
-			method: 'get'
-		}
-	},
-
+	
 }
 
 module.exports= division;

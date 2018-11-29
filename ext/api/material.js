@@ -16,13 +16,6 @@ const material= {
 		}
 	},
 
-	getMaterialById(obj){
-		return {
-			action: `/api/material/id/` + obj.id,
-			method: 'get'
-		}
-	},
-
 	getMaterialByTypeAndUse(obj){
 		return {
 			action: `/api/material/id_type/` + obj.id_type + `/id_use/` + obj.id_use,

@@ -62,7 +62,7 @@
 
 	/**
 	 * Поиск тхкарт
-	 */
+	*/
 
 	let form2= document.getElementById('form_search-table-tech-process-rout-map');
 	let el2= document.getElementById('table__body_tech-process-rout-map');
@@ -79,7 +79,10 @@
 							<td class="table__col table__col_num-detail">${e.num_detail}</td>
 							<td class="table__col table__col_date-create">${e.date_create}</td>
 							<td class="table__col table__col_btn">
-								<a class="table__btn btn btn-primary" href="/tech-process/more/id/${e.id}">Подробние</a>
+								<a class="table__btn btn btn-success" href="/tech-process/rout-map/edit/id/${e.id}">Редактировать</a>
+							</td>
+							<td class="table__col table__col_btn">
+								<a class="table__btn btn btn-primary" href="/tech-process/rout-map/doc-list/id/${e.id}">Скачать документы</a>
 							</td>
 						</tr>`);
 			});

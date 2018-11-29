@@ -13,7 +13,7 @@ const Equipment = require(__APPROOT + '/model/Equipment');
 
 
 const nav= new Nav();
-const material= new Material();
+const material= new Material
 const globalSettings= new GlobalSettings();
 const docRoutMap= new DocRoutMap();
 const docOperatingMap= new DocOperatingMap();
@@ -36,7 +36,7 @@ router.get('/edit/id/:id', (req, res, next)=> {
 
 	Promise.all([menu_main, menu_breadCrumbs, materialType_list, material_list, globalSettings_list, routMap_cur, routMapItems_list, operatingMapItems_list, rank_list, operation_list]).then(val => {
 			res.render('tech-process/rout-map-edit', {
-				title: 'Редактировать маршрутную карту',
+				title: 'Редактировать маршрутную карту:',
 				curUrl: req.originalUrl,
 				menu_main: val[0],
 				menu_breadCrumbs: val[1],
@@ -52,6 +52,30 @@ router.get('/edit/id/:id', (req, res, next)=> {
 				api_editRoutMap: API.docRoutMap.editRoutMap(),
 				api_addRoutMapItem: API.docRoutMap.addRoutMapItem(),
 				api_editRoutMapItem: API.docRoutMap.editRoutMapItem(),
+			});
+		}, reason => {
+			console.log(reason)
+		});
+});
+
+router.get('/doc-list/id/:id', (req, res, next)=> {
+	const menu_main= nav.getNavByType({type: 'main'});
+	const menu_breadCrumbs= nav.getBreadCrumbs(req);
+	const routMap_cur= docRoutMap.getRoutMapById(req);
+	const operatingMapItems_list= docOperatingMap.getOperatingMapAll(req.params.id);
+
+	Promise.all([menu_main, menu_breadCrumbs, routMap_cur, operatingMapItems_list]).then(val => {
+			res.render('tech-process/doc-list', {
+				title: `Документы ${ val[5].operation_name } №${ val[5].operation_num }`,
+				curUrl: req.originalUrl,
+				menu_main: val[0],
+				menu_breadCrumbs: val[1],
+				routMap_cur: val[2],
+				operatingMapItems_list: val[3],
+				api_downloadRoutMap: API.docRoutMap.downloadRoutMap(),
+				api_viewRoutMap: API.docRoutMap.viewRoutMap(),
+				api_downloadOperatingMap: API.docOperatingMap.downloadOperatingMap(),
+				api_viewOperatingMap: API.docOperatingMap.viewOperatingMap(),
 			});
 		}, reason => {
 			console.log(reason)

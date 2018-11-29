@@ -9,7 +9,7 @@ block content
 			+e.list.container
 				+e.item(data-id="tab_1")
 					+e.I.item-icon.fa.fa-edit
-					+e.SPAN.item-name Основная информация маршрутной карты
+					+e.SPAN.item-name Основная информация МК
 				+e.item(data-id="tab_2") 
 					+e.I.item-icon.fa.fa-plus
 					+e.SPAN.item-name Добавить операцию
@@ -21,7 +21,7 @@ block content
 					+e.SPAN.item-name Список операционных карт
 
 
-			+e.H2.title Основная информация маршрутной карты
+			+e.H2.title Основная информация МК
 			.container
 				+e.reload-page(class="fa fa-sync-alt" title="Обновить")
 			
@@ -40,8 +40,8 @@ block content
 						+e.INPUT.hidden(value= dataRoutMap_cur.id type="hidden" name="id")
 
 						+e.group(class="form-group")
-							+e.LABEL.label Назание детали
-							+e.INPUT.field(value= dataRoutMap_cur.name class="form-control" type="text" name="name" placeholder="Назание детали" required)
+							+e.LABEL.label Название детали
+							+e.INPUT.field(value= dataRoutMap_cur.name class="form-control" type="text" name="name" placeholder="Название детали" required)
 
 						+e.group(class="form-group")
 							+e.LABEL.label Номер детали
