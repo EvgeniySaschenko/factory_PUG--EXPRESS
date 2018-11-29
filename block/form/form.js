@@ -20,7 +20,9 @@
 			e.preventDefault();
 			let curForm= form[i].querySelectorAll('[name]');
 			for(let j= 0, l2= curForm.length; l2 > j; j++){
-				curForm[j].value= curForm[j].value ? curForm[j].value : 0;
+				if(curForm[j].getAttribute('type') != 'file'){
+					curForm[j].value= curForm[j].value ? curForm[j].value : 0;
+				}
 			}
 			let api= JSON.parse(this.getAttribute('data-api'));
 			let form__alert= form[i].getElementsByClassName('form__alert');

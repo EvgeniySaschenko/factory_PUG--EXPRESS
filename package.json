@@ -12,7 +12,6 @@
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "express-form-data": "^2.0.6",
-    "express-livereload": "0.0.24",
     "express-session": "^1.15.6",
     "express-useragent": "^1.0.12",
     "gulp-autoprefixer": "^6.0.0",
@@ -25,12 +24,15 @@
     "nconf": "^0.10.0",
     "node-sass-middleware": "0.11.0",
     "os": "^0.1.1",
+    "pdfmake": "^0.1.39",
+    "png-to-jpeg": "^1.0.1",
     "pug": "2.0.0-beta11"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-es2015": "^7.0.0-beta.53",
+    "express-livereload": "0.0.24",
     "gulp": "^3.9.1",
     "gulp-babel": "^8.0.0",
     "gulp-concat": "^2.6.1",

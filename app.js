@@ -45,6 +45,7 @@ app.use(session({
 	key: conf.get('session:key'),
 	cookie: conf.get('session:cookie')
 }));
+
 // FORM DATA
 app.use(formData.parse({
 	uploadDir: os.tmpdir(),

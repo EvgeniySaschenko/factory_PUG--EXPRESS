@@ -1,4 +1,5 @@
 const express = require('express');
+const pdfmake = require('pdfmake');
 const router = express.Router();
 const API = require(__APPROOT + '/ext/api');
 const Nav = require(__APPROOT + '/model/Nav');
