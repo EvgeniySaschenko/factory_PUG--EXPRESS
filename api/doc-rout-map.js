@@ -1,4 +1,7 @@
 const express= require('express');
+const pug= require('pug');
+const htmlPdf = require('html-pdf');
+const fs = require('fs');
 const router= express.Router();
 const DocRoutMap= require('../model/DocRoutMap');
 const response= require('../ext/response');
@@ -32,8 +35,39 @@ router.put('/item', (req, res, next)=>{
 	response(docRoutMap.editRoutMapItem(req), res, next);
 });
 
-router.get('/item/id_rout_map/:id_rout_map', (req, res, next)=>{
-	response(docRoutMap.getRoutMapItemAll(req), res, next);
+
+// DOWNLOAD | VIEW - FILE
+router.get('/download/id/:id', (req, res, next)=>{
+
+	let options = {
+		"directory": "./tmp",
+		"format": "A4",
+		"orientation": "landscape",
+		"border": {
+			"top": "6.5mm",
+			"right": "5mm",
+			"bottom": "5mm",
+			"left": "5mm"
+		},
+		"header": {
+			"height": ""
+		},
+	};
+	let routMap= docRoutMap.getRoutMapById(req);
+	let routMapItemAll= docRoutMap.getRoutMapItemAll(req.params.id);
+	Promise.all([routMap, routMapItemAll]).then(val => {
+
+		let html = pug.compileFile(__APPROOT + '\\doc-template\\rout-map.pug');
+		htmlPdf.create(html( { routMap: val[0], routMapItemAll: val[1] } ), options)
+			.toFile((err, file) => {
+				res.download(file.filename, 'report.pdf')
+		});
+
+	}, reason => {
+		console.log(reason)
+	})
+
 });
+
 
 module.exports= router;

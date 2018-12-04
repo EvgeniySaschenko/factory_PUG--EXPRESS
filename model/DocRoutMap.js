@@ -11,7 +11,7 @@ class DocRoutMap{
 	}
 
 	addRoutMap(req){
-		let { id_material, name, num_detail, weight, units_measure, type_ingot, size_d, size_w, remark, status= 0 }= req.body;
+		let { id_material, name, num_detail, weight, units_measure, type_ingot, size_d, size_w, consumption_rate, en, kd, mz, kim, kdi, remark, status= 0 }= req.body;
 		let { id_visitor }= req.session.user;
 
 		return new Promise((resolve, reject)=>{
@@ -28,10 +28,16 @@ class DocRoutMap{
 								type_ingot, 
 								size_d, 
 								size_w, 
+								consumption_rate,
+								en,
+								kd,
+								mz,
+								kim,
+								kdi,
 								remark,
 								status)
-							VALUE(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-							[id_visitor, id_material, name, num_detail, weight, units_measure, type_ingot, size_d, size_w, remark, status],
+							VALUE(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+							[id_visitor, id_material, name, num_detail, weight, units_measure, type_ingot, size_d, size_w, consumption_rate, en, kd, mz, kim, kdi, remark, status],
 							(err, data= false)=>{
 								let { insertId }= data;
 								insertId ? resolve(Object.assign( {}, this.msg.add, { id : data.insertId } )) : reject( { data: this.msg.err, err : err } );
@@ -46,7 +52,7 @@ class DocRoutMap{
 	}
 
 	editRoutMap(req){
-		let { id, id_material, name, num_detail, weight, units_measure, type_ingot, size_d, size_w, approve_1= '{}', approve_2= '{}', approve_3= '{}', approve_4= '{}', approve_5= '{}', approve_6= '{}', approve_7= '{}', approve_8= '{}', remark, status= 0, del= 0 }= req.body;
+		let { id, id_material, name, num_detail, weight, units_measure, type_ingot, size_d, size_w, consumption_rate, en, kd, mz, kim, kdi, approve_1= '{}', approve_2= '{}', approve_3= '{}', approve_4= '{}', approve_5= '{}', approve_6= '{}', approve_7= '{}', approve_8= '{}', remark, status= 0, del= 0 }= req.body;
 		let { id_visitor }= req.session.user;
 		
 		return new Promise((resolve, reject)=>{
@@ -63,6 +69,12 @@ class DocRoutMap{
 							type_ingot= ?, 
 							size_d= ?, 
 							size_w= ?, 
+							consumption_rate= ?, 
+							en= ?, 
+							kd= ?, 
+							mz= ?, 
+							kim= ?, 
+							kdi= ?, 
 							approve_1= ?, 
 							approve_2= ?, 
 							approve_3= ?, 
@@ -76,7 +88,7 @@ class DocRoutMap{
 							status= ?, 
 							del= ?
 						WHERE id= ?`,
-						[id_visitor, id_material, name, num_detail, weight, units_measure, type_ingot, size_d, size_w, approve_1, approve_2, approve_3, approve_4, approve_5, approve_6, approve_7, approve_8, remark, status, del, id],
+						[id_visitor, id_material, name, num_detail, weight, units_measure, type_ingot, size_d, size_w, consumption_rate, en, kd, mz, kim, kdi, approve_1, approve_2, approve_3, approve_4, approve_5, approve_6, approve_7, approve_8, remark, status, del, id],
 						(err, data= false)=>{
 							let { affectedRows }= data;
 							affectedRows ? resolve( this.msg.edit ) : reject( { data: this.msg.err, err : err } );
@@ -97,9 +109,15 @@ class DocRoutMap{
 			this.db.getConnection((err, connection)=>{
 				if(!err){
 					connection.query(`SELECT
-							*
-						FROM ff_doc_rout_map
-						WHERE id= ? AND del= 0`,
+							rm.*,
+							DATE_FORMAT(rm.date_create, '%d.%m.%Y') as date_create,
+							m.mark as material_mark,
+							m.standart as material_standart,
+							mt.name as material_name
+						FROM ff_doc_rout_map rm
+						INNER JOIN ff_material m ON m.id = rm.id_material
+						INNER JOIN ff_material_type mt ON mt.id = m.id_type
+						WHERE rm.id= ? AND rm.del= 0`,
 						[id],
 						(err, data)=>{
 							data ? resolve(data[0]) : reject( { data: this.msg.err, err : err } );
@@ -350,10 +368,18 @@ class DocRoutMap{
 			this.db.getConnection((err, connection)=>{
 				if(!err){
 					connection.query(`SELECT
-							*
-						FROM ff_doc_rout_map_item
-						WHERE id_rout_map= ? AND del= 0
-						ORDER BY num_operation ASC, id ASC`,
+							rmi.*,
+							ran.name as rank_name,
+							eq.name as equipment_name,
+							eq.model as equipment_model,
+							op.name as operation_name
+						FROM ff_doc_rout_map_item rmi
+						LEFT OUTER JOIN ff_rank ran ON rmi.id_rank = ran.id
+						LEFT OUTER JOIN ff_doc_operating_map om ON rmi.id = om.id_rout_map_item
+						LEFT OUTER JOIN ff_equipment eq ON om.id_equipment = eq.id
+						LEFT OUTER JOIN ff_operation op ON rmi.id_operation = op.id
+						WHERE rmi.id_rout_map= ? AND rmi.del= 0
+						ORDER BY rmi.num_operation ASC, rmi.id ASC`,
 						[id],
 						(err, data)=>{
 							data ? resolve(data) : reject( { data: this.msg.err, err : err } );

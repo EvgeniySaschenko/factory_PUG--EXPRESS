@@ -1,0 +1,51 @@
+extends ../_layout/main
+
+block content
+	+b.page_tech-process
+		.container
+			+e.H1.title= title
+
+			// routMap_cur
+			// operatingMapItems_list
+			// api_downloadRoutMap
+			// api_viewRoutMap
+			// api_downloadOperatingMap
+			// api_viewOperatingMap
+
+			+b.table(class="table-responsive")
+				+e.TABLE.table(class="table table-hover")
+					thead
+						tr
+							th 
+								i.fa.fa-info-circle
+							th Название
+							th Дата создания
+							th Скачать
+							th Просмотреть
+					tbody
+						+e.TR.row
+							+e.TD.col(colspan="5")
+								+e.title Маршрутная карта
+						+e.TR.row(class= routMap_cur.status ? 'highlight-warning' : '')
+							+e.TD.col_info
+								i.fa.fa-info-circle(title= routMap_cur.remark)
+							+e.TD.col= routMap_cur.name + ' ' + routMap_cur.num_detail
+							+e.TD.col= routMap_cur.date_create
+							+e.TD.col
+								+e.A.btn(class="btn btn-primary" href= api_downloadRoutMap.url + routMap_cur.id download) Скачать
+							+e.TD.col
+								+e.A.btn(class="btn btn-success" href= api_viewRoutMap.url + routMap_cur.id download) Просмотреть
+						+e.TR.row
+							+e.TD.col(colspan="5")
+								+e.title Операционные карты
+								
+						each e in operatingMapItems_list
+							+e.TR.row(class= e.status ? 'highlight-warning' : '')
+								+e.TD.col_info
+									i.fa.fa-info-circle(title= e.remark)
+								+e.TD.col= e.operation_num + '. ' + e.operation_name
+								+e.TD.col= e.date_create
+								+e.TD.col
+									+e.A.btn(class="btn btn-primary" href= api_downloadOperatingMap.url + e.id download) Скачать
+								+e.TD.col
+									+e.A.btn(class="btn btn-success" href= api_viewOperatingMap.url + e.id download) Просмотреть

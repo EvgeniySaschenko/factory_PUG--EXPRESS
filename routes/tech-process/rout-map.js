@@ -66,7 +66,7 @@ router.get('/doc-list/id/:id', (req, res, next)=> {
 
 	Promise.all([menu_main, menu_breadCrumbs, routMap_cur, operatingMapItems_list]).then(val => {
 			res.render('tech-process/doc-list', {
-				title: `Документы ${ val[5].operation_name } №${ val[5].operation_num }`,
+				title: `Документы ${ val[2].name } №${ val[2].num_detail }`,
 				curUrl: req.originalUrl,
 				menu_main: val[0],
 				menu_breadCrumbs: val[1],
@@ -81,5 +81,6 @@ router.get('/doc-list/id/:id', (req, res, next)=> {
 			console.log(reason)
 		});
 });
+
 
 module.exports = router;

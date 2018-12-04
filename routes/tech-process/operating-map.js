@@ -1,6 +1,3 @@
-const htmlPdf = require('html-pdf');
-const fs = require('fs');
-const pug = require('pug');
 const express = require('express');
 const router = express.Router();
 const API = require(__APPROOT + '/ext/api');
@@ -20,27 +17,11 @@ router.get('/edit/id/:id', (req, res, next)=> {
 	const operatingMapItems_list= docOperatingMap.getOperatingMapItemAll(req.params.id);
 	const equipment_list= equipment.getEquipmentGroupByNameAndModel();
 
-	var html = pug.compileFile(__APPROOT + '\\test\\1.pug');
-
-	//var html = fs.readFileSync(__APPROOT + '\\test\\1.html', 'utf8');
-	var options = {
-		"format": "A4",
-		"orientation": "landscape",
-	};
-
-	console.log( html({title: 'TITLE' }) )
-
-	htmlPdf.create(html({title: 'TITLE' }), options).toFile(__APPROOT + '\\test\\2.pdf', function(err, res) {
-		if (err) return console.log(err);
-		console.log(res); // { filename: '/app/businesscard.pdf' }
-	});
-
-
 
 	Promise.all([menu_main, menu_breadCrumbs, operatingMap_cur, operatingMapItems_list, equipment_list]).then(val => {
 
 			res.render('tech-process/operating-map-edit', {
-				title: `Редактировать ОК: ${ val[2].operation_name } №${ val[2].operation_num }`,
+				title: `Редактировать: ${ val[2].name } ${ val[2].num_detail } - ОК: ${ val[2].operation_name } №${ val[2].operation_num }`,
 				curUrl: req.originalUrl,
 				menu_main: val[0],
 				menu_breadCrumbs: val[1],

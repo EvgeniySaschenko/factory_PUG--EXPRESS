@@ -52,7 +52,7 @@ block content
 							+e.LABEL.label Оборудование; устройство ЧПУ
 							+e.SELECT.select(class="form-control" name="id_equipment" required)
 								each e in dataSelectEquipment
-									+e.OPTION(value= e.name, selected= e.id == dataOperatingMap_cur.id_equipment ? true : false).option= e.name + ' - ' + e.model
+									+e.OPTION(value= e.id, selected= e.id == dataOperatingMap_cur.id_equipment ? true : false).option= e.name + ' - ' + e.model
 
 						+e.group(class="form-group")
 							+e.LABEL.label Твердость

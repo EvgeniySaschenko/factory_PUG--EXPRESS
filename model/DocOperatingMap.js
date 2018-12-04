@@ -44,18 +44,16 @@ class DocOperatingMap{
 	editOperatingMap(req){
 		let { id, id_equipment, firmness, ev, md, profile, mz, koid, program, t_o, t_v, t_pz, t_st, emulsion, approve_1= '{}', approve_2= '{}', approve_3= '{}', approve_4= '{}', approve_5= '{}', approve_6= '{}', approve_7= '{}', approve_8= '{}', remark}= req.body;
 		let { id_visitor }= req.session.user;
-
-		console.log( req.files.file_drawing )
 		
-		let pathTmp= req.files.file_drawing.path.toLowerCase();
-		fs.readFile(req.files.file_drawing.path.toLowerCase().lastIndexOf(), function(err, data) {
-			fs.writeFile(__APPROOT + '/public/img/5.jpg',data , function(err) {
-				if(!err){
+		// let pathTmp= req.files.file_drawing.path.toLowerCase();
+		// fs.readFile(req.files.file_drawing.path.toLowerCase().lastIndexOf(), function(err, data) {
+		// 	fs.writeFile(__APPROOT + '/public/img/5.jpg',data , function(err) {
+		// 		if(!err){
 					
-				}
+		// 		}
 
-			})
-		})
+		// 	})
+		// })
 
 
 		return new Promise((resolve, reject)=>{
@@ -147,7 +145,8 @@ class DocOperatingMap{
 					connection.query(`SELECT
 							om.*,
 							DATE_FORMAT(om.date_create, '%d.%m.%Y') as date_create,
-							op.name
+							op.name as operation_name,
+							rmi.num_operation as operation_num
 						FROM ff_doc_operating_map om
 						INNER JOIN ff_doc_rout_map_item rmi ON om.id_rout_map_item = rmi.id
 						INNER JOIN ff_operation op ON rmi.id_operation = op.id
@@ -209,7 +208,6 @@ class DocOperatingMap{
 		let { id_visitor }= req.session.user;
 		return new Promise((resolve, reject)=>{
 			for(let j= 0, l= id.length; l > j; j++){
-				console.log( id_visitor, num_operation[j], description[j], val_pi[j], val_d_v[j], val_l[j], val_t[j], val_i[j], val_s[j], val_n[j], val_v[j], val_t_o[j], val_t_v[j], del[j], id[j] )
 				this.db.getConnection((err, connection)=>{
 					if(!err){
 						connection.query(`UPDATE ff_doc_operating_map_item

@@ -67,7 +67,7 @@ block content
 								each e in dataSelectUnitsMeasure
 									+e.OPTION(value= e.id, selected= e.id == dataRoutMap_cur.units_measure ? true : false).option= e.name
 							// тип заготовки
-							+e.LABEL.label Тип заготовки
+							+e.LABEL.label Код заготовки
 							+e.SELECT.select(class="form-control" name="type_ingot" required)
 								each e in dataSelectTypeIngot
 									+e.OPTION(value= e.name, selected= e.name == dataRoutMap_cur.type_ingot ? true : false).option= e.name
@@ -77,10 +77,34 @@ block content
 							+e.INPUT.field(value= dataRoutMap_cur.size_d class="form-control" type="number" name="size_d" placeholder="Диаметр" required)
 							+e.LABEL.label Длина
 							+e.INPUT.field(value= dataRoutMap_cur.size_w class="form-control" type="number" name="size_w" placeholder="Длина" required)
+
+						+e.group(class="form-group form-inline")
+							+e.LABEL.label Норма расхода
+							+e.INPUT.field(value= dataRoutMap_cur.consumption_rate class="form-control" type="number" step="any" name="consumption_rate")
+
+						+e.group(class="form-group form-inline")
+							+e.LABEL.label ЕН
+							+e.INPUT.field(value= dataRoutMap_cur.en class="form-control" type="number" step="any" name="en")
+
+						+e.group(class="form-group form-inline")
+							+e.LABEL.label КД
+							+e.INPUT.field(value= dataRoutMap_cur.kd class="form-control" type="text" name="kd")
+
+						+e.group(class="form-group form-inline")
+							+e.LABEL.label МЗ
+							+e.INPUT.field(value= dataRoutMap_cur.mz class="form-control" type="text" name="mz")
 							
+						+e.group(class="form-group form-inline")
+							+e.LABEL.label КИМ
+							+e.INPUT.field(value= dataRoutMap_cur.kim class="form-control" type="text" name="kim")
+
+						+e.group(class="form-group form-inline")
+							+e.LABEL.label КДИ
+							+e.INPUT.field(value= dataRoutMap_cur.kdi class="form-control" type="text" name="kdi")
+						
 						+e.group(class="form-group")
 							+e.LABEL.label Комментарий
-							+e.TEXTAREA.textarea(value= dataRoutMap_cur.remark class="form-control" type="text" name="remark" placeholder="Комментарий")
+							+e.TEXTAREA.textarea(class="form-control" type="text" name="remark" placeholder="Комментарий")= dataRoutMap_cur.remark
 
 						+e.group(class="form-group form-check")
 							+e.INPUT.checkbox(value="1" class="form-check-input" type="checkbox" name="status" checked= dataRoutMap_cur.status ? true : false)
@@ -351,13 +375,10 @@ block content
 											th Название
 											th Дата создания
 											th Редактировать
-											th Скачать
 									tbody
 										each e in data
 											+e.TR.row(class= e.status ? 'highlight-warning' : '')
-												+e.TD.col_name= e.name
+												+e.TD.col_name= e.operation_num + '. ' +  e.operation_name
 												+e.TD.col_date-create= e.date_create
 												+e.TD.col_btn
 													+e.A.btn(class="btn btn-success" target="_blank" href='tech-process/operating-map/edit/id/' + e.id) Редактировать
-												+e.TD.col_btn
-													+e.A.btn(class="btn btn-primary" href='tech-process/operating-map/download/id/' + e.id) Скачать

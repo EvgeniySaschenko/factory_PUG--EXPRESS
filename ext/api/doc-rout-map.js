@@ -32,7 +32,8 @@ const docRoutMap= {
 		let { id= '@dummy' }= obj;
 		return {
 			action: `/api/doc-rout-map/download/id/` + id,
-			method: 'get'
+			method: 'get',
+			url: `/api/doc-rout-map/download/id/`
 		}
 	},
 
@@ -40,7 +41,8 @@ const docRoutMap= {
 		let { id= '@dummy' }= obj;
 		return {
 			action: `/api/doc-rout-map/view/id/` + id,
-			method: 'get'
+			method: 'get',
+			url: `/api/doc-rout-map/view/id/`
 		}
 	},
 

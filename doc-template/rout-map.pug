@@ -1,0 +1,329 @@
+- var border= "border: 1px solid #000000; border-collapse: collapse; padding: 2px;"
+- var borderNoPadding= "border: 1px solid #000000; border-collapse: collapse; padding: 0;"
+- var borderBold= "border: 2px solid #000000; border-collapse: collapse; padding: 2px;"
+- var borderTopBold= "border-top: 2px solid #000000; border-collapse: collapse; padding: 2px;"
+- var borderBottomBold= "border-bottom: 2px solid #000000; border-collapse: collapse; padding: 2px;"
+- var noBorder= "border-bottom: 0; border-collapse: collapse; padding: 0;"
+- var row= "height: 5mm;"
+- var row2= "height: 14mm;"
+
+
+- var center= "text-align: center;"
+// 270
+// routMap
+// routMapItemAll
+
+- var date= new Date()
+- var dateGenerate= date.getDate() +'.'+ date.getMonth() +'.'+ date.getFullYear()+' '+ date.getHours() +':'+ date.getMinutes() +':'+ date.getSeconds()
+- var i= 0
+
+- var curPage= i != 0 ? Math.ceil((i + 1) / 8) + 1 : 1
+table(style=border + "font-size: 12px; font-family: Arial, sans-serif;")
+	tr(style= row)
+		td(style="width: 15mm;" + border)
+		td(style="width: 30mm;" + border + center) Ф.И.О.
+		td(style="width: 20mm;" + border + center) Дата
+		td(style="width: 20mm;" + border + center) Подпись
+		td(style="width: 45mm;") Маршрутная карта
+		td(style="width: 70mm;"+ border)= "ID: " + routMap.id + " от " + routMap.date_create
+		td(style="width: 45mm;")= dateGenerate
+		td(style="width: 10mm;")
+		td(style="width: 10mm;")
+		td(style="width: 10mm;")
+
+	tr(style= row)
+		td(style= border) Дубл.
+		td(style= border)
+		td(style= border)
+		td(style= border)
+		td(style= border colspan="6" rowspan="3")= routMap.remark != false ? 'Примечание: ' + routMap.remark : ''
+
+	tr(style= row)
+		td(style= border) Взам.
+		td(style= border)
+		td(style= border)
+		td(style= border)
+
+	tr(style= row)
+		td(style= border) Подп.
+		td(style= border)
+		td(style= border)
+		td(style= border)
+
+	tr(style= row)
+		td(style= border colspan="5")
+		td(style= border)
+		td(style= border colspan="2")
+		td(style= border + center + "font-size: 18px;")
+		td(style= border + center + "font-size: 18px;")= curPage
+
+	// номер
+	tr(style= row)
+		td(style= border) Разраб.
+		td(style= border)
+		td(style= border)
+		td(style= border)
+		td(style=border)
+		td(style=borderBold + center + "font-size: 22px;" rowspan="3")= routMap.num_detail
+		td(style=borderTopBold)
+		td(style=borderBold colspan="3" rowspan="3")
+
+	tr(style= row)
+		td(style= border) Разраб.
+		td(style= border)
+		td(style= border)
+		td(style= border)
+		td(style=border)
+		td
+	tr(style= row)
+		td(style= border) 
+		td(style= border)
+		td(style= border)
+		td(style= border)
+		td(style=border)
+		td(style=borderBottomBold)
+
+	// назввание
+	tr(style= row)
+		td(style= border)
+		td(style= border)
+		td(style= border)
+		td(style= border)
+		td(style= border + center + "font-size: 22px;" colspan="3" rowspan="2")= routMap.name
+		td(style= border + center) КДИ
+		td(style= border rowspan="2") 
+		td(style= border rowspan="2")
+
+	tr(style= row)
+		td(style= border) Н.контр
+		td(style= border)
+		td(style= border) 
+		td(style= border)
+		td(style= border + center)= routMap.kdi 
+
+	// материял
+	tr(style= row)
+		td(style= border) М01
+		td(style= border + center + "font-size: 18px;" colspan="6")= routMap.material_name + ' ' + routMap.material_mark + ' ' + routMap.material_standart
+		td(style= border colspan="3")
+
+// шапка таблицы 1
+table(style= border + "font-size: 12px; font-family: Arial, sans-serif;")
+	tr(style= row)
+		td(style="width: 15mm;" + border rowspan="2") М02
+		td(style="width: 35mm;" + border + center) Код
+		td(style="width: 18mm;" + border + center) ЕВ
+		td(style="width: 17mm;" + border + center) МД
+		td(style="width: 17mm;" + border + center) ЕН
+		td(style="width: 17mm;" + border + center) Н.расх.
+		td(style="width: 17mm;" + border + center) КИМ
+		td(style="width: 35mm;" + border + center) КОД загот.
+		td(style="width: 35mm;" + border + center) Профиль и размеры
+		td(style="width: 17mm;" + border + center) КД
+		td(style="width: 17mm;" + border + center) МЗ
+		td(style="width: 30mm;" + border rowspan="2")
+
+	tr(style= row)
+		td(style= border + center)
+		td(style= border + center) кг
+		td(style= border + center)= routMap.weight
+		td(style= border + center) 1
+		td(style= border + center)= routMap.consumption_rate
+		td(style= border + center)= routMap.kim
+		td(style= border + center)= routMap.type_ingot
+		td(style= border + center)= 'Ø' + routMap.size_d + 'x' + routMap.size_w
+		td(style= border + center)= routMap.kd
+		td(style= border + center)= routMap.mz
+
+// шапка таблицы 2
+table(style= borderNoPadding + "font-size: 12px; font-family: Arial, sans-serif;")
+	tr(style= row)
+		td(style="width: 7mm;" + border + center) цех
+		td(style="width: 7mm;" + border + center) Уч.
+		td(style="width: 10mm;" + border + center) Рм
+		td(style="width: 7mm;" + border + center) Опер
+		td(style="width: 82mm;" + border + center) Код, наименование операции
+		td(style= border + center colspan="11") Обозначение документа
+
+	tr(style= row)
+		td(style= border + center colspan="5") Код, наименование оборудования
+		td(style="width: 10mm;" + border + center) см
+		td(style="width: 32mm;" + border + center) Проф.
+		td(style="width: 10mm;" + border + center) Р
+		td(style="width: 10mm;" + border + center) УТ
+		td(style="width: 10mm;" + border + center) КР
+		td(style="width: 15mm;" + border + center) КОИд
+		td(style="width: 10mm;" + border + center) ЕН
+		td(style="width: 10mm;" + border + center) ОП
+		td(style="width: 20mm;" + border + center) К шт.
+		td(style="width: 20mm;" + border + center) Тп.з.
+		td(style="width: 20mm;" + border + center) Т шт.
+	
+
+	each e, i in routMapItemAll
+		tr(style= row2 + "font-size: 14px;")
+			td(style= border + center)= e.num_shop
+			td(style= border + center)= e.num_area
+			td(style= border + center)= e.rm
+			td(style= border + center)= e.num_operation
+			td(style= border + "padding-left: 4px")
+				.operation(style= "font-style: italic; font-weight: bold;")= e.operation_name != false ? e.operation_name : ''
+				.equipment= e.equipment_name != null ? e.equipment_name + ' '+ e.equipment_model : ''
+			td(style= border + center)= e.sm != false ? e.sm : '-'
+			td(style= border + center)= e.rank_name != false ? e.rank_name : '-'
+			td(style= border + center)= e.rank_level != false ? e.rank_level : '-'
+			td(style= border + center)= e.ut != false ? e.ut : '-'
+			td(style= border + center)= e.kr != false ? e.kr : '-'
+			td(style= border + center)= e.koid != false ? e.koid : '-'
+			td(style= border + center)= e.en != false ? e.en : '-'
+			td(style= border + center)= e.op != false ? e.op : '-'
+			td(style= border + center)= e.kst != false ? e.kst : '-'
+			td(style= border + center)= e.tpz != false ? e.tpz : '-'
+			td(style= border + center)= e.tst != false ? e.tst : '-'
+
+
+		// Колонтитул последующих страниц
+		if (i + 1) % 8 == 0 && i != 0
+			- var curPage= i != 0 ? Math.ceil((i + 1) / 8) + 1 : 1
+			tr
+				td(style= noBorder colspan="18")
+					table(style=border + "font-size: 12px; font-family: Arial, sans-serif;")
+						tr(style= row)
+							td(style="width: 15mm;" + border)
+							td(style="width: 30mm;" + border + center) Ф.И.О.
+							td(style="width: 20mm;" + border + center) Дата
+							td(style="width: 20mm;" + border + center) Подпись
+							td(style="width: 45mm;") Маршрутная карта
+							td(style="width: 70mm;"+ border)= "ID: " + routMap.id + " от " + routMap.date_create
+							td(style="width: 45mm;")= dateGenerate
+							td(style="width: 10mm;")
+							td(style="width: 10mm;")
+							td(style="width: 10mm;")
+
+						tr(style= row)
+							td(style= border) Дубл.
+							td(style= border)
+							td(style= border)
+							td(style= border)
+							td(style= border colspan="6" rowspan="3")= routMap.remark != false ? 'Примечание: ' + routMap.remark : ''
+
+						tr(style= row)
+							td(style= border) Взам.
+							td(style= border)
+							td(style= border)
+							td(style= border)
+
+						tr(style= row)
+							td(style= border) Подп.
+							td(style= border)
+							td(style= border)
+							td(style= border)
+
+						tr(style= row)
+							td(style= border colspan="5")
+							td(style= border)
+							td(style= border colspan="2")
+							td(style= border + center + "font-size: 18px;")
+							td(style= border + center + "font-size: 18px;")= curPage
+
+						// номер
+						tr(style= row)
+							td(style= border) Разраб.
+							td(style= border)
+							td(style= border)
+							td(style= border)
+							td(style=border)
+							td(style=borderBold + center + "font-size: 22px;" rowspan="3")= routMap.num_detail
+							td(style=borderTopBold)
+							td(style=borderBold colspan="3" rowspan="3")
+
+						tr(style= row)
+							td(style= border) Разраб.
+							td(style= border)
+							td(style= border)
+							td(style= border)
+							td(style=border)
+							td
+						tr(style= row)
+							td(style= border) 
+							td(style= border)
+							td(style= border)
+							td(style= border)
+							td(style=border)
+							td(style=borderBottomBold)
+
+						// назввание
+						tr(style= row)
+							td(style= border)
+							td(style= border)
+							td(style= border)
+							td(style= border)
+							td(style= border + center + "font-size: 22px;" colspan="3" rowspan="2")= routMap.name
+							td(style= border + center) КДИ
+							td(style= border rowspan="2") 
+							td(style= border rowspan="2")
+
+						tr(style= row)
+							td(style= border) Н.контр
+							td(style= border)
+							td(style= border)
+							td(style= border)
+							td(style= border + center)= routMap.kdi
+
+						// материял
+						tr(style= row)
+							td(style= border) М01
+							td(style= border + center + "font-size: 18px;" colspan="6")= routMap.material_name + ' ' + routMap.material_mark + ' ' + routMap.material_standart
+							td(style= border colspan="3")
+
+					// шапка таблицы 1
+					table(style= border + "font-size: 12px; font-family: Arial, sans-serif;")
+						tr(style= row)
+							td(style="width: 15mm;" + border rowspan="2") М02
+							td(style="width: 35mm;" + border + center) Код
+							td(style="width: 18mm;" + border + center) ЕВ
+							td(style="width: 17mm;" + border + center) МД
+							td(style="width: 17mm;" + border + center) ЕН
+							td(style="width: 17mm;" + border + center) Н.расх.
+							td(style="width: 17mm;" + border + center) КИМ
+							td(style="width: 35mm;" + border + center) КОД загот.
+							td(style="width: 35mm;" + border + center) Профиль и размеры
+							td(style="width: 17mm;" + border + center) КД
+							td(style="width: 17mm;" + border + center) МЗ
+							td(style="width: 30mm;" + border rowspan="2")
+
+						tr(style= row)
+							td(style= border + center)
+							td(style= border + center) кг
+							td(style= border + center)= routMap.weight
+							td(style= border + center)= routMap.en
+							td(style= border + center)= routMap.consumption_rate
+							td(style= border + center)= routMap.kim
+							td(style= border + center)= routMap.type_ingot
+							td(style= border + center)= 'Ø' + routMap.size_d + 'x' + routMap.size_w
+							td(style= border + center)= routMap.kd
+							td(style= border + center)= routMap.mz
+
+					// шапка таблицы 2
+					table(style= borderNoPadding + "font-size: 12px; font-family: Arial, sans-serif;")
+						tr(style= row)
+							td(style="width: 7mm;" + border + center) цех
+							td(style="width: 7mm;" + border + center) Уч.
+							td(style="width: 10mm;" + border + center) Рм
+							td(style="width: 7mm;" + border + center) Опер
+							td(style="width: 82mm;" + border + center) Код, наименование операции
+							td(style= border + center colspan="11") Обозначение документа
+
+						tr(style= row)
+							td(style= border + center colspan="5") Код, наименование оборудования
+							td(style="width: 10mm;" + border + center) см
+							td(style="width: 17mm;" + border + center) Проф.
+							td(style="width: 10mm;" + border + center) Р
+							td(style="width: 10mm;" + border + center) УТ
+							td(style="width: 10mm;" + border + center) КР
+							td(style="width: 15mm;" + border + center) КОИд
+							td(style="width: 10mm;" + border + center) ЕН
+							td(style="width: 10mm;" + border + center) ОП
+							td(style="width: 20mm;" + border + center) К шт.
+							td(style="width: 20mm;" + border + center) Тп.з.
+							td(style="width: 20mm;" + border + center) Т шт.
