@@ -21,7 +21,6 @@ block content
 							th Название
 							th Дата создания
 							th Скачать
-							th Просмотреть
 					tbody
 						+e.TR.row
 							+e.TD.col(colspan="5")
@@ -33,8 +32,6 @@ block content
 							+e.TD.col= routMap_cur.date_create
 							+e.TD.col
 								+e.A.btn(class="btn btn-primary" href= api_downloadRoutMap.url + routMap_cur.id download) Скачать
-							+e.TD.col
-								+e.A.btn(class="btn btn-success" href= api_viewRoutMap.url + routMap_cur.id download) Просмотреть
 						+e.TR.row
 							+e.TD.col(colspan="5")
 								+e.title Операционные карты
@@ -47,5 +44,3 @@ block content
 								+e.TD.col= e.date_create
 								+e.TD.col
 									+e.A.btn(class="btn btn-primary" href= api_downloadOperatingMap.url + e.id download) Скачать
-								+e.TD.col
-									+e.A.btn(class="btn btn-success" href= api_viewOperatingMap.url + e.id download) Просмотреть

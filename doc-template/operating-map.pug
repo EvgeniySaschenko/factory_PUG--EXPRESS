@@ -1,0 +1,346 @@
+- var border= "border: 1px solid #000000; border-collapse: collapse; padding: 2px;"
+- var borderLeftRight= "border-left: 1px solid #000000; border-right: 1px solid #000000; border-collapse: collapse; padding: 2px;"
+- var borderNoPadding= "border: 1px solid #000000; border-collapse: collapse; padding: 0;"
+- var borderBold= "border: 2px solid #000000; border-collapse: collapse; padding: 2px;"
+- var borderTopBold= "border-top: 2px solid #000000; border-collapse: collapse; padding: 2px;"
+- var borderBottomBold= "border-bottom: 2px solid #000000; border-collapse: collapse; padding: 2px;"
+- var noBorder= "border-bottom: 0; border-collapse: collapse; padding: 0;"
+- var row= "height: 5mm;"
+- var row2= "height: 14mm;"
+
+
+- var center= "text-align: center;"
+// 275
+// operatingMap
+// operatingMapItemAll
+
+- var date= new Date()
+- var dateGenerate= date.getDate() +'.'+ date.getMonth() +'.'+ date.getFullYear()+' '+ date.getHours() +':'+ date.getMinutes() +':'+ date.getSeconds()
+- var i= 0
+
+- var curPage= i != 0 ? Math.ceil((i + 1) / 8) + 1 : 1
+table(style=border + "font-size: 12px; font-family: Arial, sans-serif;")
+	tr(style= row)
+		td(style="width: 15mm;" + border)
+		td(style="width: 30mm;" + border + center) Ф.И.О.
+		td(style="width: 20mm;" + border + center) Дата
+		td(style="width: 20mm;" + border + center) Подпись
+		td(style="width: 45mm;") Операционная карта
+		td(style="width: 70mm;"+ border)= "ID: " + operatingMap.id + " от " + operatingMap.date_create
+		td(style="width: 45mm;")= dateGenerate
+		td(style="width: 10mm;")
+		td(style="width: 10mm;")
+		td(style="width: 10mm;")
+
+	tr(style= row)
+		td(style= border) Дубл.
+		td(style= border)
+		td(style= border)
+		td(style= border)
+		td(style= border colspan="6" rowspan="3")= operatingMap.remark != false ? 'Примечание: ' + operatingMap.remark : ''
+
+	tr(style= row)
+		td(style= border) Взам.
+		td(style= border)
+		td(style= border)
+		td(style= border)
+
+	tr(style= row)
+		td(style= border) Подп.
+		td(style= border)
+		td(style= border)
+		td(style= border)
+
+	tr(style= row)
+		td(style= border colspan="5")
+		td(style= border)
+		td(style= border colspan="2")
+		td(style= border + center + "font-size: 18px;")
+		td(style= border + center + "font-size: 18px;")= curPage
+
+	// номер
+	tr(style= row)
+		td(style= border) Разраб.
+		td(style= border)
+		td(style= border)
+		td(style= border)
+		td(style=border)
+		td(style=borderBold + center + "font-size: 22px;" rowspan="3")= operatingMap.num_detail
+		td(style=borderTopBold)
+		td(style=borderBold colspan="3" rowspan="3")
+
+	tr(style= row)
+		td(style= border) Разраб.
+		td(style= border)
+		td(style= border)
+		td(style= border)
+		td(style=border)
+		td
+	tr(style= row)
+		td(style= border) 
+		td(style= border)
+		td(style= border)
+		td(style= border)
+		td(style=border)
+		td(style=borderBottomBold)
+
+	// назввание
+	tr(style= row)
+		td(style= border)
+		td(style= border)
+		td(style= border)
+		td(style= border)
+		td(style= border + center + "font-size: 22px;" colspan="3" rowspan="2")= operatingMap.name
+		td(style= border colspan="3" rowspan="2")
+
+	tr(style= row)
+		td(style= border) Н.контр
+		td(style= border)
+		td(style= border) 
+		td(style= border)
+
+// Шапка 2
+table(style=noBorder + "font-size: 12px; font-family: Arial, sans-serif;")
+	tr(style= row)
+		td(style="width: 135mm; border-left: 1px solid #000; border-collapse: collapse; padding: 0; text-align: center; vertical-align: middle;") 5555
+		td(style="width: 150mm;" + noBorder)
+
+			table(style=noBorder + "font-size: 12px; font-family: Arial, sans-serif;")
+				tr(style= row)
+					td(style="width: 75mm;" + center + border) Наименование операции
+					td(style="width: 75mm;" + center + border) Материал
+				tr(style= row)
+					td(style=border + center + "font-size: 16px;")= `${operatingMap.operation_name} (${operatingMap.operation_num})`
+					td(style=border + center + "font-size: 16px;")= operatingMap.material_mark
+
+			table(style=noBorder + "font-size: 12px; font-family: Arial, sans-serif;")
+				tr(style= row)
+					td(style="width: 25mm;" + center + border) Твердость
+					td(style="width: 10mm;" + center + border) ЕВ
+					td(style="width: 15mm;" + center + border) МД
+					td(style="width: 65mm;" + center + border) Профиль, разм., заготовка
+					td(style="width: 20mm;" + center + border) МЗ
+					td(style="width: 20mm;" + center + border) КОИД
+				tr(style= row)
+					td(style= center + border)= operatingMap.firmness ? operatingMap.firmness : ''
+					td(style= center + border)= operatingMap.ev ? operatingMap.ev : ''
+					td(style= center + border)= operatingMap.md ? operatingMap.md : ''
+					td(style= center + border)= operatingMap.profile ? operatingMap.profile : ''
+					td(style= center + border)= operatingMap.mz ? operatingMap.mz : ''
+					td(style= center + border)= operatingMap.koid ? operatingMap.koid : ''
+					
+			table(style=noBorder + "font-size: 12px; font-family: Arial, sans-serif;")
+				tr(style= row)
+					td(style="width: 75mm;" + center + border) Оборудование; устройство ЧПУ
+					td(style="width: 75mm;" + center + border) Обозначение программы
+				tr(style= row2)
+					td(style=border + center + "font-size: 16px;")= `${operatingMap.equipment_name} ${operatingMap.equipment_model}`
+					td(style=border + center + "font-size: 16px;")= operatingMap.program
+
+			table(style=noBorder + "font-size: 12px; font-family: Arial, sans-serif;")
+				tr(style= row)
+					td(style="width: 18mm;" + center + border) То
+					td(style="width: 18mm;" + center + border) Тв
+					td(style="width: 18mm;" + center + border) Тпз
+					td(style="width: 17mm;" + center + border) Тшт
+					td(style="width: 75mm;" + center + border) СОЖ
+				tr(style= row)
+					td(style= center + border)
+					td(style= center + border)
+					td(style= center + border)
+					td(style= center + border)
+					td(style= center + border)= operatingMap.emulsion ? operatingMap.emulsion : ''
+
+table(style=noBorder + "font-size: 12px; font-family: Arial, sans-serif;")
+	tr(style= row)
+		td(style="width: 5mm;" + border + center) Р
+		td(style="width: 120mm;" + border + center) Описание
+		td(style="width: 15mm;" + border + center) ПИ
+		td(style="width: 15mm;" + border + center) D или B
+		td(style="width: 15mm;" + border + center) L
+		td(style="width: 15mm;" + border + center) t
+		td(style="width: 15mm;" + border + center) i
+		td(style="width: 15mm;" + border + center) S
+		td(style="width: 15mm;" + border + center) n
+		td(style="width: 15mm;" + border + center) V
+		td(style="width: 15mm;" + border + center) То
+		td(style="width: 15mm;" + border + center) Тв
+
+
+	each e, i in operatingMapItemAll
+		if operatingMap.type_operation === 1
+			- var t_o = (e.val_l * e.val_l)/(e.val_s)
+		
+		if operatingMap.type_operation === 2
+			- var t_o = (e.val_l * e.val_l)/(e.val_s)
+
+		tr(style= row)
+			td(style= border + center)= e.num_operation
+			td(style= border)= e.description
+			td(style= border + center)= e.val_pi != false ? e.val_pi : '-'
+			td(style= border + center)= e.val_d_v != false ? e.val_d_v : '-'
+			td(style= border + center)= e.val_l != false ? e.val_l : '-'
+			td(style= border + center)= e.val_t != false ? e.val_t : '-'
+			td(style= border + center)= e.val_i != false ? e.val_i : '-'
+			td(style= border + center)= e.val_s != false ? e.val_s : '-'
+			td(style= border + center)= e.val_n != false ? e.val_n : '-'
+			td(style= border + center)= e.val_v != false ? e.val_v : '-'
+			td(style= border + center)= t_o != false && !isNaN(t_o) ? t_o : '-'
+			td(style= border + center)= e.val_t_v != false ? e.val_t_v : '-'
+
+			if (i + 1) % 15 == 0 && i != 0
+					
+			if (i + 1) % 15 == 0 && i != 0 && operatingMapItemAll.length != i + 1
+				tr(style= "height: 7.5mm;")
+					td(style="text-align: right;" colspan="12")
+				tr
+					td(style= noBorder colspan="12")
+						- var curPage= i != 0 ? Math.ceil((i) / 15) + 1 : 1
+						table(style=border + "font-size: 12px; font-family: Arial, sans-serif;")
+							tr(style= row)
+								td(style="width: 15mm;" + border)
+								td(style="width: 30mm;" + border + center) Ф.И.О.
+								td(style="width: 20mm;" + border + center) Дата
+								td(style="width: 20mm;" + border + center) Подпись
+								td(style="width: 45mm;") Операционная карта
+								td(style="width: 70mm;"+ border)= "ID: " + operatingMap.id + " от " + operatingMap.date_create
+								td(style="width: 45mm;")= dateGenerate
+								td(style="width: 10mm;")
+								td(style="width: 10mm;")
+								td(style="width: 10mm;")
+
+							tr(style= row)
+								td(style= border) Дубл.
+								td(style= border)
+								td(style= border)
+								td(style= border)
+								td(style= border colspan="6" rowspan="3")= operatingMap.remark != false ? 'Примечание: ' + operatingMap.remark : ''
+
+							tr(style= row)
+								td(style= border) Взам.
+								td(style= border)
+								td(style= border)
+								td(style= border)
+
+							tr(style= row)
+								td(style= border) Подп.
+								td(style= border)
+								td(style= border)
+								td(style= border)
+
+							tr(style= row)
+								td(style= border colspan="5")
+								td(style= border)
+								td(style= border colspan="2")
+								td(style= border + center + "font-size: 18px;")
+								td(style= border + center + "font-size: 18px;")= curPage
+
+							// номер
+							tr(style= row)
+								td(style= border) Разраб.
+								td(style= border)
+								td(style= border)
+								td(style= border)
+								td(style=border)
+								td(style=borderBold + center + "font-size: 22px;" rowspan="3")= operatingMap.num_detail
+								td(style=borderTopBold)
+								td(style=borderBold colspan="3" rowspan="3")
+
+							tr(style= row)
+								td(style= border) Разраб.
+								td(style= border)
+								td(style= border)
+								td(style= border)
+								td(style=border)
+								td
+							tr(style= row)
+								td(style= border) 
+								td(style= border)
+								td(style= border)
+								td(style= border)
+								td(style=border)
+								td(style=borderBottomBold)
+
+							// назввание
+							tr(style= row)
+								td(style= border)
+								td(style= border)
+								td(style= border)
+								td(style= border)
+								td(style= border + center + "font-size: 22px;" colspan="3" rowspan="2")= operatingMap.name
+								td(style= border colspan="3" rowspan="2")
+
+							tr(style= row)
+								td(style= border) Н.контр
+								td(style= border)
+								td(style= border) 
+								td(style= border)
+
+						// Шапка 2
+						table(style=noBorder + "font-size: 12px; font-family: Arial, sans-serif;")
+							tr(style= row)
+								td(style="width: 135mm; border-left: 1px solid #000; border-collapse: collapse; padding: 0; text-align: center; vertical-align: middle;") 5555
+								td(style="width: 150mm;" + noBorder)
+
+									table(style=noBorder + "font-size: 12px; font-family: Arial, sans-serif;")
+										tr(style= row)
+											td(style="width: 75mm;" + center + border) Наименование операции
+											td(style="width: 75mm;" + center + border) Материал
+										tr(style= row)
+											td(style=border + center + "font-size: 16px;")= `${operatingMap.operation_name} (${operatingMap.operation_num})`
+											td(style=border + center + "font-size: 16px;")= operatingMap.material_mark
+
+									table(style=noBorder + "font-size: 12px; font-family: Arial, sans-serif;")
+										tr(style= row)
+											td(style="width: 25mm;" + center + border) Твердость
+											td(style="width: 10mm;" + center + border) ЕВ
+											td(style="width: 15mm;" + center + border) МД
+											td(style="width: 65mm;" + center + border) Профиль, разм., заготовка
+											td(style="width: 20mm;" + center + border) МЗ
+											td(style="width: 20mm;" + center + border) КОИД
+										tr(style= row)
+											td(style= center + border)= operatingMap.firmness ? operatingMap.firmness : ''
+											td(style= center + border)= operatingMap.ev ? operatingMap.ev : ''
+											td(style= center + border)= operatingMap.md ? operatingMap.md : ''
+											td(style= center + border)= operatingMap.profile ? operatingMap.profile : ''
+											td(style= center + border)= operatingMap.mz ? operatingMap.mz : ''
+											td(style= center + border)= operatingMap.koid ? operatingMap.koid : ''
+											
+									table(style=noBorder + "font-size: 12px; font-family: Arial, sans-serif;")
+										tr(style= row)
+											td(style="width: 75mm;" + center + border) Оборудование; устройство ЧПУ
+											td(style="width: 75mm;" + center + border) Обозначение программы
+										tr(style= row2)
+											td(style=border + center + "font-size: 16px;")= `${operatingMap.equipment_name} ${operatingMap.equipment_model}`
+											td(style=border + center + "font-size: 16px;")= operatingMap.program
+
+									table(style=noBorder + "font-size: 12px; font-family: Arial, sans-serif;")
+										tr(style= row)
+											td(style="width: 18mm;" + center + border) То
+											td(style="width: 18mm;" + center + border) Тв
+											td(style="width: 18mm;" + center + border) Тпз
+											td(style="width: 17mm;" + center + border) Тшт
+											td(style="width: 75mm;" + center + border) СОЖ
+										tr(style= row)
+											td(style= center + border)
+											td(style= center + border)
+											td(style= center + border)
+											td(style= center + border)
+											td(style= center + border)= operatingMap.emulsion ? operatingMap.emulsion : ''
+
+						table(style=noBorder + "font-size: 12px; font-family: Arial, sans-serif;")
+							tr(style="border-top: 1px solid #000;" + row)
+								td(style="width: 5mm;" + borderLeftRight + center) Р
+								td(style="width: 120mm;" + borderLeftRight + center) Описание
+								td(style="width: 15mm;" + borderLeftRight + center) ПИ
+								td(style="width: 15mm;" + borderLeftRight + center) D или B
+								td(style="width: 15mm;" + borderLeftRight + center) L
+								td(style="width: 15mm;" + borderLeftRight + center) t
+								td(style="width: 15mm;" + borderLeftRight + center) i
+								td(style="width: 15mm;" + borderLeftRight + center) S
+								td(style="width: 15mm;" + borderLeftRight + center) n
+								td(style="width: 15mm;" + borderLeftRight + center) V
+								td(style="width: 15mm;" + borderLeftRight + center) То
+								td(style="width: 15mm;" + borderLeftRight + center) Тв
+
+

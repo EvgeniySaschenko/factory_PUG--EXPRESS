@@ -24,7 +24,8 @@ const docOperatingMap= {
 		let { id= '@dummy' }= obj;
 		return {
 			action: `/api/doc-operating-map/download/id/` + id,
-			method: 'get'
+			method: 'get',
+			url: `/api/doc-operating-map/download/id/`
 		}
 	},
 
@@ -32,7 +33,8 @@ const docOperatingMap= {
 		let { id= '@dummy' }= obj;
 		return {
 			action: `/api/doc-operating-map/view/id/` + id,
-			method: 'get'
+			method: 'get',
+			url: `/api/doc-operating-map/view/id/`
 		}
 	},
 

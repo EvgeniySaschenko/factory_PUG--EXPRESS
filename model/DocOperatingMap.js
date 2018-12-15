@@ -42,7 +42,7 @@ class DocOperatingMap{
 	}
 	*/
 	editOperatingMap(req){
-		let { id, id_equipment, firmness, ev, md, profile, mz, koid, program, t_o, t_v, t_pz, t_st, emulsion, approve_1= '{}', approve_2= '{}', approve_3= '{}', approve_4= '{}', approve_5= '{}', approve_6= '{}', approve_7= '{}', approve_8= '{}', remark}= req.body;
+		let { id, id_equipment, type_operation, firmness, ev, md, profile, mz, koid, program, t_o, t_v, t_pz, t_st, emulsion, approve_1= '{}', approve_2= '{}', approve_3= '{}', approve_4= '{}', approve_5= '{}', approve_6= '{}', approve_7= '{}', approve_8= '{}', remark}= req.body;
 		let { id_visitor }= req.session.user;
 		
 		// let pathTmp= req.files.file_drawing.path.toLowerCase();
@@ -63,6 +63,7 @@ class DocOperatingMap{
 						SET
 							id_visitor_update= ?, 
 							id_equipment= ?, 
+							type_operation= ?, 
 							firmness= ?, 
 							ev= ?, 
 							md= ?, 
@@ -86,7 +87,7 @@ class DocOperatingMap{
 							date_update= CURRENT_TIMESTAMP,
 							remark= ?
 						WHERE id= ?`,
-						[id_visitor, id_equipment, firmness, ev, md, profile, mz, koid, program, t_o, t_v, t_pz, t_st, emulsion, approve_1, approve_2, approve_3, approve_4, approve_5, approve_6, approve_7, approve_8, remark, id],
+						[id_visitor, id_equipment, type_operation, firmness, ev, md, profile, mz, koid, program, t_o, t_v, t_pz, t_st, emulsion, approve_1, approve_2, approve_3, approve_4, approve_5, approve_6, approve_7, approve_8, remark, id],
 						(err, data= false)=>{
 							let { affectedRows }= data;
 							affectedRows ? resolve( this.msg.edit ) : reject( { data: this.msg.err, err : err } );
@@ -106,9 +107,11 @@ class DocOperatingMap{
 				if(!err){
 					connection.query(`SELECT
 							om.*,
+							DATE_FORMAT(om.date_create, '%d.%m.%Y') as date_create,
 							eq.name as equipment_name,
 							eq.model as equipment_model,
 							eq.num as equipment_num,
+							rm.id as id_rout_map,
 							rm.name,
 							rm.num_detail,
 							op.name as operation_name,

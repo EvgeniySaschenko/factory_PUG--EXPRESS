@@ -40,13 +40,13 @@ router.put('/item', (req, res, next)=>{
 router.get('/download/id/:id', (req, res, next)=>{
 
 	let options = {
-		"directory": "./tmp",
+		"directory": "./tmp/doc",
 		"format": "A4",
 		"orientation": "landscape",
 		"border": {
-			"top": "6.5mm",
+			"top": "7.25mm",
 			"right": "5mm",
-			"bottom": "5mm",
+			"bottom": "5.2mm",
 			"left": "5mm"
 		},
 		"header": {
@@ -60,7 +60,8 @@ router.get('/download/id/:id', (req, res, next)=>{
 		let html = pug.compileFile(__APPROOT + '\\doc-template\\rout-map.pug');
 		htmlPdf.create(html( { routMap: val[0], routMapItemAll: val[1] } ), options)
 			.toFile((err, file) => {
-				res.download(file.filename, 'report.pdf')
+				let name= `${val[0].name} ${val[0].num_detail} от ${val[0].date_create}.pdf`;
+				res.download(file.filename, name);
 		});
 
 	}, reason => {
