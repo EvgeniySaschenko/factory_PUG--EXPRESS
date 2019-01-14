@@ -1,0 +1,43 @@
+.visual-editor
+	position: relative
+	&__panel
+		position: absolute
+		padding: 5px
+		&-btn
+			cursor: pointer
+			color: $corp-1
+	&__text-canvas
+		padding: 20px 10px 10px
+		width: 400px
+		height: 150px
+		border: 1px solid #ced4da
+		border-radius: 5px
+		line-height: 1.5
+		background-color: #ffffff
+		span
+			font-weight: 700
+			user-select: none
+			position: relative
+			// sup
+			// 	top: -10px !important
+			// sub
+			// 	top: 1px !important
+	&__textarea
+		display: none
+	&_sub-sup
+		display: flex
+		justify-content: center
+		align-items: center
+		line-height: 1
+		.visual-editor
+			&__val
+				display: inline-block
+			&_sub
+				position: relative
+				left: 10px
+			&__box-sub-sup
+				display: flex
+				flex-direction: column
+			&__field
+				width: 80px
+				margin: 2px

@@ -112,6 +112,7 @@ class DocRoutMap{
 							rm.*,
 							DATE_FORMAT(rm.date_create, '%d.%m.%Y') as date_create,
 							m.mark as material_mark,
+							m.id_type as id_type_material,
 							m.standart as material_standart,
 							mt.name as material_name
 						FROM ff_doc_rout_map rm

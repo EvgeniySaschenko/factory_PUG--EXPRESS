@@ -14,6 +14,7 @@ router.post('/', (req, res, next)=>{
 });
 
 router.put('/', (req, res, next)=>{
+	console.log( req.files.file_drawing.path )
 	// fs.readFile(req.files.file_drawing.path, 'utf8', function(err, contents) {
 	// 	fs.writeFile('./tmp/message.jpg', contents, (err) => {
 	// 		if (err) throw err;

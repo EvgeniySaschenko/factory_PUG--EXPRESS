@@ -36,7 +36,7 @@ router.get('/edit/id/:id', (req, res, next)=> {
 
 	Promise.all([menu_main, menu_breadCrumbs, materialType_list, material_list, globalSettings_list, routMap_cur, routMapItems_list, operatingMapItems_list, rank_list, operation_list]).then(val => {
 			res.render('tech-process/rout-map-edit', {
-				title: 'Редактировать маршрутную карту:',
+				title: `Редактировать маршрутную карту: ${ val[5].name } ${ val[5].num_detail }`,
 				curUrl: req.originalUrl,
 				menu_main: val[0],
 				menu_breadCrumbs: val[1],

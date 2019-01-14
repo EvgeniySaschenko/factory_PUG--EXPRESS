@@ -20,8 +20,11 @@ block content
 
 			+e.H2.title Основная информация маршрутной карты
 			.container
-				+e.reload-page(class="fa fa-sync-alt" title="Обновить")
-			
+				+e.panel
+					+e.A.panel-item(class="fas fa-map-marked-alt" href=`/tech-process/rout-map/edit/id/${operatingMap_cur.id_rout_map}` title="Маршрутная карта")
+					+e.A.panel-item(class="far fa-file-pdf" href=`/tech-process/rout-map/doc-list/id/${operatingMap_cur.id_rout_map}` target="_blank" title="Скачать документы")
+					+e.panel-item(class="fa fa-sync-alt tab__reload-page" title="Обновить страницу")
+
 			+e.box-content
 				+e.content(class="container" id="tab_1")
 					- var dataOperatingMap_cur= operatingMap_cur
@@ -154,7 +157,11 @@ block content
 
 										+e.TD.col
 											.form__group(class="form-group")
-												INPUT.form__field(class="form__field_w400 form-control" type="text" name="description" required)
+												+b.visual-editor
+													+e.panel
+														+e.panel-btn_sub-sup.fas.fa-sort-numeric-down
+													+e.text-canvas(contenteditable="true")
+													+e.TEXTAREA(name="description").textarea
 
 										+e.TD.col
 											.form__group(class="form-group")
@@ -235,8 +242,11 @@ block content
 														INPUT.form__field(value= e.num_operation class="form-control" type="number" name="num_operation[]" required)
 
 												+e.TD.col
-													.form__group(class="form-group")
-														INPUT.form__field(value= e.description class="form__field_w400 form-control" type="text" name="description[]" required)
+													+b.visual-editor
+															+e.panel
+																+e.panel-btn_sub-sup.fas.fa-sort-numeric-down
+															+e.text-canvas(contenteditable="true")!= e.description 
+															+e.TEXTAREA(name="description[]").textarea= e.description 
 
 												+e.TD.col
 													.form__group(class="form-group")

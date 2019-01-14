@@ -4,6 +4,7 @@
 		 Элемнт который вызывает модальное окно должен иметь класс "show-modal" и атрибут "data-id-modal"
 		 значение атрибута это id модального окна
 	 */
+	// При клике
 	const modalShow= function(){
 		const modalShow= document.getElementsByClassName('show-modal');
 		for(let i= 0, l= modalShow.length; l > i; i++){
@@ -14,6 +15,7 @@
 		}
 	}
 	modalShow();
+
 	/**
 	 * Закрыть модальное окно
 	 */

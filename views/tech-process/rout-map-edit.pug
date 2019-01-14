@@ -23,7 +23,9 @@ block content
 
 			+e.H2.title Основная информация МК
 			.container
-				+e.reload-page(class="fa fa-sync-alt" title="Обновить")
+				+e.panel
+					+e.A.panel-item(class="far fa-file-pdf" href=`/tech-process/rout-map/doc-list/id/${routMap_cur.id}` target="_blank" title="Скачать документы")
+					+e.panel-item(class="fa fa-sync-alt tab__reload-page" title="Обновить страницу")
 			
 			+e.box-content
 				+e.content(class="container" id="tab_1")
@@ -51,7 +53,7 @@ block content
 							+e.LABEL.label Материал
 							+e.SELECT.select(class="form-control" name="id_type" required)
 								each e in dataSelectMaterialType
-									+e.OPTION(value= e.id, selected= e.id == dataRoutMap_cur.id_type ? true : false).option= e.name
+									+e.OPTION(value= e.id, selected= e.id == dataRoutMap_cur.id_type_material ? true : false).option= e.name
 
 						+e.group(class="form-group")
 							+e.LABEL.label Марка материала
@@ -221,17 +223,17 @@ block content
 										// Участок
 										+e.TD.col
 											+e.group(class="form-group")
-												+e.INPUT.field(class="form-control" type="number" name="kst")
+												+e.INPUT.field_w110(class="form-control" type="number" name="kst")
 
 										// Участок
 										+e.TD.col
 											+e.group(class="form-group")
-												+e.INPUT.field(class="form-control" type="number" name="tpz")
+												+e.INPUT.field_w110(class="form-control" type="number" name="tpz")
 
 										// Участок
 										+e.TD.col
 											+e.group(class="form-group")
-												+e.INPUT.field(class="form-control" type="number" name="tst")
+												+e.INPUT.field_w110(class="form-control" type="number" name="tst")
 
 							+e.alert(class="alert hidden")
 							+e.box-btn(class="center")
@@ -342,17 +344,17 @@ block content
 											// Участок
 											+e.TD.col
 												.form__group(class="form-group")
-													INPUT.form__field(value= e.kst class="form-control" type="number" name="kst[]")
+													INPUT.form__field_w110(value= e.kst class="form-control" type="number" name="kst[]")
 
 											// Участок
 											+e.TD.col
 												.form__group(class="form-group")
-													INPUT.form__field(value= e.tpz class="form-control" type="number" name="tpz[]")
+													INPUT.form__field_w110(value= e.tpz class="form-control" type="number" name="tpz[]")
 
 											// Участок
 											+e.TD.col
 												.form__group(class="form-group")
-													INPUT.form__field(value= e.tst class="form-control" type="number" name="tst[]")
+													INPUT.form__field_w110(value= e.tst class="form-control" type="number" name="tst[]")
 
 											// Удалить
 											+e.TD.col_center

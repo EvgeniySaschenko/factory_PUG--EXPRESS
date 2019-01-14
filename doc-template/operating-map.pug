@@ -151,7 +151,7 @@ table(style=noBorder + "font-size: 12px; font-family: Arial, sans-serif;")
 					td(style= center + border)
 					td(style= center + border)= operatingMap.emulsion ? operatingMap.emulsion : ''
 
-table(style=noBorder + "font-size: 12px; font-family: Arial, sans-serif;")
+table(style=noBorder + "font-size: 15px; font-family: Arial, sans-serif;")
 	tr(style= row)
 		td(style="width: 5mm;" + border + center) Р
 		td(style="width: 120mm;" + border + center) Описание
@@ -169,14 +169,15 @@ table(style=noBorder + "font-size: 12px; font-family: Arial, sans-serif;")
 
 	each e, i in operatingMapItemAll
 		if operatingMap.type_operation === 1
-			- var t_o = (e.val_l * e.val_l)/(e.val_s)
+			- var t_o = (e.val_l * e.val_i) / (e.val_n * e.val_s)
 		
 		if operatingMap.type_operation === 2
-			- var t_o = (e.val_l * e.val_l)/(e.val_s)
+			- var t_o = (e.val_l * e.val_i) / e.val_s
+
 
 		tr(style= row)
 			td(style= border + center)= e.num_operation
-			td(style= border)= e.description
+			td(style= border)!= e.description
 			td(style= border + center)= e.val_pi != false ? e.val_pi : '-'
 			td(style= border + center)= e.val_d_v != false ? e.val_d_v : '-'
 			td(style= border + center)= e.val_l != false ? e.val_l : '-'
@@ -342,5 +343,3 @@ table(style=noBorder + "font-size: 12px; font-family: Arial, sans-serif;")
 								td(style="width: 15mm;" + borderLeftRight + center) V
 								td(style="width: 15mm;" + borderLeftRight + center) То
 								td(style="width: 15mm;" + borderLeftRight + center) Тв
-
-
